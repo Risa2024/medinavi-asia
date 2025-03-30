@@ -53,7 +53,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" 
-                                            class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                            class="text-red-500"
                                             onclick="return confirm('削除してもよろしいですか？')">
                                         削除
                                     </button>
