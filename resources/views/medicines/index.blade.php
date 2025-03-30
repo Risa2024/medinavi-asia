@@ -32,7 +32,18 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             @foreach($medicines as $medicine)
                                 <div class="border rounded-lg p-5 hover:shadow-md transition-shadow">
-                                    <h4 class="text-xl font-bold text-blue-700">{{ $medicine->name }}</h4>
+                                    <div class="flex items-center">
+                                        @if($medicine->image_path)
+                                            <img src="{{ asset('storage/' . $medicine->image_path) }}" 
+                                                 alt="{{ $medicine->name }}" 
+                                                 class="w-20 h-20 object-cover rounded-lg mr-4">
+                                        @else
+                                            <div class="w-20 h-20 bg-gray-200 rounded-lg mr-4 flex items-center justify-center">
+                                                <span class="text-gray-500">No Image</span>
+                                            </div>
+                                        @endif
+                                        <h4 class="text-xl font-bold text-blue-700">{{ $medicine->name }}</h4>
+                                    </div>
                                     <div class="flex flex-wrap gap-2 mt-2 mb-3">
                                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{{ $medicine->category }}</span>
                                         <div class="flex items-center space-x-2">
