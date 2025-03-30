@@ -57,21 +57,29 @@
 
                 <!-- country -->
                 <div class="mb-4">
-                    <label class="block mb-2">国：</label>
-                    <select name="country" required class="w-full border p-2">
-                        <option value="">選択してください</option>
-                        <option value="インドネシア">インドネシア</option>
-                        <option value="マレーシア">マレーシア</option>
-                        <option value="タイ">タイ</option>
-                    </select>
+                    <label class="block mb-2">販売国：</label>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="checkbox" name="country[]" value="インドネシア" class="mr-2">
+                            <label>インドネシア</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" name="country[]" value="マレーシア" class="mr-2">
+                            <label>マレーシア</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" name="country[]" value="タイ" class="mr-2">
+                            <label>タイ</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="text-center mt-6">
-                    <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded">
+                    <button type="submit" class=" text-blue-500 px-6 py-2 rounded">
                         登録
                     </button>
                 </div>
             </form>
         </div>
     </div>
-</x-app-layout> 
+</x-app-layout>
