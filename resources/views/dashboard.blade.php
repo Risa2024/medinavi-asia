@@ -7,15 +7,6 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- ナビゲーションバー -->
-            <div class="bg-gray-300 mb-4 py-2 px-4 flex items-center">
-                <span class="mx-2">|</span>
-                <a href="{{ route('dashboard') }}" class="mx-2">ホーム</a>
-                <span class="mx-2">|</span>
-                <a href="#" class="mx-2">お役立ちコラム</a>
-                <span class="mx-2">|</span>
-            </div>
-
             <!-- 現在地表示 -->
             <div class="bg-gray-100 mb-6 p-4 flex items-center">
                 <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

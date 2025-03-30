@@ -13,7 +13,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('ホーム') }}
+                    </x-nav-link>
+                    <x-nav-link href="#" :active="request()->routeIs('column')">
+                        {{ __('お役立ちコラム') }}
                     </x-nav-link>
 
                     @if(auth()->user() && auth()->user()->is_admin)
@@ -74,7 +77,10 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('ホーム') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="#" :active="request()->routeIs('column')">
+                {{ __('お役立ちコラム') }}
             </x-responsive-nav-link>
 
             @if(auth()->user() && auth()->user()->is_admin)
