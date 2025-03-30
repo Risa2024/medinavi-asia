@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image_path')->nullable();
             $table->string('currency_code');
             $table->integer('price');
             $table->text('description')->nullable();
