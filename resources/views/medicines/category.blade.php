@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-6">薬のカテゴリ一覧</h3>
-                    
+
                     @if($categories->isEmpty())
                         <p class="text-gray-500">カテゴリが登録されていません。</p>
                     @else
