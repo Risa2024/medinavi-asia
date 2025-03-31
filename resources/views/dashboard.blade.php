@@ -8,18 +8,16 @@
     <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- 現在地表示 -->
-            <div class="bg-gray-100 mb-6 p-4 flex items-center">
-                <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span class="text-xl">あなたの現在地：タイ・バンコク</span>
-                
-                <button class="ml-auto bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1 rounded flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div class="bg-gray-100 mb-6 p-4 flex flex-col items-center justify-center">
+                <div class="flex items-center justify-center mb-2">
+                    <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
-                    再取得する
+                    <span class="text-xl">あなたの現在地：タイ・バンコク</span>
+                </div>
+                <button class=" px-4 py-1 rounded flex items-center">
+                    🔁
                 </button>
             </div>
 
@@ -31,7 +29,7 @@
                     </svg>
                     お薬を探す
                 </h2>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- 種類から検索 -->
                     <a href="{{ route('medicines.category') }}" class="bg-gray-200 p-6 rounded hover:bg-gray-300 transition">

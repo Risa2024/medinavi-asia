@@ -7,7 +7,7 @@
             <div class="mb-6">
                 <a href="{{ route('admin.medicines.create') }}" class="bg-blue-500 text-black
                  px-6 py-2 rounded">
-                    <h2 class="text-xl font-bold mb-4">⚫ 新規登録</h2>
+                    <h2 class="text-xl font-bold mb-4">➕ 新規登録</h2>
                 </a>
             </div>
 
@@ -31,8 +31,8 @@
                             <td class="px-4 py-2">{{ $medicine->name }}</td>
                             <td class="px-4 py-2">
                                 @if($medicine->image_path)
-                                    <img src="{{ asset('storage/' . $medicine->image_path) }}" 
-                                         alt="{{ $medicine->name }}" 
+                                    <img src="{{ asset('storage/' . $medicine->image_path) }}"
+                                         alt="{{ $medicine->name }}"
                                          class="w-16 h-16 object-cover rounded">
                                 @endif
                             </td>
@@ -48,12 +48,12 @@
                                 {{ number_format($medicine->price) }} {{ $medicine->currency_code }}
                             </td>
                             <td class="px-4 py-2">
-                                <form action="{{ route('admin.medicines.destroy', $medicine) }}" 
-                                      method="POST" 
+                                <form action="{{ route('admin.medicines.destroy', $medicine) }}"
+                                      method="POST"
                                       class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" 
+                                    <button type="submit"
                                             class="text-red-500"
                                             onclick="return confirm('削除してもよろしいですか？')">
                                         削除
