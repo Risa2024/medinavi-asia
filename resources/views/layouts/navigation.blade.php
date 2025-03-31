@@ -15,9 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('ホーム') }}
                     </x-nav-link>
-                    <x-nav-link href="#" :active="request()->routeIs('column')">
+                    <!-- お役立ちコラムは非表示 -->
+                    <!--<x-nav-link href="#" :active="request()->routeIs('column')">
                         {{ __('お役立ちコラム') }}
-                    </x-nav-link>
+                    </x-nav-link>-->
 
                     @if(auth()->user() && auth()->user()->is_admin)
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
@@ -79,9 +80,10 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="#" :active="request()->routeIs('column')">
+            <!-- お役立ちコラムは非表示 -->
+            <!--<x-responsive-nav-link href="#" :active="request()->routeIs('column')">
                 {{ __('お役立ちコラム') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link>-->
 
             @if(auth()->user() && auth()->user()->is_admin)
                 <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">

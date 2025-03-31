@@ -16,7 +16,7 @@
                     @else
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             @foreach($categories as $category)
-                            <a href="{{ route('medicines.index', ['category' => $category]) }}" class="block py-4 px-6 border-b hover:bg-gray-50 flex justify-between items-center">
+                            <a href="{{ route('medicines.index', ['category' => $category]) }}" class="py-4 px-6 border-b hover:bg-gray-50 flex justify-between items-center">
                                     <span>{{ $category }}</span>
                                     <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
