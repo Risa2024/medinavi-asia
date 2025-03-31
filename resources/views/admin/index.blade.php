@@ -5,8 +5,7 @@
         <div class="bg-gray-100 rounded p-6">
             <!-- 新規登録ボタン -->
             <div class="mb-6">
-                <a href="{{ route('admin.medicines.create') }}" class="bg-blue-500 text-black
-                 px-6 py-2 rounded">
+                <a href="{{ route('admin.medicines.create') }}">
                     <h2 class="text-xl font-bold mb-4">➕ 新規登録</h2>
                 </a>
             </div>
