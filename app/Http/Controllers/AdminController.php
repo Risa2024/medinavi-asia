@@ -27,11 +27,8 @@ class AdminController extends Controller
             'country' => 'required',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'ingredients' => 'required',
-            'effects' => 'required',
-            'usage' => 'required',
             'description' => 'required',
-            'official_url' => 'nullable|url'
+            'currency_code' => 'required'
         ]);
 
         if ($request->hasFile('image')) {

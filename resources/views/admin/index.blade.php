@@ -24,6 +24,7 @@
                             <th class="px-4 py-2 text-left">削除</th>
                         </tr>
                     </thead>
+             <!-- テーブルの本体部分 -->
                     <tbody>
                         @foreach($medicines as $medicine)
                         <tr class="border-t">
