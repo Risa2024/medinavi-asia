@@ -16,11 +16,11 @@
 
                     <!-- 検索フォーム -->
                     <form action="{{ route('medicines.index') }}" method="GET" class="mb-8 max-w-md mx-auto">
-                        <div class="flex flex-col sm:flex-row shadow-md rounded-lg overflow-hidden">
+                        <div class="flex flex-row shadow-md rounded-lg overflow-hidden">
                             <input type="text" name="query" value="{{ $query ?? '' }}"
-                                placeholder="例: ポンタール、ロキソニン、タイレノール"
-                                class="border-0 px-4 py-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 font-medium transition-colors">検索する</button>
+                                placeholder="例: パナドール、ロキソニン、タイレノール"
+                                class="border-0 px-4 py-3 flex-1 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 font-semibold transition-colors whitespace-nowrap">検索</button>
                         </div>
                     </form>
 
@@ -42,4 +42,4 @@
             </div>
         </div>
     </div>
-</x-app-layout> 
+</x-app-layout>

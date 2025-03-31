@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-bold mb-4">📌 MediNavi Asia 管理画面</h1>
+        <h1 class="text-2xl font-bold py-6">📌 MediNavi Asia 管理画面</h1>
 
         <div class="bg-gray-100 rounded p-6">
             <!-- 新規登録ボタン -->

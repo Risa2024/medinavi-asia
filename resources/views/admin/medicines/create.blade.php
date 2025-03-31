@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-bold mb-4">📌 MediNavi Asia 管理画面</h1>
+        <h1 class="text-2xl font-bold py-6">📌 MediNavi Asia 投稿画面</h1>
 
         <div class="bg-gray-100 rounded p-6">
             <form action="{{ route('admin.medicines.store') }}" method="POST" enctype="multipart/form-data">
@@ -75,8 +75,8 @@
                 </div>
 
                 <div class="text-center mt-6">
-                    <button type="submit" class=" text-blue-500 px-6 py-2 rounded">
-                        登録
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg">
+                        <span>登録</span>
                     </button>
                 </div>
             </form>
