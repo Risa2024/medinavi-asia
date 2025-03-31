@@ -36,7 +36,7 @@ class MedicineController extends Controller
             $medicines = $medicines->get();
         }
 
-        return view('medicines.index', compact('medicines', 'query'));
+        return view('user.medicines.index', compact('medicines', 'query'));
     }
 
     /**
@@ -45,7 +45,7 @@ class MedicineController extends Controller
      */
     public function search()
     {
-        return view('medicines.search');
+        return view('user.medicines.search');
     }
 
     /**
@@ -56,7 +56,7 @@ class MedicineController extends Controller
         // 薬のカテゴリ一覧を取得
         $categories = Medicine::select('category')->distinct()->get()->pluck('category');
         
-        return view('medicines.category', compact('categories'));
+        return view('user.medicines.category', compact('categories'));
     }
 
     /**
@@ -66,6 +66,6 @@ class MedicineController extends Controller
     {
         $medicines = Medicine::where('category', $category)->get();
         
-        return view('medicines.category_show', compact('medicines', 'category'));
+        return view('user.medicines.index', compact('medicines', 'category'));
     }
 }
