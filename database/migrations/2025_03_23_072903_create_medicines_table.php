@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('price');
             $table->text('description')->nullable();
             $table->string('category');
-            $table->string('country');
+            $table->json('country');
             $table->timestamps();
         });
     }
