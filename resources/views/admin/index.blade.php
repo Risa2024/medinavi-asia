@@ -37,11 +37,17 @@
                             </td>
                             <td class="px-4 py-2">{{ $medicine->category }}</td>
                             <td class="px-4 py-2">
-                                @foreach($medicine->country as $country)
+                                @if(is_array($medicine->country))
+                                    @foreach($medicine->country as $country)
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm mr-1">
+                                            {{ $country }}
+                                        </span>
+                                    @endforeach
+                                @else
                                     <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm mr-1">
-                                        {{ $country }}
+                                        {{ $medicine->country }}
                                     </span>
-                                @endforeach
+                                @endif
                             </td>
                             <td class="px-4 py-2">
                                 {{ number_format($medicine->price) }} {{ $medicine->currency_code }}

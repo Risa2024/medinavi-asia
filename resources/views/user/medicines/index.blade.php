@@ -47,11 +47,9 @@
                                     <div class="flex flex-wrap gap-2 mt-2 mb-3">
                                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{{ $medicine->category }}</span>
                                         <div class="flex items-center space-x-2">
-                                            @foreach(is_array($medicine->country) ? $medicine->country : json_decode($medicine->country) as $country)
-                                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                                                    {{ $country }}
-                                                </span>
-                                            @endforeach
+                                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                                                {{ $medicine->country }}
+                                            </span>
                                         </div>
                                     </div>
                                     <p class="text-gray-600 font-semibold mt-2">価格：{{ $medicine->price }} {{ $medicine->currency_code }}</p>
