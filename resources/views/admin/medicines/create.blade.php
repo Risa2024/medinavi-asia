@@ -15,8 +15,31 @@
                 <!-- image_path -->
                 <div class="mb-4">
                     <label class="block mb-2">画像：</label>
-                    <input type="file" name="image" required class="w-full border p-2">
+                    <input type="file" name="image" id="image" accept="image/*" required class="w-full border p-2" onchange="previewImage(this)">
+                    <div id="imagePreview" class="mt-2 hidden">
+                        <img id="preview" class="max-w-xs rounded" src="" alt="プレビュー">
+                    </div>
                 </div>
+
+                <script>
+                    function previewImage(input) {
+                        const preview = document.getElementById('preview');
+                        const previewContainer = document.getElementById('imagePreview');
+
+                        if (input.files && input.files[0]) {
+                            const reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                preview.src = e.target.result;
+                                previewContainer.classList.remove('hidden');
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        } else {
+                            previewContainer.classList.add('hidden');
+                        }
+                    }
+                </script>
 
                 <!-- currency_code -->
                 <div class="mb-4">

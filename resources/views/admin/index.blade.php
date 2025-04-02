@@ -6,7 +6,7 @@
             <!-- 新規登録ボタン -->
             <div class="mb-6">
                 <a href="{{ route('admin.medicines.create') }}">
-                    <h2 class="text-xl font-bold mb-4">➕ 新規登録</h2>
+                    <h2 class="text-xl font-bold mb-4">➕新規登録</h2>
                 </a>
             </div>
 
@@ -47,17 +47,23 @@
                                 {{ number_format($medicine->price) }} {{ $medicine->currency_code }}
                             </td>
                             <td class="px-4 py-2">
-                                <form action="{{ route('admin.medicines.destroy', $medicine) }}"
-                                      method="POST"
-                                      class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                            class="text-red-500"
-                                            onclick="return confirm('削除してもよろしいですか？')">
-                                        削除
-                                    </button>
-                                </form>
+                                <div class="flex space-x-4">
+                                    <a href="{{ route('admin.medicines.edit', $medicine) }}"
+                                       class="text-blue-500 hover:text-blue-700">
+                                        編集
+                                    </a>
+                                    <form action="{{ route('admin.medicines.destroy', $medicine) }}"
+                                          method="POST"
+                                          class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="text-red-500 hover:text-red-700"
+                                                onclick="return confirm('削除してもよろしいですか？')">
+                                            削除
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
