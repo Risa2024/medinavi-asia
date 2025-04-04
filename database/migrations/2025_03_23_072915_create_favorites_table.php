@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('medicine_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-            
             // ユーザーは同じ薬を重複してお気に入りできないようにする
             $table->unique(['user_id', 'medicine_id']);
         });
