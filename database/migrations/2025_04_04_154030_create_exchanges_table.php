@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('exchanges', function (Blueprint $table) {
             $table->id();
-            $table->string('currency_code');
-            $table->bigInteger('rate_jpy');
+            $table->string('currency_code', 3)->comment('通貨コード（例：IDR, USD）');
+            $table->decimal('rate_to_jpy', 15, 6)->comment('日本円に対するレート（例：1IDR = 0.0089JPY）');
+            $table->date('updated_date')->comment('レート更新日');
             $table->timestamps();
+            // 通貨コードは一意
+            $table->unique('currency_code');
         });
     }
 
