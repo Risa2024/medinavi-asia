@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Medicine;
+use App\Models\Country;
+use App\Models\Exchange;
 use Illuminate\Http\Request;
 //薬の検索・カテゴリ別表示・検索フォームの画面を管理してるコントローラー
 //検索ページの動きを全部仕切ってる責任者みたいなページ
@@ -33,10 +35,14 @@ class MedicineController extends Controller
         if (!$query && !$category) {
             $medicines = collect([]);
         } else {
-            $medicines = $medicines->get();
+            $medicines = $medicines->with('countries')->get();
         }
 
-        return view('user.medicines.index', compact('medicines', 'query'));
+        // 国と通貨情報の取得
+        $countries = Country::all()->keyBy('code');
+        $exchanges = Exchange::all()->keyBy('currency_code');
+
+        return view('user.medicines.index', compact('medicines', 'query', 'countries', 'exchanges'));
     }
 
     /**
@@ -64,8 +70,12 @@ class MedicineController extends Controller
      */
     public function categoryShow(Request $request, $category)
     {
-        $medicines = Medicine::where('category', $category)->get();
+        $medicines = Medicine::where('category', $category)->with('countries')->get();
         
-        return view('user.medicines.index', compact('medicines', 'category'));
+        // 国と通貨情報の取得
+        $countries = Country::all()->keyBy('code');
+        $exchanges = Exchange::all()->keyBy('currency_code');
+        
+        return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges'));
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('medicine_id')->constrained()->onDelete('cascade');
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->bigInteger('price');
+            $table->string('currency_code', 3)->comment('通貨コード（例：JPY, IDR）');
             $table->timestamps();
         });
     }
