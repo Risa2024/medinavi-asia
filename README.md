@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# MediNavi Asia
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+MediNavi Asia は、東南アジア地域で販売されている薬の情報を検索・比較できる Web アプリケーションです。旅行者や現地に住む日本人が、現地の薬局で薬を購入する際の手助けとなることを目的としています。
 
-## About Laravel
+## 主な機能
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### ユーザー向け機能
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **薬の検索**: 名前やカテゴリーから薬を検索できます
+-   **カテゴリー別表示**: 腹痛薬、解熱鎮痛薬、胃腸薬などのカテゴリー別に薬を一覧表示
+-   **国別価格表示**: インドネシア、マレーシア、タイ、ベトナムなど各国での価格情報を表示
+-   **お気に入り機能**: 頻繁に使用する薬をお気に入りに登録し、一覧で確認できます
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 管理者向け機能
 
-## Learning Laravel
+-   **薬情報の登録**: 新しい薬の情報を登録できます
+-   **複数国の販売情報管理**: 各国ごとの価格や通貨情報を管理できます
+-   **薬情報の削除**: 不要になった薬の情報を削除できます
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 技術スタック
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **フレームワーク**: Laravel 12
+-   **データベース**: PostgreSQL
+-   **フロントエンド**: Tailwind CSS
+-   **開発環境**: Laravel Sail (Docker)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 環境構築
 
-## Laravel Sponsors
+### 必要条件
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   Docker
+-   Docker Compose
+-   PHP 8.4 以上
+-   Composer
 
-### Premium Partners
+### インストール手順
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. リポジトリをクローン
 
-## Contributing
+    ```
+    git clone https://github.com/yourusername/medinavi-asia.git
+    cd medinavi-asia
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. .env ファイルの設定
 
-## Code of Conduct
+    ```
+    cp .env.example .env
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Sail を使用して Docker コンテナを起動
 
-## Security Vulnerabilities
+    ```
+    ./vendor/bin/sail up -d
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. 依存パッケージのインストール
 
-## License
+    ```
+    ./vendor/bin/sail composer install
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. アプリケーションキーの生成
+
+    ```
+    ./vendor/bin/sail artisan key:generate
+    ```
+
+6. マイグレーションとシーディングの実行
+
+    ```
+    ./vendor/bin/sail artisan migrate
+    ./vendor/bin/sail artisan db:seed
+    ```
+
+7. ストレージリンクの作成
+    ```
+    ./vendor/bin/sail artisan storage:link
+    ```
+
+### 使用方法
+
+1. 薬の検索
+
+    - ホーム画面の検索バーから薬名を入力して検索
+    - または、カテゴリーから薬を選択
+
+2. お気に入り機能
+
+    - 薬の詳細ページでハートアイコンをクリックして登録
+    - ナビゲーションメニューから「お気に入り」を選択して一覧表示
+
+3. 管理者機能（管理者アカウントのみ）
+    - ナビゲーションメニューから「管理画面」を選択
+    - 新規登録ボタンから薬の情報を登録
+    - 各国の価格情報を入力して保存
+
+## データベース構造
+
+主なテーブル構成:
+
+-   **medicines**: 薬の基本情報（名前、説明、カテゴリー、画像）
+-   **countries**: 国の情報（国名）
+-   **medicines_country**: 薬と国の中間テーブル（価格、通貨コード）
+-   **favorites**: お気に入り情報（ユーザー ID、薬 ID）
+-   **users**: ユーザー情報
+
+## ライセンス
+
+MIT ライセンスのもとで公開されています。詳細は[LICENSE](LICENSE)ファイルをご覧ください。
