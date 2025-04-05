@@ -90,7 +90,7 @@
                                                         @foreach($medicine->countries as $country)
                                                             <div class="flex items-center justify-between px-2 py-1 bg-white rounded-md shadow-sm border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors border-b">
                                                                 <div class="flex items-center gap-1">
-                                                                    <span class="text-sm">{{ $countryEmojis[$country->name] ?? '🌏' }}</span>
+                                                                    <span class="text-sm">{{ $countryEmojis[$country->name]}}</span>
                                                                     <span class="text-xs text-gray-700 font-medium">{{ $country->name }}：</span>
                                                                 </div>
                                                                 <div class="text-xs font-semibold text-gray-800">

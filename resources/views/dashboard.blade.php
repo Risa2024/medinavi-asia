@@ -22,7 +22,7 @@
                         </div>
                         <div class="flex-1">
                             <h2 class="text-xl font-bold text-blue-900">種類から検索</h2>
-                            <p class="text-blue-700 text-sm mt-1">腹痛薬、目薬などカテゴリで探す</p>
+                            <p class="text-blue-700 text-sm mt-1">腹痛薬、風邪薬などカテゴリで探す</p>
                         </div>
                         <div class="text-blue-600 group-hover:translate-x-1 transition-transform duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
