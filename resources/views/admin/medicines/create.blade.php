@@ -82,7 +82,7 @@
                         </div>
 
                         <!-- タイ情報入力セクション -->
-                        <div class="mb-4">
+                        <div class="mb-4 pb-3 border-b">
                             <div class="flex items-center mb-2">
                                 <input type="checkbox" name="country[]" value="タイ" id="country-th" class="mr-2">
                                 <label for="country-th" class="font-medium">🇹🇭 タイ</label>
@@ -91,6 +91,20 @@
                                 <div>
                                     <label class="block text-sm mb-1">価格 (THB)：</label>
                                     <input type="number" name="price_th" class="w-full border p-2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ベトナム情報入力セクション -->
+                        <div class="mb-4">
+                            <div class="flex items-center mb-2">
+                                <input type="checkbox" name="country[]" value="ベトナム" id="country-vn" class="mr-2">
+                                <label for="country-vn" class="font-medium">🇻🇳 ベトナム</label>
+                            </div>
+                            <div class="ml-6 mt-2 grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-sm mb-1">価格 (VND)：</label>
+                                    <input type="number" name="price_vn" class="w-full border p-2">
                                 </div>
                             </div>
                         </div>

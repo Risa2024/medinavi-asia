@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 /**
  * 管理者用コントローラー
  *
- * 薬情報の管理（一覧表示、登録、削除）を行うコントローラーです。
+ * 薬情報の管理（一覧表示、登録、削除）を行うコントローラー。
  * コントローラーはブラウザからのリクエストを受け取り、
- * 結果（ビューやリダイレクト）をユーザーに返す役割を持ちます。
+ * 結果（ビューやリダイレクト）をユーザーに返す役割を持つ。
  */
 class AdminController extends Controller
 {
@@ -22,20 +22,20 @@ class AdminController extends Controller
     public function index()
     {
         $medicines = Medicine::latest()->get();
-        /*Medicine:: - Medicineモデル（medicinesテーブルに対応）にアクセスします
-        latest() - 最新のデータが最初に来るように並べ替えます（created_at降順）
-        これで取得したデータは $medicines 変数に格納されます*/
+        /*Medicine:: - Medicineモデル（medicinesテーブルに対応）にアクセスする。
+        latest() - 最新のデータが最初に来るように並べ替える（created_at降順）
+        これで取得したデータは $medicines 変数に格納される*/
         return view('admin.index', compact('medicines'));
-        /*compact関数 - PHP変数 $medicines をビューに渡します
-        ビューファイル内で $medicines 変数が使えるようになる*/
+        /*compact関数 - PHP変数 $medicines をビューに渡す。
+        ビューファイル内で $medicines 変数が使えるようになる。*/
     }
 
     /**
      * 薬登録フォーム表示メソッド
-     * 
+     *
      * 1. 'admin.medicines.create'ビューを表示
-     * 
-     * 管理者が「新規登録」ボタンをクリックすると、このメソッドが実行されます。
+     *
+     * 管理者が「新規登録」ボタンをクリックすると、このメソッドが実行される。
      */
     public function create()
     {
@@ -44,13 +44,13 @@ class AdminController extends Controller
 
     /**
      * 薬情報保存メソッド
-     * 
+     *
      * 1. フォームから送信されたデータをバリデーション（検証）
      * 2. 画像ファイルを'storage/app/public/medicines/'に保存
      * 3. 検証済みデータをデータベースに保存
      * 4. 管理画面トップへリダイレクト
      * 
-     * 管理者が登録フォームを送信すると、このメソッドが実行されます。
+     * 管理者が登録フォームを送信すると、このメソッドが実行されるようになっている。
      */
     public function store(Request $request)
     {
@@ -92,6 +92,7 @@ class AdminController extends Controller
             'インドネシア' => 'IDR',
             'マレーシア' => 'MYR',
             'タイ' => 'THB',
+            'ベトナム' => 'VND',
         ];
 
         // 国名からフォームの価格入力フィールド名へのマッピング
@@ -100,13 +101,14 @@ class AdminController extends Controller
             'インドネシア' => 'price_id',
             'マレーシア' => 'price_my',
             'タイ' => 'price_th',
+            'ベトナム' => 'price_vn',
         ];
 
         // 選択された各国について、中間テーブルにデータを保存
         foreach ($validated['country'] as $countryName) {
             // 国名からCountryモデルのインスタンスを取得
             $country = \App\Models\Country::where('name', $countryName)->first();
-            
+
             // 条件チェック：
             // 1. $countryが存在する（データベースに国が登録されている）
             // 2. $priceFieldsに国名のキーが存在する
@@ -129,21 +131,20 @@ class AdminController extends Controller
 
     /**
      * 薬情報削除メソッド
-     * 
+     *
      * 1. 画像ファイルが存在すれば'storage/app/public/'から削除
      * 2. データベースからレコードを削除
      * 3. 管理画面トップへリダイレクト
-     * 
-     * 管理者が「削除」ボタンをクリックすると、このメソッドが実行されます。
+     *
+     * 管理者が「削除」ボタンをクリックすると、このメソッドが実行される。
      */
     public function destroy(Medicine $medicine)
     {
         if ($medicine->image_path) {
             Storage::disk('public')->delete($medicine->image_path);
         }
-        
         $medicine->delete();
-        
+
         return redirect()->route('admin.index')
             ->with('success', '薬の情報が削除されました。');
     }
