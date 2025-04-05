@@ -66,11 +66,10 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
     ./vendor/bin/sail artisan key:generate
     ```
 
-6. マイグレーションとシーディングの実行
+6. マイグレーションの実行
 
     ```
     ./vendor/bin/sail artisan migrate
-    ./vendor/bin/sail artisan db:seed
     ```
 
 7. ストレージリンクの作成
@@ -106,5 +105,3 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
 -   **users**: ユーザー情報
 
 ## ライセンス
-
-MIT ライセンスのもとで公開されています。詳細は[LICENSE](LICENSE)ファイルをご覧ください。
