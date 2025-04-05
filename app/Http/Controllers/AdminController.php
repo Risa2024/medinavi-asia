@@ -54,23 +54,75 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        // 送信されたデータのバリデーション
+        // name: 必須、最大255文字
+        // category: 必須
+        // country: 必須、配列形式
+        // image: 必須、画像ファイル、jpeg/png/jpg形式、最大2048KB
+        // description: 必須
         $validated = $request->validate([
             'name' => 'required|max:255',
             'category' => 'required',
-            'country' => 'required',
-            'price' => 'required|numeric',
+            'country' => 'required|array',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'description' => 'required',
-            'currency_code' => 'required'
         ]);
 
+        // 画像ファイルがアップロードされた場合の処理
         if ($request->hasFile('image')) {
+            // 'public'ディスク（storage/app/public/）の'medicines'フォルダに画像を保存
+            // 返り値としてファイルパスを取得
             $path = $request->file('image')->store('medicines', 'public');
+            // バリデーション済みデータに画像パスを追加
             $validated['image_path'] = $path;
         }
 
-        Medicine::create($validated);
+        // 薬の基本情報のみをデータベースに保存
+        // 中間テーブルに保存するデータ（国・価格・通貨）は含めない
+        $medicine = Medicine::create([
+            'name' => $validated['name'],
+            'image_path' => $validated['image_path'] ?? null,
+            'description' => $validated['description'],
+            'category' => $validated['category']
+        ]);
 
+        // 国名から対応する通貨コードへのマッピング
+        // 各国に対して固定の通貨コードを設定
+        $currencyCodes = [
+            'インドネシア' => 'IDR',
+            'マレーシア' => 'MYR',
+            'タイ' => 'THB',
+        ];
+
+        // 国名からフォームの価格入力フィールド名へのマッピング
+        // 例: 'インドネシア' → 'price_id'（フォームのname属性）
+        $priceFields = [
+            'インドネシア' => 'price_id',
+            'マレーシア' => 'price_my',
+            'タイ' => 'price_th',
+        ];
+
+        // 選択された各国について、中間テーブルにデータを保存
+        foreach ($validated['country'] as $countryName) {
+            // 国名からCountryモデルのインスタンスを取得
+            $country = \App\Models\Country::where('name', $countryName)->first();
+            
+            // 条件チェック：
+            // 1. $countryが存在する（データベースに国が登録されている）
+            // 2. $priceFieldsに国名のキーが存在する
+            // 3. リクエストに対応する価格フィールドが入力されている
+            if ($country && isset($priceFields[$countryName]) && $request->filled($priceFields[$countryName])) {
+                // 中間テーブル（medicines_country）にデータを追加
+                // attach: 多対多リレーションで関連付けを作成するメソッド
+                $medicine->countries()->attach($country->id, [
+                    'price' => $request->input($priceFields[$countryName]),
+                    'currency_code' => $currencyCodes[$countryName]
+                ]);
+            }
+        }
+
+        // 管理画面のトップページにリダイレクト
+        // with('success', ...): フラッシュメッセージを設定
         return redirect()->route('admin.index')
             ->with('success', '薬の情報が正常に登録されました。');
     }
