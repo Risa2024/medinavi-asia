@@ -16,6 +16,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('ホーム') }}
                     </x-nav-link>
+                    
+                    <!-- お気に入り一覧へのリンク -->
+                    <x-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
+                        {{ __('お気に入り') }}
+                    </x-nav-link>
+                    
                     <!-- お役立ちコラムは非表示 -->
                     <!--<x-nav-link href="#" :active="request()->routeIs('column')">
                         {{ __('お役立ちコラム') }}
@@ -81,6 +87,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
+            
+            <!-- お気に入り一覧へのリンク（レスポンシブ） -->
+            <x-responsive-nav-link :href="route('favorites.index')" :active="request()->routeIs('favorites.index')">
+                {{ __('お気に入り') }}
+            </x-responsive-nav-link>
+            
             <!-- お役立ちコラムは非表示 -->
             <!--<x-responsive-nav-link href="#" :active="request()->routeIs('column')">
                 {{ __('お役立ちコラム') }}

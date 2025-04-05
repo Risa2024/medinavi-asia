@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('薬の検索結果') }}
+            {{ __('お気に入り一覧') }}
         </h2>
     </x-slot>
 
@@ -9,28 +9,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <!-- 検索条件表示 -->
-                    <div class="mb-6 border-b pb-4">
-                        @if(request()->has('category'))
-                            <h3 class="text-xl font-semibold">カテゴリ「{{ request()->category }}」の薬</h3>
-                        @endif
-                        @if($query)
-                            <h3 class="text-xl font-semibold">「{{ $query }}」の検索結果</h3>
-                        @endif
-                    </div>
-
-                    <!-- 検索結果 -->
-                    @if($medicines->isEmpty())
+                    @if($favorites->isEmpty())
                         <div class="py-8 text-center">
                             <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <p class="text-gray-500 text-lg">該当する薬は見つかりませんでした。</p>
-                            <p class="text-gray-400 mt-2">別のキーワードで検索してみてください。</p>
+                            <p class="text-gray-500 text-lg">お気に入りに追加された薬はありません。</p>
+                            <p class="text-gray-400 mt-2">薬を検索して、お気に入りに追加してみましょう。</p>
+                            <div class="mt-6">
+                                <a href="{{ route('medicines.search') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-6 py-2 rounded-lg inline-block">
+                                    薬を検索する
+                                </a>
+                            </div>
                         </div>
                     @else
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach($medicines as $medicine)
+                            @foreach($favorites as $medicine)
                                 <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-shadow border border-gray-100 h-full flex flex-col">
                                     <div class="flex justify-between items-center mb-3">
                                         <h2 class="text-base font-bold text-blue-600 truncate pr-2">💊 {{ $medicine->name }}</h2>
@@ -118,7 +112,7 @@
 
                                         <!-- 商品説明 -->
                                         @if($medicine->description)
-                                            <div class="mt-auto">
+                                            <div class="mb-3">
                                                 <h3 class="text-xs font-medium text-gray-600 flex items-center mb-1">
                                                     <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -129,47 +123,27 @@
                                             </div>
                                         @endif
 
-                                        <!-- お気に入りボタン -->
-                                        <div class="mt-3 flex justify-end">
-                                            @auth
-                                                @php
-                                                    $isFavorited = auth()->user()->favoriteMedicines()->where('medicine_id', $medicine->id)->exists();
-                                                @endphp
-                                                
-                                                @if($isFavorited)
-                                                    <!-- お気に入り済み：削除ボタン -->
-                                                    <form action="{{ route('favorites.destroy', $medicine) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="text-red-500 hover:text-red-700 flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <!-- お気に入り追加ボタン -->
-                                                    <form action="{{ route('favorites.store', $medicine) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="text-gray-400 hover:text-red-500 flex items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            @else
-                                                <!-- 未ログインユーザー向け -->
-                                                <a href="{{ route('login') }}" class="text-gray-400 hover:text-gray-600 flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                        <!-- お気に入り削除ボタン -->
+                                        <div class="mt-auto pt-3 flex justify-end">
+                                            <form action="{{ route('favorites.destroy', $medicine) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-500 hover:text-red-700 flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                                     </svg>
-                                                </a>
-                                            @endauth
+                                                    <span class="text-xs">お気に入りから削除</span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+                        </div>
+
+                        <!-- ページネーション -->
+                        <div class="mt-6">
+                            {{ $favorites->links() }}
                         </div>
                     @endif
 
@@ -179,16 +153,8 @@
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            別の薬を検索
+                            薬を検索
                         </a>
-                        @if(request()->has('category'))
-                            <a href="{{ route('medicines.category') }}" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                                </svg>
-                                カテゴリ一覧に戻る
-                            </a>
-                        @endif
                         <a href="{{ route('dashboard') }}" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>

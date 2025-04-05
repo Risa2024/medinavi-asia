@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/medicines/category/{category}', function ($category) {
         return redirect()->route('medicines.index', ['category' => $category]);
     })->name('medicines.category.show');
+
+    // お気に入り機能のルート
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::post('/favorites/{medicine}', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::delete('/favorites/{medicine}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
     //プロフィール編集関連ルート
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
