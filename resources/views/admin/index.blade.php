@@ -37,23 +37,29 @@
                             </td>
                             <td class="px-4 py-2">{{ $medicine->category }}</td>
                             <td class="px-4 py-2">
-                                @if(is_array($medicine->country))
-                                    @foreach($medicine->country as $country)
-                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm mr-1">
-                                            {{ $country }}
-                                        </span>
-                                    @endforeach
+                                @if($medicine->countries->count() > 0)
+                                    <ul class="list-disc pl-5">
+                                        @foreach($medicine->countries as $country)
+                                            <li>{{ $country->name }}</li>
+                                        @endforeach
+                                    </ul>
                                 @else
-                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm mr-1">
-                                        {{ $medicine->country }}
-                                    </span>
+                                    -
                                 @endif
                             </td>
                             <td class="px-4 py-2">
-                                {{ number_format($medicine->price) }} {{ $medicine->currency_code }}
+                                @if($medicine->countries->count() > 0)
+                                    <ul class="list-disc pl-5">
+                                        @foreach($medicine->countries as $country)
+                                            <li>{{ number_format($country->pivot->price) }} {{ $country->pivot->currency_code }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    0
+                                @endif
                             </td>
                             <td class="px-4 py-2">
-                                <form action="{{ route('admin.medicines.destroy', $medicine) }}"
+                                <form action="{{ route('admin.medicines.destroy', $medicine->id) }}"
                                       method="POST"
                                       class="inline">
                                     @csrf

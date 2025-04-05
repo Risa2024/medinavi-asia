@@ -21,13 +21,13 @@ class AdminController extends Controller
      *これが管理画面のトップページを表示するための処理になる。*/
     public function index()
     {
-        $medicines = Medicine::latest()->get();
-        /*Medicine:: - Medicineモデル（medicinesテーブルに対応）にアクセスする。
-        latest() - 最新のデータが最初に来るように並べ替える（created_at降順）
-        これで取得したデータは $medicines 変数に格納される*/
+        // N+1問題を避けるために、eagerロードを使用
+        // with('countries')によって、薬に関連する国の情報を事前に一括取得
+        // これにより、各薬ごとに別クエリを発行せず、パフォーマンスが向上する
+        $medicines = Medicine::with('countries')->get();
+        // 取得したデータをビューに渡す
+        // compact関数で変数名と同じキーの配列を生成
         return view('admin.index', compact('medicines'));
-        /*compact関数 - PHP変数 $medicines をビューに渡す。
-        ビューファイル内で $medicines 変数が使えるようになる。*/
     }
 
     /**
