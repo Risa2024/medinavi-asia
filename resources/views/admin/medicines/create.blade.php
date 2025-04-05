@@ -31,7 +31,8 @@
                 </div>
 
                 <!-- カテゴリー選択欄 -->
-                <!-- select要素：ドロップダウンリストで選択肢を表示 -->
+                <!-- select要素：ドロップダウンリストで選択肢を表示
+                 MedicineControllerのcategoryメソッドでデータベースから動的に取得している。 -->
                 <div class="mb-4">
                     <label class="block mb-2">カテゴリー：</label>
                     <select name="category" required class="w-full border p-2">
@@ -42,6 +43,7 @@
                         <option value="風邪薬">風邪薬</option>
                         <option value="目薬">目薬</option>
                         <option value="皮膚薬">皮膚薬</option>
+                        <option value="下痢止め">下痢止め</option>
                     </select>
                 </div>
 

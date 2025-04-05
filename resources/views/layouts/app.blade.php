@@ -33,12 +33,12 @@
             document.addEventListener('DOMContentLoaded', function() {
                 // すべてのトグルボタンとそのコンテンツを直接取得
                 const priceToggleButtons = document.querySelectorAll('button[onclick="togglePriceInfo(this)"]');
-                
+
                 // 各ボタンのコンテンツを開く
                 priceToggleButtons.forEach(function(button) {
                     const content = button.nextElementSibling;
                     const icon = button.querySelector('.price-toggle-icon');
-                    
+
                     if (content && icon) {
                         // 初期状態では表示する
                         content.classList.remove('hidden');

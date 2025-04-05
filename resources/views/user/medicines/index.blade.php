@@ -143,7 +143,7 @@
                                                     @php
                                                         $isFavorited = auth()->user()->favoriteMedicines()->where('medicine_id', $medicine->id)->exists();
                                                     @endphp
-                                                    
+
                                                     @if($isFavorited)
                                                         <!-- お気に入り済み：削除ボタン -->
                                                         <form action="{{ route('favorites.destroy', $medicine) }}" method="POST">
