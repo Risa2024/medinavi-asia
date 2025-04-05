@@ -55,14 +55,19 @@
 
                                         <!-- 価格情報 -->
                                         @if($medicine->countries->count() > 0)
-                                            <div class="mb-3">
-                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-2">
-                                                    <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            <div class="mb-2">
+                                                <button type="button" class="w-full flex justify-between items-center text-xs font-medium text-gray-600 mb-1 hover:text-gray-800 focus:outline-none" onclick="togglePriceInfo(this)">
+                                                    <div class="flex items-center">
+                                                        <svg class="w-2.5 h-2.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                        </svg>
+                                                        販売国・販売価格
+                                                    </div>
+                                                    <svg class="price-toggle-icon w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                     </svg>
-                                                    販売価格
-                                                </h3>
-                                                <div class="space-y-2">
+                                                </button>
+                                                <div class="price-info-content space-y-1 hidden">
                                                     @php
                                                         $countryEmojis = [
                                                             'インドネシア' => '🇮🇩',
@@ -81,9 +86,9 @@
                                                     @endphp
 
                                                     @foreach($medicine->countries as $country)
-                                                        <div class="flex items-center justify-between px-2 py-1.5 bg-white rounded-md shadow-sm border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                                                        <div class="flex items-center justify-between px-2 py-1 bg-white rounded-md shadow-sm border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
                                                             <div class="flex items-center gap-1">
-                                                                <span class="text-base">{{ $countryEmojis[$country->name] ?? '🌏' }}</span>
+                                                                <span class="text-sm">{{ $countryEmojis[$country->name] ?? '🌏' }}</span>
                                                                 <span class="text-xs text-gray-700 font-medium">{{ $country->name }}</span>
                                                             </div>
                                                             <div class="text-xs font-semibold text-gray-800">
@@ -99,29 +104,31 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="mb-3">
-                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-2">
-                                                    <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <div class="mb-2">
+                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-1">
+                                                    <svg class="w-2.5 h-2.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                     </svg>
-                                                    販売価格
+                                                    販売国・販売価格
                                                 </h3>
-                                                <div class="bg-gray-50 p-2 rounded-lg text-center">
-                                                    <p class="text-gray-500 text-xs">価格情報がありません</p>
+                                                <div class="bg-gray-50 p-1 rounded-lg text-center">
+                                                    <p class="text-gray-500 text-xs">販売国・価格情報がありません</p>
                                                 </div>
                                             </div>
                                         @endif
 
                                         <!-- 商品説明 -->
                                         @if($medicine->description)
-                                            <div class="mt-auto">
+                                            <div class="mb-3">
                                                 <h3 class="text-xs font-medium text-gray-600 flex items-center mb-1">
                                                     <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                                     </svg>
                                                     商品説明
                                                 </h3>
-                                                <p class="text-xs text-gray-700 bg-gray-50 p-2 rounded-lg">{{ Str::limit($medicine->description, 100) }}</p>
+                                                <div class="text-xs text-gray-700 bg-gray-50 p-2 rounded-lg max-h-48 overflow-y-auto whitespace-pre-wrap">
+                                                    {!! nl2br(e($medicine->description)) !!}
+                                                </div>
                                             </div>
                                         @endif
 
