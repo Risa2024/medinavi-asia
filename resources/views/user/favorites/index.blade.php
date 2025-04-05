@@ -27,7 +27,7 @@
                             @foreach($favorites as $medicine)
                                 <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-shadow border border-gray-100 h-full flex flex-col">
                                     <div class="flex justify-between items-center mb-3">
-                                        <h2 class="text-base font-bold text-blue-600 truncate pr-2">💊 {{ $medicine->name }}</h2>
+                                        <h2 class="text-sm font-bold text-blue-600 truncate pr-2">💊 {{ $medicine->name }}</h2>
                                         <span class="bg-gray-200 text-indigo-700 px-2 py-1 rounded-full text-xs font-medium shadow-sm shrink-0">{{ $medicine->category }}</span>
                                     </div>
 
