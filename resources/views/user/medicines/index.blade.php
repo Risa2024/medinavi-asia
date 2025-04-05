@@ -29,61 +29,103 @@
                             <p class="text-gray-400 mt-2">別のキーワードで検索してみてください。</p>
                         </div>
                     @else
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @foreach($medicines as $medicine)
-                                <div class="border rounded-lg p-5 hover:shadow-md transition-shadow">
-                                    <div class="flex items-center">
-                                        @if($medicine->image_path)
-                                            <img src="{{ asset('storage/' . $medicine->image_path) }}" 
-                                                 alt="{{ $medicine->name }}" 
-                                                 class="w-20 h-20 object-cover rounded-lg mr-4">
+                                <div class="bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-shadow border border-gray-100 h-full flex flex-col">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h2 class="text-base font-bold text-blue-600 truncate pr-2">💊 {{ $medicine->name }}</h2>
+                                        <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full text-xs font-medium shadow-sm shrink-0">{{ $medicine->category }}</span>
+                                    </div>
+
+                                    <div class="flex flex-col flex-grow">
+                                        <!-- 画像 -->
+                                        <div class="mb-3">
+                                            @if($medicine->image_path)
+                                                <div class="bg-gray-50 p-2 rounded-lg flex items-center justify-center h-32 shadow-sm">
+                                                    <img src="{{ asset('storage/' . $medicine->image_path) }}" 
+                                                         alt="{{ $medicine->name }}" 
+                                                         class="max-w-full max-h-full object-contain">
+                                                </div>
+                                            @else
+                                                <div class="bg-gray-50 p-2 rounded-lg flex items-center justify-center h-32 shadow-sm">
+                                                    <span class="text-gray-400">画像なし</span>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <!-- 価格情報 -->
+                                        @if($medicine->countries->count() > 0)
+                                            <div class="mb-3">
+                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-2">
+                                                    <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    販売価格
+                                                </h3>
+                                                <div class="space-y-2">
+                                                    @php
+                                                        $countryEmojis = [
+                                                            'インドネシア' => '🇮🇩',
+                                                            'タイ' => '🇹🇭',
+                                                            'マレーシア' => '🇲🇾',
+                                                            'ベトナム' => '🇻🇳',
+                                                            '日本' => '🇯🇵'
+                                                        ];
+
+                                                        $currencyNames = [
+                                                            'IDR' => 'ルピア',
+                                                            'THB' => 'バーツ',
+                                                            'MYR' => 'リンギット',
+                                                            'VND' => 'ドン',
+                                                            'JPY' => '円'
+                                                        ];
+                                                    @endphp
+
+                                                    @foreach($medicine->countries as $country)
+                                                        <div class="flex items-center justify-between px-2 py-1.5 bg-white rounded-md shadow-sm border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                                                            <div class="flex items-center gap-1">
+                                                                <span class="text-base">{{ $countryEmojis[$country->name] ?? '🌏' }}</span>
+                                                                <span class="text-xs text-gray-700 font-medium">{{ $country->name }}</span>
+                                                            </div>
+                                                            <div class="text-xs font-semibold text-gray-800">
+                                                                {{ number_format($country->pivot->price) }} {{ $currencyNames[$country->pivot->currency_code] ?? $country->pivot->currency_code }}
+                                                                @if(isset($exchanges[$country->pivot->currency_code]))
+                                                                    <span class="text-xs text-gray-500 block text-right whitespace-nowrap">
+                                                                        (約 ¥{{ number_format($country->pivot->price * $exchanges[$country->pivot->currency_code]->rate_to_jpy) }})
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         @else
-                                            <div class="w-20 h-20 bg-gray-200 rounded-lg mr-4 flex items-center justify-center">
-                                                <span class="text-gray-500">No Image</span>
+                                            <div class="mb-3">
+                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-2">
+                                                    <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    販売価格
+                                                </h3>
+                                                <div class="bg-gray-50 p-2 rounded-lg text-center">
+                                                    <p class="text-gray-500 text-xs">価格情報がありません</p>
+                                                </div>
                                             </div>
                                         @endif
-                                        <h4 class="text-xl font-bold text-blue-700">{{ $medicine->name }}</h4>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2 mt-2 mb-3">
-                                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{{ $medicine->category }}</span>
-                                        {{-- 国名ラベルを非表示に
-                                        @if($medicine->countries->count() > 0)
-                                            @foreach($medicine->countries as $country)
-                                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-                                                    {{ $country->name }}
-                                                </span>
-                                            @endforeach
+
+                                        <!-- 商品説明 -->
+                                        @if($medicine->description)
+                                            <div class="mt-auto">
+                                                <h3 class="text-xs font-medium text-gray-600 flex items-center mb-1">
+                                                    <svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                    </svg>
+                                                    商品説明
+                                                </h3>
+                                                <p class="text-xs text-gray-700 bg-gray-50 p-2 rounded-lg">{{ Str::limit($medicine->description, 100) }}</p>
+                                            </div>
                                         @endif
-                                        --}}
                                     </div>
-                                    
-                                    @if($medicine->countries->count() > 0)
-                                        @foreach($medicine->countries as $country)
-                                            <p class="text-gray-600 font-semibold mt-2">
-                                                価格：{{ number_format($country->pivot->price) }} 
-                                                @php
-                                                    $currencyNames = [
-                                                        'IDR' => 'ルピア',
-                                                        'THB' => 'バーツ',
-                                                        'MYR' => 'リンギット',
-                                                        'VND' => 'ドン',
-                                                        'JPY' => '円'
-                                                    ];
-                                                    $currencyName = $currencyNames[$country->pivot->currency_code] ?? $country->pivot->currency_code;
-                                                @endphp
-                                                {{ $currencyName }}
-                                                @if(isset($exchanges[$country->pivot->currency_code]))
-                                                    <span class="text-sm text-gray-500 ml-2">
-                                                        (約 {{ number_format($country->pivot->price * $exchanges[$country->pivot->currency_code]->rate_to_jpy) }} 円)
-                                                    </span>
-                                                @endif
-                                            </p>
-                                        @endforeach
-                                    @else
-                                        <p class="text-gray-500 mt-2">価格情報がありません</p>
-                                    @endif
-                                    
-                                    <p class="mt-3 text-gray-700">{{ $medicine->description }}</p>
                                 </div>
                             @endforeach
                         </div>
