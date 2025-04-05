@@ -35,16 +35,13 @@
                                         <!-- 画像 -->
                                         <div class="mb-3">
                                             @if($medicine->image_path)
-                                                <div class="p-2 rounded-lg flex items-center justify-center h-32 shadow-sm">
+                                                <div class="w-[250px] h-[250px] bg-white p-2 rounded-lg flex items-center justify-center shadow-sm border mx-auto">
                                                     <img src="{{ asset('storage/' . $medicine->image_path) }}"
                                                          alt="{{ $medicine->name }}"
-                                                         width="250"
-                                                         height="250"
-                                                         class="object-cover rounded border"
-                                                         style="object-fit: contain;">
+                                                         class="max-w-full max-h-full object-contain" />
                                                 </div>
                                             @else
-                                                <div class="bg-gray-50 p-2 rounded-lg flex items-center justify-center h-32 shadow-sm">
+                                                <div class="w-[250px] h-[250px] bg-gray-50 p-2 rounded-lg flex items-center justify-center shadow-sm border mx-auto">
                                                     <span class="text-gray-400">画像なし</span>
                                                 </div>
                                             @endif

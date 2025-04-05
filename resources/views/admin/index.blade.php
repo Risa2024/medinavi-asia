@@ -30,9 +30,11 @@
                             <td class="px-4 py-2">{{ $medicine->name }}</td>
                             <td class="px-4 py-2">
                                 @if($medicine->image_path)
-                                    <img src="{{ asset('storage/' . $medicine->image_path) }}"
-                                         alt="{{ $medicine->name }}"
-                                         class="w-16 h-16 object-cover rounded">
+                                    <div class="w-[50px] h-[50px] bg-white p-1 rounded-lg flex items-center justify-center shadow-sm border">
+                                        <img src="{{ asset('storage/' . $medicine->image_path) }}"
+                                             alt="{{ $medicine->name }}"
+                                             class="max-w-full max-h-full object-contain" />
+                                    </div>
                                 @endif
                             </td>
                             <td class="px-4 py-2">{{ $medicine->category }}</td>
