@@ -89,11 +89,11 @@
                                                                     <span class="text-xs text-gray-700 font-medium">{{ $country->name }}：</span>
                                                                 </div>
                                                                 <div class="text-xs font-semibold text-gray-800">
-                                                                    {{ number_format($country->pivot->price) }} {{ $currencyNames[$country->pivot->currency_code] ?? $country->pivot->currency_code }}
                                                                     @if(isset($exchanges[$country->pivot->currency_code]))
-                                                                        <span class="text-xs text-gray-500 block text-right whitespace-nowrap">
-                                                                            (約 ¥{{ number_format($country->pivot->price * $exchanges[$country->pivot->currency_code]->rate_to_jpy) }})
-                                                                        </span>
+                                                                        <span class="font-bold text-gray-800">約 ¥{{ number_format($country->pivot->price * $exchanges[$country->pivot->currency_code]->rate_to_jpy) }}</span>
+                                                                        <span class="text-xs text-gray-500 ml-1">({{ number_format($country->pivot->price) }} {{ $currencyNames[$country->pivot->currency_code] ?? $country->pivot->currency_code }})</span>
+                                                                    @else
+                                                                        {{ number_format($country->pivot->price) }} {{ $currencyNames[$country->pivot->currency_code] ?? $country->pivot->currency_code }}
                                                                     @endif
                                                                 </div>
                                                             </div>
