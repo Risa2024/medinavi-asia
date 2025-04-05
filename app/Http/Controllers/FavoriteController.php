@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicine;
 use App\Models\Favorite;
+use App\Models\Exchange;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
@@ -14,7 +15,11 @@ class FavoriteController extends Controller
     public function index()
     {
         $favorites = auth()->user()->favoriteMedicines()->paginate(12);
-        return view('user.favorites.index', compact('favorites'));
+        
+        // 為替レート情報を取得
+        $exchanges = Exchange::get()->keyBy('currency_code');
+        
+        return view('user.favorites.index', compact('favorites', 'exchanges'));
     }
 
     /**
