@@ -15,10 +15,10 @@ class FavoriteController extends Controller
     public function index()
     {
         $favorites = auth()->user()->favoriteMedicines()->paginate(12);
-        
+
         // 為替レート情報を取得
         $exchanges = Exchange::get()->keyBy('currency_code');
-        
+
         return view('user.favorites.index', compact('favorites', 'exchanges'));
     }
 

@@ -109,15 +109,18 @@ class AdminController extends Controller
             // 国名からCountryモデルのインスタンスを取得
             $country = \App\Models\Country::where('name', $countryName)->first();
 
-            // 条件チェック：
-            // 1. $countryが存在する（データベースに国が登録されている）
-            // 2. $priceFieldsに国名のキーが存在する
-            // 3. リクエストに対応する価格フィールドが入力されている
-            if ($country && isset($priceFields[$countryName]) && $request->filled($priceFields[$countryName])) {
+            // 国が存在する場合、チェックがついている国の情報を保存する
+            if ($country) {
+                // 価格が入力されている場合はその値を使用し、なければnullを設定
+                $price = null;
+                if (isset($priceFields[$countryName]) && $request->filled($priceFields[$countryName])) {
+                    $price = $request->input($priceFields[$countryName]);
+                }
+
                 // 中間テーブル（medicines_country）にデータを追加
                 // attach: 多対多リレーションで関連付けを作成するメソッド
                 $medicine->countries()->attach($country->id, [
-                    'price' => $request->input($priceFields[$countryName]),
+                    'price' => $price,
                     'currency_code' => $currencyCodes[$countryName]
                 ]);
             }
