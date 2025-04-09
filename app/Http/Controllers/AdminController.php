@@ -21,12 +21,20 @@ class AdminController extends Controller
      *これが管理画面のトップページを表示するための処理になる。*/
     public function index()
     {
-        // N+1問題を避けるために、eagerロードを使用
-        // with('countries')によって、薬に関連する国の情報を事前に一括取得
-        // これにより、各薬ごとに別クエリを発行せず、パフォーマンスが向上する
-        $medicines = Medicine::with('countries')->get();
-        // 取得したデータをビューに渡す
-        // compact関数で変数名と同じキーの配列を生成
+        // 検索クエリがある場合は処理する
+        $query = request('search');
+        
+        // ベースとなるクエリビルダーを作成
+        $medicinesQuery = Medicine::with('countries');
+        
+        // 検索クエリがある場合、薬品名で部分一致検索を行う
+        if ($query) {
+            $medicinesQuery->where('name', 'like', '%' . $query . '%');
+        }
+        
+        // 結果を取得
+        $medicines = $medicinesQuery->get();
+        
         return view('admin.index', compact('medicines'));
     }
 
