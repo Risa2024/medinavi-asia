@@ -20,7 +20,7 @@
                             <th class="px-4 py-2 text-left">カテゴリー</th>
                             <th class="px-4 py-2 text-left">販売国</th>
                             <th class="px-4 py-2 text-left">価格</th>
-                            <th class="px-4 py-2 text-left">削除</th>
+                            <th class="px-4 py-2 text-left">編集</th>
                         </tr>
                     </thead>
              <!-- テーブルの本体部分 -->
@@ -61,17 +61,22 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2">
-                                <form action="{{ route('admin.medicines.destroy', $medicine->id) }}"
-                                      method="POST"
-                                      class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                            class="text-red-500"
-                                            onclick="return confirm('削除してもよろしいですか？')">
-                                        削除
-                                    </button>
-                                </form>
+                                <div class="flex space-x-2">
+                                    <a href="{{ route('admin.medicines.edit', $medicine->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">
+                                        編集
+                                    </a>
+                                    <form action="{{ route('admin.medicines.destroy', $medicine->id) }}"
+                                          method="POST"
+                                          class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="text-red-500"
+                                                onclick="return confirm('削除してもよろしいですか？')">
+                                            削除
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

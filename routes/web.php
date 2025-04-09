@@ -49,11 +49,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {//prefix('admin
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/medicines/create', [AdminController::class, 'create'])->name('admin.medicines.create');
     Route::post('/medicines', [AdminController::class, 'store'])->name('admin.medicines.store');
+    Route::get('/medicines/{medicine}/edit', [AdminController::class, 'edit'])->name('admin.medicines.edit');
+    Route::patch('/medicines/{medicine}', [AdminController::class, 'update'])->name('admin.medicines.update');
     Route::delete('/medicines/{medicine}', [AdminController::class, 'destroy'])->name('admin.medicines.destroy');
-    //グループ内の4つのルート：
+    //グループ内のルート：
     //GET /admin → AdminController@index（一覧表示）
     //GET /admin/medicines/create → AdminController@create（新規作成フォーム）
     //POST /admin/medicines → AdminController@store（データ保存処理）
+    //GET /admin/medicines/{medicine}/edit → AdminController@edit（編集フォーム）
+    //PUT /admin/medicines/{medicine} → AdminController@update（更新処理）
     //DELETE /admin/medicines/{medicine} → AdminController@destroy（削除処理）
 
 });
