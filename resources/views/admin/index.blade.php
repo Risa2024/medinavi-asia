@@ -4,14 +4,14 @@
             <!-- ヘッダーセクション -->
             <div class="flex justify-between items-center mb-8">
                 <div class="flex items-center space-x-3">
-                    <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
-                        🏥 MediNavi Asia 管理画面
+                    <h1 class="text-2xl font-bold">
+                        <span>🏥</span>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">MediNavi Asia 管理画面</span>
                     </h1>
                 </div>
                 <a href="{{ route('admin.medicines.create') }}" 
-                   class="group relative inline-flex items-center px-6 py-3 text-sm font-medium text-white transition-all duration-200 ease-in-out bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg hover:from-indigo-500 hover:to-blue-400 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    <span class="absolute inset-0 w-full h-full rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-200 ease-in-out bg-white"></span>
-                    <svg class="w-5 h-5 mr-2 transform transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="inline-flex items-center px-6 py-3 text-sm font-semibold text-white bg-blue-600 hover:bg-indigo-500 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
                     新規登録
@@ -22,11 +22,6 @@
             <div class="mb-8 bg-white rounded-xl shadow-lg p-6">
                 <form action="{{ route('admin.index') }}" method="GET" class="flex items-center space-x-4">
                     <div class="flex-grow relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
                         <input type="text" 
                                name="search" 
                                value="{{ request('search') }}" 
@@ -34,7 +29,7 @@
                                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
                     </div>
                     <button type="submit" 
-                            class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-400 hover:to-indigo-400 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                            class="px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
                         検索
                     </button>
                 </form>
@@ -177,79 +172,50 @@
     </div>
 
     <!-- 画像モーダル -->
-    <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center transition-all duration-300 ease-in-out opacity-0">
-        <div class="absolute top-4 right-4 z-10">
-            <button onclick="closeImageModal()" aria-label="Close"
-                    class="text-red-600 text-4xl font-bold hover:text-red-700 transition-transform duration-300 ease-in-out hover:rotate-90 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center">
-                &times;
-            </button>
-        </div>
-
-        <div class="relative max-w-[90%] md:max-w-4xl flex flex-col items-center space-y-6 px-4">
-            <img id="modalImage"
-                 class="max-w-full max-h-[70vh] rounded-xl shadow-xl border border-white/20 transition-transform duration-300 ease-in-out scale-95" />
-
-            <div id="caption"
-                 class="text-white text-center text-lg md:text-xl font-semibold tracking-wide px-2">
-            </div>
-
-            <button onclick="closeImageModal()"
-                    class="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-105 flex items-center space-x-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div id="imageModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-70 flex items-center justify-center p-4">
+        <div class="relative bg-white rounded-lg max-w-3xl mx-auto shadow-2xl p-6">
+            <!-- 閉じるボタン -->
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                <span>閉じる</span>
             </button>
+            <!-- モーダルコンテンツ -->
+            <div class="text-center">
+                <h3 id="modalTitle" class="text-lg font-semibold text-gray-800 mb-4"></h3>
+                <div class="bg-gray-50 p-1 rounded-lg border border-gray-100">
+                    <img id="modalImage" src="" alt="" class="mx-auto max-h-[70vh] object-contain">
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // モーダル関連の関数
         function openImageModal(imageSrc, imageName) {
             const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const captionText = document.getElementById('caption');
-            
-            modalImg.src = imageSrc;
-            captionText.innerHTML = imageName;
-            
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+
+            // 画像とタイトルを設定
+            modalImage.src = imageSrc;
+            modalImage.alt = imageName;
+            modalTitle.textContent = imageName;
+
+            // モーダルを表示
             modal.classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
-            
-            // アニメーション用にすこし遅らせる
-            setTimeout(() => {
-                modal.classList.add('opacity-100');
-                modalImg.classList.add('scale-100');
-                modalImg.classList.remove('scale-95');
-            }, 10);
         }
-
+        // モーダルを閉じる関数
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            
-            modal.classList.remove('opacity-100');
-            modalImg.classList.remove('scale-100');
-            modalImg.classList.add('scale-95');
-            
-            // アニメーション後に非表示にする
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }, 300);
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
         }
-
-        // モーダルの外側をクリックしても閉じるようにする
-        document.getElementById('imageModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeImageModal();
-            }
-        });
-
-        // ESCキーでも閉じるようにする
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !document.getElementById('imageModal').classList.contains('hidden')) {
-                closeImageModal();
-            }
+        // ページ読み込み時に実行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 閉じるボタンにイベントリスナーを追加
+            document.getElementById('closeModal').addEventListener('click', closeImageModal);
         });
     </script>
 </x-app-layout>
