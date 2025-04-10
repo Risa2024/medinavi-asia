@@ -66,13 +66,13 @@ class AdminController extends Controller
         // name: 必須、最大255文字
         // category: 必須
         // country: 必須、配列形式
-        // image: 必須、画像ファイル、jpeg/png/jpg形式、最大2048KB
+        // image: 任意、画像ファイル、jpeg/png/jpg形式、最大2048KB
         // description: 必須
         $validated = $request->validate([
             'name' => 'required|max:255',
             'category' => 'required',
             'country' => 'required|array',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'description' => 'required',
         ]);
 

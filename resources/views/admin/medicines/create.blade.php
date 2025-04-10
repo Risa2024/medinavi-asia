@@ -34,8 +34,10 @@
                                 <img id="image-preview" src="#" alt="プレビュー" class="h-full w-full object-cover hidden">
                             </div>
                             <div class="flex-1">
-                                <input type="file" id="image" name="image" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" onchange="previewImage(this)">
+                                <input type="file" id="image" name="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" onchange="previewImage(this)">
                                 <p class="text-xs text-gray-500 mt-1">JPG、PNG、JPEG形式（最大2MB）</p>
+                                <p class="text-xs text-gray-500">※画像のアップロードは任意です</p><!--画像フィールドのrequired属性を削除し、任意であることを示す説明文を追加
+                                コントローラー（AdminController.php）のバリデーションルールを変更し、画像フィールドを'required'から'nullable'に変更-->
                             </div>
                         </div>
                     </div>
@@ -154,16 +156,16 @@
         function previewImage(input) {
             const preview = document.getElementById('image-preview');
             const fileInput = input.files[0];
-            
+
             if (fileInput) {
                 const reader = new FileReader();
-                
+
                 reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.classList.remove('hidden');
                     preview.parentElement.querySelector('svg').classList.add('hidden');
                 }
-                
+
                 reader.readAsDataURL(fileInput);
             }
         }
