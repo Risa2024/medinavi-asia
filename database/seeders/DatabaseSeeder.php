@@ -24,15 +24,16 @@ class DatabaseSeeder extends Seeder
 
         // テストユーザーの作成
         User::create([
-            'name' => 'test user',
+            'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
         ]);
 
-        // 国のシーダーを実行
+        // シーダーの実行順序を指定
         $this->call([
             CountrySeeder::class,
+            MedicineSeeder::class,
         ]);
     }
 }
