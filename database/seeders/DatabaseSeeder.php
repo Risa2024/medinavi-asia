@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 管理者アカウントの作成
+        User::create([
+            'name' => '管理者',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => true,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
+        // テストユーザーの作成
+        User::create([
+            'name' => 'test user',
             'email' => 'test@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+        ]);
+
+        // 国のシーダーを実行
+        $this->call([
+            CountrySeeder::class,
         ]);
     }
 }
