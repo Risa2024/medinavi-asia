@@ -3,7 +3,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">📝 薬情報の登録</h1>
-                
+
                 <a href="{{ route('admin.index') }}" class="flex items-center text-indigo-600 hover:text-indigo-900">
                     <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -65,28 +65,29 @@
 
                     <!-- 国と価格情報：複数の国に対応するセクション -->
                     <div class="mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-3">販売国と価格情報</h3>
-                        <div class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
-                            @foreach ($countries as $country)
+                        <label class="block text-sm font-medium text-gray-700 mb-2">販売国と価格：</label>
+                        <div class="space-y-4">
+                            @foreach($countries as $country)
                                 <div class="p-3 {{ !$loop->last ? 'border-b border-gray-200' : '' }}">
                                     <div class="flex items-center mb-2">
                                         <input type="checkbox"
-                                               id="country-{{ $country->id }}"
-                                               name="country[]"
-                                               value="{{ $country->name }}"
+                                               id="country_{{ $country->id }}"
+                                               name="countries[]"
+                                               value="{{ $country->id }}"
                                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="country-{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
+                                        <label for="country_{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
                                             {{ $country->emoji }} {{ $country->name }}
                                         </label>
                                     </div>
                                     <div class="ml-6 mt-2">
-                                        <label for="price_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
+                                        <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
                                             価格 ({{ $country->currency_code }})：
                                         </label>
                                         <div class="mt-1 relative rounded-md shadow-sm w-48">
                                             <input type="number"
-                                                   id="price_{{ $country->id }}"
-                                                   name="price_{{ $country->id }}"
+                                                   id="prices_{{ $country->id }}"
+                                                   name="prices[{{ $country->id }}]"
+                                                   step="0.01"
                                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
                                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>

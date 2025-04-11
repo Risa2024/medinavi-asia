@@ -78,24 +78,25 @@
                                     <div class="p-3 {{ !$loop->last ? 'border-b border-gray-200' : '' }}">
                                         <div class="flex items-center mb-2">
                                             <input type="checkbox"
-                                                   id="country-{{ $country->id }}"
-                                                   name="country[]"
-                                                   value="{{ $country->name }}"
+                                                   id="country_{{ $country->id }}"
+                                                   name="countries[]"
+                                                   value="{{ $country->id }}"
                                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                                   {{ in_array($country->name, $selectedCountries) ? 'checked' : '' }}>
-                                            <label for="country-{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
+                                                   {{ $medicine->countries->contains('id', $country->id) ? 'checked' : '' }}>
+                                            <label for="country_{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
                                                 {{ $country->emoji }} {{ $country->name }}
                                             </label>
                                         </div>
                                         <div class="ml-6 mt-2">
-                                            <label for="price_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
+                                            <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
                                                 価格 ({{ $country->currency_code }})：
                                             </label>
                                             <div class="mt-1 relative rounded-md shadow-sm w-48">
                                                 <input type="number"
-                                                       id="price_{{ $country->id }}"
-                                                       name="price_{{ $country->id }}"
+                                                       id="prices_{{ $country->id }}"
+                                                       name="prices[{{ $country->id }}]"
                                                        value="{{ $medicine->countries->where('id', $country->id)->first()?->pivot->price }}"
+                                                       step="0.01"
                                                        class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
                                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                                     <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>
