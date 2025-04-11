@@ -22,4 +22,9 @@ class Country extends Model
             ->withPivot(['price', 'currency_code'])
             ->withTimestamps();
     }
+    //国の一覧を順序付けて表示
+   public function scopeOrdered($query)
+    {
+        return $query->orderBy('id', 'asc');
+    }
 }

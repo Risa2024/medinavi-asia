@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicine;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,18 +24,18 @@ class AdminController extends Controller
     {
         // 検索クエリがある場合は処理する
         $query = request('search');
-        
+
         // ベースとなるクエリビルダーを作成
         $medicinesQuery = Medicine::with('countries');
-        
+
         // 検索クエリがある場合、薬品名で部分一致検索を行う
         if ($query) {
             $medicinesQuery->where('name', 'like', '%' . $query . '%');
         }
-        
+
         // 結果を取得
         $medicines = $medicinesQuery->get();
-        
+
         return view('admin.index', compact('medicines'));
     }
 
@@ -47,7 +48,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.medicines.create');
+        $countries = Country::ordered()->get();
+        return view('admin.medicines.create', compact('countries'));
     }
 
     /**
@@ -147,7 +149,9 @@ class AdminController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        return view('admin.medicines.edit', compact('medicine'));
+        $countries = Country::ordered()->get();
+        $selectedCountries = $medicine->countries->pluck('name')->toArray();
+        return view('admin.medicines.edit', compact('medicine', 'countries', 'selectedCountries'));
     }
 
     /**
@@ -187,7 +191,7 @@ class AdminController extends Controller
             'category' => $validated['category'],
             'image_path' => $validated['image_path'] ?? $medicine->image_path,
         ]);
-// 関連する国・価格情報の更新
+        // 関連する国・価格情報の更新
         // 既存の関連をすべて削除
         $medicine->countries()->detach();
 
@@ -261,4 +265,11 @@ store - 新規作成処理
 show - 詳細表示
 edit - 編集フォーム表示
 update - 更新処理
-destroy - 削除処理*/
+destroy - 削除処理
+
+index   → 薬の一覧を表示
+create  → 新規登録フォームを表示（国の情報も含む）
+store   → 新規登録の保存処理
+edit    → 編集フォームを表示（国の情報と選択状態も含む）
+update  → 編集内容の保存処理
+destroy → 薬の削除処理*/
