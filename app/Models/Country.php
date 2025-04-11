@@ -9,8 +9,9 @@ class Country extends Model
 {
     protected $fillable = [
         'name',
+        'emoji',
         'code',
-        'currency_code'
+        'currency_code',
     ];
 
     /**
