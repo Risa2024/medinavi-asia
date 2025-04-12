@@ -52,6 +52,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {//prefix('admin
     Route::get('/medicines/{medicine}/edit', [AdminController::class, 'edit'])->name('admin.medicines.edit');
     Route::put('/medicines/{medicine}', [AdminController::class, 'update'])->name('admin.medicines.update');
     Route::delete('/medicines/{medicine}', [AdminController::class, 'destroy'])->name('admin.medicines.destroy');
+    Route::post('/countries', [AdminController::class, 'storeCountry'])->name('admin.countries.store');
     //グループ内のルート：
     //GET /admin → AdminController@index（一覧表示）
     //GET /admin/medicines/create → AdminController@create（新規作成フォーム）

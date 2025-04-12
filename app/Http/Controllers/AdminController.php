@@ -194,6 +194,23 @@ class AdminController extends Controller
         return redirect()->route('admin.index')
             ->with('success', '薬の情報が削除されました。');
     }
+
+    /**
+     * 新しい国を追加するメソッド
+     */
+    public function storeCountry(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255|unique:countries',
+            'emoji' => 'required|max:10',
+            'currency_code' => 'required|max:3|unique:countries',
+        ]);
+
+        Country::create($validated);
+
+        return redirect()->route('admin.index')
+            ->with('success', '新しい国が正常に追加されました。');
+    }
 }
 
 /*LaravelのRESTfulなコントローラ設計：
