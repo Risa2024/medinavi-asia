@@ -241,6 +241,30 @@ class AdminController extends Controller
             'message' => 'このカテゴリーは既に存在します。'
         ], 422);
     }
+
+    /**
+     * 国を削除するメソッド
+     */
+    public function destroyCountry(Country $country)
+    {
+        // この国を使用している薬があるか確認
+        $medicinesWithCountry = $country->medicines()->exists();
+        
+        if ($medicinesWithCountry) {
+            return response()->json([
+                'success' => false,
+                'message' => 'この国は薬の情報で使用されているため削除できません。'
+            ], 422);
+        }
+
+        // 国を削除
+        $country->delete();
+        
+        return response()->json([
+            'success' => true,
+            'message' => '国が削除されました。'
+        ]);
+    }
 }
 
 /*LaravelのRESTfulなコントローラ設計：

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CountryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,14 +55,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {//prefix('admin
     Route::delete('/medicines/{medicine}', [AdminController::class, 'destroy'])->name('admin.medicines.destroy');
     Route::post('/countries', [AdminController::class, 'storeCountry'])->name('admin.countries.store');
     Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
-    //グループ内のルート：
-    //GET /admin → AdminController@index（一覧表示）
-    //GET /admin/medicines/create → AdminController@create（新規作成フォーム）
-    //POST /admin/medicines → AdminController@store（データ保存処理）
-    //GET /admin/medicines/{medicine}/edit → AdminController@edit（編集フォーム）
-    //PUT /admin/medicines/{medicine} → AdminController@update（更新処理）
-    //DELETE /admin/medicines/{medicine} → AdminController@destroy（削除処理）
-
+    
+    // 国の削除のためのルート
+    Route::delete('/countries/{country}', [AdminController::class, 'destroyCountry'])->name('admin.countries.destroy');
+    
+    // カテゴリーの削除のためのルート
+    Route::delete('/categories', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
 });
 
 require __DIR__.'/auth.php';

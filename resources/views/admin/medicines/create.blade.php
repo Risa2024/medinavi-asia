@@ -78,36 +78,49 @@
                                 新しい国を追加
                             </button>
                         </div>
-                        <div class="space-y-4">
-                            @foreach($countries as $country)
-                                <div class="p-3 {{ !$loop->last ? 'border-b border-gray-200' : '' }}">
-                                    <div class="flex items-center mb-2">
-                                        <input type="checkbox"
-                                               id="country_{{ $country->id }}"
-                                               name="countries[]"
-                                               value="{{ $country->id }}"
-                                               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                        <label for="country_{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
-                                            {{ $country->emoji }} {{ $country->name }}
-                                        </label>
-                                    </div>
-                                    <div class="ml-6 mt-2">
-                                        <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
-                                            価格 ({{ $country->currency_code }})：
-                                        </label>
-                                        <div class="mt-1 relative rounded-md shadow-sm w-48">
-                                            <input type="number"
-                                                   id="prices_{{ $country->id }}"
-                                                   name="prices[{{ $country->id }}]"
-                                                   step="0.01"
-                                                   class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
-                                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>
+                        <div class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
+                            <div>
+                                @foreach ($countries as $country)
+                                    <div class="p-3 {{ !$loop->last ? 'border-b border-gray-200' : '' }}">
+                                        <div class="flex items-center mb-2">
+                                            <input type="checkbox"
+                                                   id="country_{{ $country->id }}"
+                                                   name="countries[]"
+                                                   value="{{ $country->id }}"
+                                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                            <label for="country_{{ $country->id }}" class="ml-2 block text-sm font-medium text-gray-700">
+                                                {{ $country->emoji }} {{ $country->name }}
+                                            </label>
+                                        </div>
+                                        <div class="ml-6 mt-2 flex justify-between items-center">
+                                            <div>
+                                                <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
+                                                    価格 ({{ $country->currency_code }})：
+                                                </label>
+                                                <div class="mt-1 relative rounded-md shadow-sm w-48">
+                                                    <input type="number"
+                                                           id="prices_{{ $country->id }}"
+                                                           name="prices[{{ $country->id }}]"
+                                                           step="0.01"
+                                                           class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                        <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <button type="button" 
+                                                   onclick="confirmDeleteCountry('{{ $country->id }}', '{{ $country->name }}')"
+                                                   class="flex items-center text-red-500 hover:text-red-700 focus:outline-none px-2 py-1 border border-red-200 rounded-md hover:bg-red-50 transition-colors"
+                                                   title="この国を削除">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                                <span class="text-xs">削除する</span>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
 
@@ -154,6 +167,7 @@
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">新しい国を追加</h3>
+                <p class="text-xs text-red-500 mb-4">※全項目入力必須</p>
                 <form id="countryForm" class="space-y-4">
                     @csrf
                     <div>
@@ -286,5 +300,38 @@
                 alert('国の追加に失敗しました。');
             });
         });
+
+        // 国の削除確認
+        function confirmDeleteCountry(id, name) {
+            if (confirm(`「${name}」を削除してもよろしいですか？`)) {
+                deleteCountry(id);
+            }
+        }
+
+        // 国の削除実行
+        function deleteCountry(id) {
+            fetch(`/admin/countries/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 成功したらページをリロード
+                    alert(data.message);
+                    window.location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('国の削除に失敗しました。');
+            });
+        }
     </script>
 </x-app-layout>

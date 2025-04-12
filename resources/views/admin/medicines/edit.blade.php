@@ -69,7 +69,15 @@
 
                     <!-- 国と価格情報：複数の国に対応するセクション -->
                     <div class="mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-3">販売国と価格情報</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-medium text-gray-900">販売国と価格情報</h3>
+                            <button type="button" onclick="openCountryModal()" class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-200">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                新しい国を追加
+                            </button>
+                        </div>
                         <div class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
                             <div>
                                 @foreach ($countries as $country)
@@ -85,21 +93,32 @@
                                                 {{ $country->emoji }} {{ $country->name }}
                                             </label>
                                         </div>
-                                        <div class="ml-6 mt-2">
-                                            <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
-                                                価格 ({{ $country->currency_code }})：
-                                            </label>
-                                            <div class="mt-1 relative rounded-md shadow-sm w-48">
-                                                <input type="number"
-                                                       id="prices_{{ $country->id }}"
-                                                       name="prices[{{ $country->id }}]"
-                                                       value="{{ $medicine->countries->where('id', $country->id)->first()?->pivot->price }}"
-                                                       step="0.01"
-                                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
-                                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                    <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>
+                                        <div class="ml-6 mt-2 flex justify-between items-center">
+                                            <div>
+                                                <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
+                                                    価格 ({{ $country->currency_code }})：
+                                                </label>
+                                                <div class="mt-1 relative rounded-md shadow-sm w-48">
+                                                    <input type="number"
+                                                           id="prices_{{ $country->id }}"
+                                                           name="prices[{{ $country->id }}]"
+                                                           value="{{ $medicine->countries->where('id', $country->id)->first()?->pivot->price }}"
+                                                           step="0.01"
+                                                           class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                        <span class="text-gray-500 sm:text-sm">{{ $country->currency_code }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <button type="button" 
+                                                    onclick="confirmDeleteCountry('{{ $country->id }}', '{{ $country->name }}')"
+                                                    class="flex items-center text-red-500 hover:text-red-700 focus:outline-none px-2 py-1 border border-red-200 rounded-md hover:bg-red-50 transition-colors"
+                                                    title="この国を削除">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                                <span class="text-xs">削除する</span>
+                                            </button>
                                         </div>
                                     </div>
                                 @endforeach
@@ -145,5 +164,109 @@
                 reader.readAsDataURL(fileInput);
             }
         }
+        
+        // 国モーダル関連の関数
+        function openCountryModal() {
+            document.getElementById('countryModal').classList.remove('hidden');
+        }
+
+        function closeCountryModal() {
+            document.getElementById('countryModal').classList.add('hidden');
+            document.getElementById('countryForm').reset();
+        }
+        
+        // 国の削除確認
+        function confirmDeleteCountry(id, name) {
+            if (confirm(`「${name}」を削除してもよろしいですか？`)) {
+                deleteCountry(id);
+            }
+        }
+
+        // 国の削除実行
+        function deleteCountry(id) {
+            fetch(`/admin/countries/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 成功したらページをリロード
+                    alert(data.message);
+                    window.location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('国の削除に失敗しました。');
+            });
+        }
+
+        document.getElementById('countryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('{{ route('admin.countries.store') }}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // ページをリロードして新しい国を表示
+                    alert(data.message);
+                    window.location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('国の追加に失敗しました。');
+            });
+        });
     </script>
+    
+    <!-- 新しい国を追加するモーダル -->
+    <div id="countryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <h3 class="text-lg font-medium text-gray-900 mb-2">新しい国を追加</h3>
+                <p class="text-xs text-red-500 mb-4">※全項目入力必須</p>
+                <form id="countryForm" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">国名</label>
+                        <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：フィリピン" required>
+                    </div>
+                    <div>
+                        <label for="emoji" class="block text-sm font-medium text-gray-700">絵文字</label>
+                        <input type="text" name="emoji" id="emoji" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：🇵🇭" required>
+                    </div>
+                    <div>
+                        <label for="currency_code" class="block text-sm font-medium text-gray-700">通貨コード</label>
+                        <input type="text" name="currency_code" id="currency_code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：PHP" required>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeCountryModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                            キャンセル
+                        </button>
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            追加
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
