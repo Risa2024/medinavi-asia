@@ -21,6 +21,7 @@
                     <div class="mb-6">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">商品名：</label>
                         <input type="text" id="name" name="name" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <p class="text-xs text-gray-500 mt-1">※入力必須</p>
                     </div>
 
                     <!-- 画像アップロード欄 -->
@@ -46,6 +47,7 @@
                     <div class="mb-6">
                         <label for="description" class="block text-sm font-medium text-gray-700 mb-2">説明：</label>
                         <textarea id="description" name="description" rows="4" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                        <p class="text-xs text-gray-500 mt-1">※入力必須</p>
                     </div>
 
                     <!-- カテゴリー選択欄 -->
@@ -78,6 +80,7 @@
                                 新しい国を追加
                             </button>
                         </div>
+                        <p class="text-xs text-gray-500 mb-2">※価格が不明な場合は入力不要</p>
                         <div class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
                             <div>
                                 @foreach ($countries as $country)
@@ -96,6 +99,7 @@
                                             <div>
                                                 <label for="prices_{{ $country->id }}" class="block text-sm text-gray-500 mb-1">
                                                     価格 ({{ $country->currency_code }})：
+
                                                 </label>
                                                 <div class="mt-1 relative rounded-md shadow-sm w-48">
                                                     <input type="number"

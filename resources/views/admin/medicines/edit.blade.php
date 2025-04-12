@@ -69,8 +69,8 @@
 
                     <!-- 国と価格情報：複数の国に対応するセクション -->
                     <div class="mb-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-lg font-medium text-gray-900">販売国と価格情報</h3>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-sm font-medium text-gray-700">販売国と価格：</label>
                             <button type="button" onclick="openCountryModal()" class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-200">
                                 <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -78,6 +78,7 @@
                                 新しい国を追加
                             </button>
                         </div>
+                        <p class="text-xs text-gray-500 mb-2">※価格が不明な場合は入力不要</p>
                         <div class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
                             <div>
                                 @foreach ($countries as $country)
