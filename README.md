@@ -20,7 +20,6 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
 アプリケーションで使用しているデータベースの構造図です。drawSQL 使用。
 ![MediNavi Asia データベース構造](docs/images/database_diagram.png)
 
-
 ## 技術スタック
 
 ### バックエンド
@@ -48,62 +47,51 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
 
 ### インストール手順
 
-1. リポジトリをクローン
+```bash
+# リポジトリのクローンと移動
+git clone https://github.com/yourusername/medinavi-asia.git
+cd medinavi-asia
 
-    ```
-    git clone https://github.com/yourusername/medinavi-asia.git
-    cd medinavi-asia
-    ```
+# 環境設定
+cp .env.example .env
 
-2. .env ファイルの設定
+# Dockerコンテナの起動
+./vendor/bin/sail up -d
 
-    ```
-    cp .env.example .env
-    ```
+# 依存パッケージのインストール
+./vendor/bin/sail composer install
 
-3. Sail を使用して Docker コンテナを起動
+# アプリケーション初期化
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate --seed
+./vendor/bin/sail artisan storage:link
 
-    ```
-    ./vendor/bin/sail up -d
-    ```
+# フロントエンドのセットアップ
+./vendor/bin/sail npm install
+```
 
-4. 依存パッケージのインストール
+シードデータには以下が含まれています：
 
-    ```
-    ./vendor/bin/sail composer install
-    ```
+-   管理者アカウント（メール: admin@example.com、パスワード: password）
+-   テストユーザー（メール: user@example.com、パスワード: password）
+-   サンプル薬データ（各カテゴリー複数種類）
+-   国情報（インドネシア、マレーシア、タイ、ベトナム）
 
-5. アプリケーションキーの生成
+> 注意: 画像が表示されない場合は、シンボリックリンクが正しく生成されていない可能性があります。その場合は`./vendor/bin/sail artisan storage:link`コマンドを再度実行してください。また、アップロードされた画像のパーミッションも確認してください。
 
-    ```
-    ./vendor/bin/sail artisan key:generate
-    ```
+### 開発サーバーの起動
 
-6. マイグレーションの実行
+アプリケーションを開発モードで実行するには、以下のコマンドを実行してください：
 
-    ```
-    ./vendor/bin/sail artisan migrate
-    ```
+```bash
+# Dockerコンテナの起動（すでに起動している場合は不要）
+./vendor/bin/sail up -d
 
-7. シーダーの実行（テストデータの投入）
+# フロントエンド開発サーバーの起動
+./vendor/bin/sail npm run dev
+```
 
-    ```
-    ./vendor/bin/sail artisan db:seed
-    ```
-
-    これにより以下のデータが作成されます：
-
-    - 管理者アカウント
-    - テストユーザー
-    - サンプル薬データ（各カテゴリー複数種類）
-    - 国情報（インドネシア、マレーシア、タイ、ベトナム）
-
-8. ストレージリンクの作成
-    ```
-    ./vendor/bin/sail artisan storage:link
-    ```
-    注意: 画像が表示されない場合は、シンボリックリンクが正しく生成されていない可能性があります。
-    その場合は再度上記コマンドを実行してください。
+ブラウザで http://localhost にアクセスすると、アプリケーションが表示されます。
 
 ## 主な機能
 
