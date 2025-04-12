@@ -262,7 +262,7 @@
                     // フォームをリセット
                     this.reset();
                 } else {
-                    alert(data.message);
+                    alert(data.message || 'カテゴリーが正常に追加されました');
                 }
             })
             .catch(error => {
@@ -296,16 +296,17 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // ページをリロードして新しい国を反映
-                    window.location.reload();
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('国の追加に失敗しました。');
-            });
+                            // ページをリロードして新しい国を表示
+                            alert(data.message || '国が正常に追加されました');
+                            window.location.reload();
+                        } else {
+                            alert(data.message || '国の追加に失敗しました');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('国の追加に失敗しました。');
+                    });
         });
 
         // 国の削除確認

@@ -203,14 +203,17 @@ class AdminController extends Controller
      */
     public function storeCountry(Request $request)
     {
+        // バリデーション
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:countries',
             'emoji' => 'required|string|max:10',
             'currency_code' => 'required|string|max:3|unique:countries',
         ]);
 
+        // 国を作成
         $country = Country::create($validated);
 
+        // レスポンス
         return response()->json([
             'success' => true,
             'message' => '国が追加されました。',
