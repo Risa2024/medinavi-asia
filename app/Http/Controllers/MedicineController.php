@@ -59,10 +59,31 @@ class MedicineController extends Controller
      */
     public function category()
     {
-        // 薬のカテゴリ一覧を取得
-        $categories = Medicine::select('category')->distinct()->get()->pluck('category');
+        // カテゴリーの表示順序を指定
+        $categoryOrder = [
+            '解熱鎮痛薬',
+            '胃腸薬',
+            '風邪薬',
+            '目薬',
+            '皮膚薬',
+            '下痢止め',
+            '防虫剤'
+        ];
+
+        // データベースから全てのカテゴリーを取得
+        $categories = Medicine::distinct()
+            ->pluck('category')
+            ->filter()
+            ->values();
+
+        // カテゴリーを指定した順序で
+        $sortedCategories = collect($categoryOrder)
+            ->filter(function ($category) use ($categories) {
+                return $categories->contains($category);
+            })
+            ->merge($categories->diff($categoryOrder));
         
-        return view('user.medicines.category', compact('categories'));
+        return view('user.medicines.category', compact('sortedCategories'));
     }
 
     /**
@@ -77,12 +98,5 @@ class MedicineController extends Controller
         $exchanges = Exchange::all()->keyBy('currency_code');
         
         return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges'));
-    }
-
-    public function create()
-    {
-        $categories = Medicine::distinct()->pluck('category')->filter()->values();
-        $countries = Country::orderBy('name')->get();
-        return view('admin.medicines.create', compact('categories', 'countries'));
     }
 }
