@@ -48,8 +48,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $countries = Country::ordered()->get();
-        return view('admin.medicines.create', compact('countries'));
+        $categories = Medicine::distinct()->pluck('category')->filter()->values();
+        $countries = Country::orderBy('name')->get();
+        return view('admin.medicines.create', compact('categories', 'countries'));
     }
 
     /**
@@ -115,8 +116,10 @@ class AdminController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        $countries = Country::ordered()->get();
-        return view('admin.medicines.edit', compact('medicine', 'countries'));
+        // 既存のカテゴリーを取得
+        $categories = Medicine::distinct()->pluck('category')->filter()->values();
+        $countries = Country::orderBy('name')->get();
+        return view('admin.medicines.edit', compact('medicine', 'categories', 'countries'));
     }
 
     /**

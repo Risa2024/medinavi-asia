@@ -78,4 +78,11 @@ class MedicineController extends Controller
         
         return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges'));
     }
+
+    public function create()
+    {
+        $categories = Medicine::distinct()->pluck('category')->filter()->values();
+        $countries = Country::orderBy('name')->get();
+        return view('admin.medicines.create', compact('categories', 'countries'));
+    }
 }

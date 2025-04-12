@@ -61,14 +61,9 @@
                         </div>
                         <select id="category" name="category" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option value="">選択してください</option>
-                            <option value="腹痛薬">腹痛薬</option>
-                            <option value="解熱鎮痛薬">解熱鎮痛薬</option>
-                            <option value="胃腸薬">胃腸薬</option>
-                            <option value="風邪薬">風邪薬</option>
-                            <option value="目薬">目薬</option>
-                            <option value="皮膚薬">皮膚薬</option>
-                            <option value="下痢止め">下痢止め</option>
-                            <option value="虫除け">虫除け</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category }}">{{ $category }}</option>
+                            @endforeach
                         </select>
                     </div>
 

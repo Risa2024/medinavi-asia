@@ -56,16 +56,14 @@
 
                     <!-- カテゴリー選択欄 -->
                     <div class="mb-6">
-                        <label for="category" class="block text-sm font-medium text-gray-700 mb-2">カテゴリー：</label>
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="category" class="block text-sm font-medium text-gray-700">カテゴリー：</label>
+                        </div>
                         <select id="category" name="category" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option value="">選択してください</option>
-                            <option value="腹痛薬" {{ $medicine->category == '腹痛薬' ? 'selected' : '' }}>腹痛薬</option>
-                            <option value="解熱鎮痛薬" {{ $medicine->category == '解熱鎮痛薬' ? 'selected' : '' }}>解熱鎮痛薬</option>
-                            <option value="胃腸薬" {{ $medicine->category == '胃腸薬' ? 'selected' : '' }}>胃腸薬</option>
-                            <option value="風邪薬" {{ $medicine->category == '風邪薬' ? 'selected' : '' }}>風邪薬</option>
-                            <option value="目薬" {{ $medicine->category == '目薬' ? 'selected' : '' }}>目薬</option>
-                            <option value="皮膚薬" {{ $medicine->category == '皮膚薬' ? 'selected' : '' }}>皮膚薬</option>
-                            <option value="下痢止め" {{ $medicine->category == '下痢止め' ? 'selected' : '' }}>下痢止め</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category }}" {{ $medicine->category == $category ? 'selected' : '' }}>{{ $category }}</option>
+                            @endforeach
                         </select>
                     </div>
 
