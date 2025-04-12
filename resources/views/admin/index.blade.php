@@ -23,13 +23,18 @@
             <div class="mb-8 bg-white rounded-xl shadow-lg p-6">
                 <form action="{{ route('admin.index') }}" method="GET" class="flex items-center space-x-4">
                     <div class="flex-grow relative">
-                        <input type="text" 
-                               name="search" 
-                               value="{{ request('search') }}" 
-                               placeholder="薬品名で検索..." 
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text"
+                               name="search"
+                               value="{{ request('search') }}"
+                               placeholder="薬品名で検索..."
                                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
                     </div>
-                    <button type="submit" 
+                    <button type="submit"
                             class="px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
                         検索
                     </button>
@@ -94,17 +99,8 @@
                                     @if($medicine->countries->count() > 0)
                                         <div class="flex flex-wrap gap-1.5 max-w-[160px]">
                                             @foreach($medicine->countries as $country)
-                                                @php
-                                                    $countryEmojis = [
-                                                        'インドネシア' => '🇮🇩',
-                                                        'タイ' => '🇹🇭',
-                                                        'マレーシア' => '🇲🇾',
-                                                        'ベトナム' => '🇻🇳',
-                                                    ];
-                                                    $emoji = $countryEmojis[$country->name] ?? '🌏';
-                                                @endphp
                                                 <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 whitespace-nowrap">
-                                                    {{ $emoji }} {{ $country->name }}
+                                                    {{ $country->emoji }} {{ $country->name }}
                                                 </span>
                                             @endforeach
                                         </div>
