@@ -26,7 +26,7 @@ class MedicineSeeder extends Seeder
                 'image_path' => 'medicines/panadol.jpg',
                 'countries' => [
                     'タイ' => 336,
-                    'インドネシア' => 1400,
+                    'インドネシア' => 14000,
                     'マレーシア' => 9,
                     'ベトナム' => null
                 ]
@@ -71,7 +71,7 @@ class MedicineSeeder extends Seeder
                 'image_path' => 'medicines/diapet.jpg',
                 'countries' => [
                     'タイ' => null,
-                    'インドネシア' => 3000,
+                    'インドネシア' => 30000,
                     'マレーシア' => null,
                     'ベトナム' => null
                 ]
@@ -87,7 +87,7 @@ class MedicineSeeder extends Seeder
                 'image_path' => 'medicines/tolakangin.jpg',
                 'countries' => [
                     'タイ' => null,
-                    'インドネシア' => 9000,
+                    'インドネシア' => 90000,
                     'マレーシア' => 7,
                     'ベトナム' => null
                 ]
@@ -102,7 +102,7 @@ class MedicineSeeder extends Seeder
                 'image_path' => 'medicines/bodrex.jpg',
                 'countries' => [
                     'タイ' => null,
-                    'インドネシア' => 5000,
+                    'インドネシア' => 50000,
                     'マレーシア' => null,
                     'ベトナム' => null
                 ]
@@ -117,7 +117,7 @@ class MedicineSeeder extends Seeder
                 'image_path' => 'medicines/diatabs.jpg',
                 'countries' => [
                     'タイ' => null,
-                    'インドネシア' => 4000,
+                    'インドネシア' => 40000,
                     'マレーシア' => null,
                     'ベトナム' => null
                 ]

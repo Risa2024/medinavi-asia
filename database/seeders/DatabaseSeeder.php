@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrySeeder::class,
             MedicineSeeder::class,
+            ExchangeSeeder::class,
         ]);
     }
 }
