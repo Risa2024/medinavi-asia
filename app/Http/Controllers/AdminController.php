@@ -201,15 +201,42 @@ class AdminController extends Controller
     public function storeCountry(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255|unique:countries',
-            'emoji' => 'required|max:10',
-            'currency_code' => 'required|max:3|unique:countries',
+            'name' => 'required|string|max:255|unique:countries',
+            'emoji' => 'required|string|max:10',
+            'currency_code' => 'required|string|max:3|unique:countries',
         ]);
 
-        Country::create($validated);
+        $country = Country::create($validated);
 
-        return redirect()->route('admin.index')
-            ->with('success', '新しい国が正常に追加されました。');
+        return response()->json([
+            'success' => true,
+            'message' => '国が追加されました。',
+            'country' => $country
+        ]);
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $validated = $request->validate([
+            'category_name' => 'required|string|max:255',
+        ]);
+
+        // 既存のカテゴリーを取得
+        $existingCategories = Medicine::select('category')->distinct()->pluck('category')->toArray();
+        
+        // 新しいカテゴリーが既に存在しないことを確認
+        if (!in_array($validated['category_name'], $existingCategories)) {
+            return response()->json([
+                'success' => true,
+                'category_name' => $validated['category_name'],
+                'message' => 'カテゴリーが追加されました。'
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'このカテゴリーは既に存在します。'
+        ], 422);
     }
 }
 

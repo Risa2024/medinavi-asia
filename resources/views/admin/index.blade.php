@@ -10,9 +10,6 @@
                     </h1>
                 </div>
                 <div class="flex space-x-4">
-                    <button type="button" onclick="openCountryModal()" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        新しい国を追加
-                    </button>
                     <a href="{{ route('admin.medicines.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         新しい薬を追加
                     </a>
@@ -187,38 +184,6 @@
         </div>
     </div>
 
-    <!-- 新しい国を追加するモーダル -->
-    <div id="countryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div class="mt-3">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">新しい国を追加</h3>
-                <form action="{{ route('admin.countries.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">国名</label>
-                        <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：フィリピン" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="emoji" class="block text-sm font-medium text-gray-700">絵文字</label>
-                        <input type="text" name="emoji" id="emoji" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：🇵🇭" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="currency_code" class="block text-sm font-medium text-gray-700">通貨コード</label>
-                        <input type="text" name="currency_code" id="currency_code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="例：PHP" required>
-                    </div>
-                    <div class="flex justify-end space-x-3">
-                        <button type="button" onclick="closeCountryModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-                            キャンセル
-                        </button>
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            追加
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script>
         // モーダル関連の関数
         function openImageModal(imageSrc, imageName) {
@@ -246,13 +211,5 @@
             // 閉じるボタンにイベントリスナーを追加
             document.getElementById('closeModal').addEventListener('click', closeImageModal);
         });
-
-        function openCountryModal() {
-            document.getElementById('countryModal').classList.remove('hidden');
-        }
-
-        function closeCountryModal() {
-            document.getElementById('countryModal').classList.add('hidden');
-        }
     </script>
 </x-app-layout>
