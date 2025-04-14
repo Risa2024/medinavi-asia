@@ -10,9 +10,9 @@
                 <span class="logo-text text-gray-800 text-xl">MediNavi <span class="text-blue-500">Asia</span></span>
             </div>
             <nav class="hidden md:flex">
-                <div class="nav-item active">ホーム</div>
-                <div class="nav-item">お気に入り</div>
-                <div class="nav-item">管理画面</div>
+                <div class="px-4 py-3 cursor-pointer border-b-[3px] border-blue-500 text-blue-500">ホーム</div>
+                <div class="px-4 py-3 cursor-pointer border-b-[3px] border-transparent hover:border-blue-500 hover:text-blue-500 transition-colors">お気に入り</div>
+                <div class="px-4 py-3 cursor-pointer border-b-[3px] border-transparent hover:border-blue-500 hover:text-blue-500 transition-colors">管理画面</div>
             </nav>
         </div>
     </x-slot>
@@ -34,7 +34,7 @@
                 <div class="max-w-4xl mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                         <!-- 種類から検索 -->
-                        <a href="{{ route('medicines.category') }}" class="bg-white rounded-lg shadow-sm search-card">
+                        <a href="{{ route('medicines.category') }}" class="block bg-white rounded-lg shadow-sm h-full transition-transform duration-200 hover:-translate-y-0.5">
                             <div class="p-5 flex flex-col h-full">
                                 <div class="flex items-center mb-3">
                                     <div class="flex-shrink-0 bg-blue-100 rounded-lg p-3 mr-4">
@@ -45,6 +45,9 @@
                                     <div class="flex-grow">
                                         <h2 class="font-semibold text-gray-800 text-lg">種類から検索</h2>
                                     </div>
+                                </div>
+                                <div class="flex justify-center mb-4">
+                                    <img src="/images/medicine1.jpg" alt="薬の種類から検索" class="w-48 md:w-64 h-auto object-contain">
                                 </div>
                                 <p class="text-gray-600 mb-4">頭痛薬、風邪薬などカテゴリで薬を探せます。症状からぴったりの薬を見つけましょう。</p>
                                 <div class="mt-auto">
@@ -59,7 +62,7 @@
                         </a>
 
                         <!-- 商品名で検索 -->
-                        <a href="{{ route('medicines.search') }}" class="bg-white rounded-lg shadow-sm search-card">
+                        <a href="{{ route('medicines.search') }}" class="block bg-white rounded-lg shadow-sm h-full transition-transform duration-200 hover:-translate-y-0.5">
                             <div class="p-5 flex flex-col h-full">
                                 <div class="flex items-center mb-3">
                                     <div class="flex-shrink-0 bg-green-100 rounded-lg p-3 mr-4">
@@ -67,9 +70,12 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                         </svg>
                                     </div>
-                                    <div class="flex-grow">
-                                        <h2 class="font-semibold text-gray-800 text-lg">商品名で検索</h2>
+                                        <div class="flex-grow">
+                                            <h2 class="font-semibold text-gray-800 text-lg">商品名で検索</h2>
                                     </div>
+                                </div>
+                                <div class="flex justify-center mb-4">
+                                    <img src="/images/medicine2.jpg" alt="薬の種類から検索" class="w-48 md:w-64 h-auto object-contain">
                                 </div>
                                 <p class="text-gray-600 mb-4">薬の名前がわかっている場合は、商品名で直接検索できます。正確かつ素早く薬を見つけられます。</p>
                                 <div class="mt-auto">
@@ -136,23 +142,4 @@
             </div>
         </footer>
     </div>
-
-    <style>
-        .nav-item {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-        }
-        .nav-item.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
-        }
-        .search-card {
-            transition: transform 0.2s;
-            height: 100%;
-        }
-        .search-card:hover {
-            transform: translateY(-2px);
-        }
-    </style>
 </x-app-layout>
