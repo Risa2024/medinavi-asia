@@ -95,51 +95,86 @@
             <!-- 現在地・位置情報セクション -->
             <section class="mb-12">
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                        <div class="p-5 border-b border-gray-100">
-                            <div class="flex items-center">
-                                <div class="bg-blue-100 rounded-full p-2 mr-3">
-                                    <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl shadow-sm overflow-hidden border border-blue-100">
+                        <div class="relative">
+                            <div class="p-6 md:p-8 flex flex-col md:flex-row items-center">
+                                <!-- 左側：コンテンツ -->
+                                <div class="w-full md:w-1/2 text-gray-800 z-10">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-blue-100 rounded-full p-2 mr-3">
+                                            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <h2 class="text-xl font-bold text-gray-800">位置情報ベースの検索</h2>
+                                    </div>
+
+                                    <div class="mb-6">
+                                        <div class="inline-flex items-center bg-blue-50 rounded-full py-1.5 px-3 mb-3 border border-blue-100">
+                                            <div class="h-2 w-2 bg-emerald-400 rounded-full mr-2"></div>
+                                            <p class="text-base font-medium text-gray-800" id="current-location">タイ, バンコク</p>
+                                        </div>
+                                        <p class="text-gray-600 text-base leading-relaxed">位置情報を有効にすると、現在いる国で販売されている薬だけを検索できます。旅行先でも地域に合った薬情報にアクセスできます。</p>
+                                    </div>
+
+                                    <div class="space-y-2 mb-6">
+                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
+                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span class="text-gray-700 text-sm">現地で販売されている薬のみを表示</span>
+                                        </div>
+                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
+                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span class="text-gray-700 text-sm">日本の薬との成分比較機能</span>
+                                        </div>
+                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
+                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            <span class="text-gray-700 text-sm">近くの薬局を地図で表示</span>
+                                        </div>
+                                    </div>
+
+                                    <button class="group bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center justify-center">
+                                        <svg class="h-4 w-4 mr-2 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        </svg>
+                                        位置情報を有効にする
+                                    </button>
                                 </div>
-                                <div>
-                                    <h2 class="font-semibold text-gray-800 text-lg">現在地</h2>
+
+                                <!-- 右側：イラスト -->
+                                <div class="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center items-center">
+                                    <div class="relative w-full max-w-xs">
+                                        <div class="relative bg-blue-50 rounded-xl p-6 border border-blue-100">
+                                            <div class="flex justify-center mb-4">
+                                                <div class="relative">
+                                                    <div class="absolute -inset-3 bg-blue-100 rounded-full blur-sm"></div>
+                                                    <div class="relative bg-white rounded-full p-3 border border-blue-100">
+                                                        <svg class="h-8 w-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <div class="h-1.5 bg-blue-100 rounded-full w-3/4 mx-auto"></div>
+                                                <div class="h-1.5 bg-blue-100 rounded-full w-2/3 mx-auto"></div>
+                                                <div class="h-1.5 bg-blue-100 rounded-full w-1/2 mx-auto"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-blue-50">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                <div class="mb-4 md:mb-0">
-                                    <p class="text-gray-800 font-medium text-lg mb-1" id="current-location">タイ, バンコク</p>
-                                    <p class="text-gray-600">位置情報を有効にすると、現在いる国で販売されている薬だけを検索できます</p>
-                                </div>
-                                <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg text-sm transition flex items-center justify-center">
-                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    </svg>
-                                    位置情報を有効にする
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
-
-        <!-- フッター -->
-        <footer class="bg-white px-4 py-6 mt-8 border-t border-gray-200">
-            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
-                <div class="flex space-x-4 mb-4 md:mb-0">
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm">利用規約</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm">プライバシーポリシー</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm">運営者情報</a>
-                </div>
-                <div class="text-gray-600 text-sm">
-                    © 2025 MediNavi Asia. All rights reserved.
-                </div>
-            </div>
-        </footer>
     </div>
 </x-app-layout>
