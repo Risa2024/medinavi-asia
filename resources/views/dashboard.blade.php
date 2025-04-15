@@ -118,27 +118,6 @@
                                         <p class="text-gray-600 text-base leading-relaxed">位置情報を有効にすると、現在いる国で販売されている薬だけを検索できます。旅行先でも地域に合った薬情報にアクセスできます。</p>
                                     </div>
 
-                                    <div class="space-y-2 mb-6">
-                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
-                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                            <span class="text-gray-700 text-sm">現地で販売されている薬のみを表示</span>
-                                        </div>
-                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
-                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                            <span class="text-gray-700 text-sm">日本の薬との成分比較機能</span>
-                                        </div>
-                                        <div class="flex items-center bg-blue-50 rounded-lg p-2 border border-blue-100">
-                                            <svg class="h-4 w-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                            <span class="text-gray-700 text-sm">近くの薬局を地図で表示</span>
-                                        </div>
-                                    </div>
-
                                     <button class="group bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center justify-center">
                                         <svg class="h-4 w-4 mr-2 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
