@@ -14,8 +14,8 @@
                     </h1>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="{{ route('admin.medicines.create') }}" class="group bg-[#519A96] text-white font-medium py-2.5 px-5 rounded-lg shadow-lg hover:bg-teal-600 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center">
-                        <svg class="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.medicines.create') }}" class="group bg-teal-700 text-white font-medium py-2.5 px-5 rounded-lg shadow-lg hover:bg-teal-600 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                         新しい薬を追加
@@ -39,7 +39,7 @@
                                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#519A96] focus:border-transparent transition-all duration-200">
                     </div>
                     <button type="submit"
-                            class="px-6 py-3 text-sm font-semibold text-white bg-[#519A96] hover:bg-teal-600 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+                            class="px-6 py-3 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
                         検索
                     </button>
                 </form>

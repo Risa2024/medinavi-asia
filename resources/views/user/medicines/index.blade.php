@@ -36,7 +36,7 @@
                                     <div class="p-4 border-b border-blue-100 bg-gradient-to-br from-blue-50/10 to-blue-50/30">
                                         <div class="flex justify-between items-start gap-2">
                                             <div class="flex-1">
-                                                <h2 class="text-base font-bold text-blue-950 line-clamp-1">💊 {{ $medicine->name }}</h2>
+                                                <h2 class="text-base font-bold text-blue-950 line-clamp-1">{{ $medicine->name }}</h2>
 
                                                 <!-- 販売国フラグ -->
                                                 @if($medicine->countries->count() > 0)
