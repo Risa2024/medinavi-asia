@@ -1,27 +1,34 @@
 <x-app-layout>
-    <div class="py-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="py-6 bg-[#F2F2F2] min-h-screen">
         <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
             <!-- ヘッダーセクション -->
             <div class="flex justify-between items-center mb-8">
                 <div class="flex items-center space-x-3">
-                    <h1 class="text-2xl font-bold">
-                        <span>🏥</span>
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">MediNavi Asia 管理画面</span>
+                    <h1 class="text-2xl font-bold flex items-center">
+                        <div class="w-10 h-10 flex items-center justify-center mr-3">
+                            <span class="text-white">🏥</span>
+                        </div>
+                        <span class="text-[#0B1E26]">
+                            MediNavi Asia 管理画面
+                        </span>
                     </h1>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="{{ route('admin.medicines.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <a href="{{ route('admin.medicines.create') }}" class="group bg-[#519A96] text-white font-medium py-2.5 px-5 rounded-lg shadow-lg hover:bg-teal-600 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center">
+                        <svg class="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
                         新しい薬を追加
                     </a>
                 </div>
             </div>
 
             <!-- 検索フォーム -->
-            <div class="mb-8 bg-white rounded-xl shadow-lg p-6">
+            <div class="mb-8 bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <form action="{{ route('admin.index') }}" method="GET" class="flex items-center space-x-4">
                     <div class="flex-grow relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-[#519A96]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
@@ -29,10 +36,10 @@
                                name="search"
                                value="{{ request('search') }}"
                                placeholder="薬品名で検索..."
-                               class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
+                               class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#519A96] focus:border-transparent transition-all duration-200">
                     </div>
                     <button type="submit"
-                            class="px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+                            class="px-6 py-3 text-sm font-semibold text-white bg-[#519A96] hover:bg-teal-600 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
                         検索
                     </button>
                 </form>
@@ -40,63 +47,63 @@
 
             <!-- 検索結果メッセージ -->
             @if(request('search'))
-            <div class="mb-6 text-gray-700 bg-blue-50 px-6 py-3 rounded-lg border border-blue-100">
+            <div class="mb-6 text-[#0B1E26] bg-[#A0D3D9]/10 px-6 py-3 rounded-lg border border-[#A0D3D9]/20">
                 <div class="flex items-center">
-                    <svg class="h-5 w-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-5 w-5 text-[#519A96] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span>「<span class="font-medium text-blue-700">{{ request('search') }}</span>」の検索結果: <span class="font-medium text-blue-700">{{ $medicines->count() }}</span>件</span>
+                    <span>「<span class="font-medium text-[#519A96]">{{ request('search') }}</span>」の検索結果: <span class="font-medium text-[#519A96]">{{ $medicines->count() }}</span>件</span>
                 </div>
             </div>
             @endif
 
             <!-- 登録薬のリスト -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
                 <!-- 薬情報テーブル -->
                 <div class="overflow-x-auto">
                     <table class="w-full divide-y divide-gray-200">
-                        <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                        <thead class="bg-[#F2F2F2]">
                             <tr>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[200px]">薬品名</th>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[100px]">画像</th>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[120px]">カテゴリー</th>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[180px]">販売国</th>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[150px]">価格</th>
-                                <th class="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-[100px]">編集</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[200px]">薬品名</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[100px]">画像</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[120px]">カテゴリー</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[180px]">販売国</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[150px]">価格</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-[#0B1E26] uppercase tracking-wider w-[100px]">編集</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-100">
                             @foreach($medicines as $medicine)
-                            <tr class="transform transition-colors duration-200 hover:bg-gray-50">
-                                <td class="px-4 py-2">
-                                    <div class="text-sm font-medium text-gray-900 truncate max-w-[180px]">{{ $medicine->name }}</div>
+                            <tr class="transition-colors duration-200 hover:bg-[#F2F2F2]">
+                                <td class="px-4 py-3">
+                                    <div class="text-sm font-medium text-[#0B1E26] truncate max-w-[180px]">{{ $medicine->name }}</div>
                                 </td>
-                                <td class="px-4 py-2">
+                                <td class="px-4 py-3">
                                     @if($medicine->image_path)
-                                        <div class="w-16 h-16 bg-white p-1 rounded-lg flex items-center justify-center shadow-sm border">
+                                        <div class="w-16 h-16 bg-[#F2F2F2] p-1 rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
                                             <img src="{{ asset('storage/' . $medicine->image_path) }}"
                                                  alt="{{ $medicine->name }}"
-                                                 class="w-full h-full object-contain cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-200"
+                                                 class="w-full h-full object-contain cursor-pointer hover:opacity-80 hover:scale-105 transition-all duration-300"
                                                  onclick="openImageModal('{{ asset('storage/' . $medicine->image_path) }}', '{{ $medicine->name }}')" />
                                         </div>
                                     @else
-                                        <div class="w-16 h-16 bg-gray-50 p-1 rounded-lg flex items-center justify-center shadow-sm border">
+                                        <div class="w-16 h-16 bg-[#F2F2F2] p-1 rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
                                             <span class="text-gray-400 text-xs">画像なし</span>
                                         </div>
                                     @endif
                                 </td>
-                                <td class="px-4 py-2">
+                                <td class="px-4 py-3">
                                     <div class="w-[130px]">
-                                        <span class="inline-flex items-center px-2.5 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-indigo-50 to-blue-50 text-indigo-700 border border-indigo-100">
+                                        <span class="inline-flex items-center px-2.5 py-1.5 rounded-md text-xs font-medium text-[#519A96] bg-[#F2F2F2] border border-[#A0D3D9]/30">
                                             {{ $medicine->category }}
                                         </span>
                                     </div>
                                 </td>
-                                <td class="px-4 py-2">
+                                <td class="px-4 py-3">
                                     @if($medicine->countries->count() > 0)
                                         <div class="flex flex-wrap gap-1.5 max-w-[160px]">
                                             @foreach($medicine->countries as $country)
-                                                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 whitespace-nowrap">
+                                                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-[#F2F2F2] text-[#0B1E26] border border-[#A0D3D9]/30 whitespace-nowrap transform hover:scale-105 transition-transform duration-200">
                                                     {{ $country->emoji }} {{ $country->name }}
                                                 </span>
                                             @endforeach
@@ -105,16 +112,16 @@
                                         <span class="text-gray-400 text-sm">未設定</span>
                                     @endif
                                 </td>
-                                <td class="px-4 py-2">
+                                <td class="px-4 py-3">
                                     @if($medicine->countries->count() > 0)
                                         <div class="space-y-1.5">
                                             @foreach($medicine->countries as $country)
-                                                <div class="flex items-center space-x-1 text-sm text-gray-700 whitespace-nowrap">
+                                                <div class="flex items-center space-x-1 text-sm text-[#0B1E26] whitespace-nowrap">
                                                     @if($country->pivot->price === null)
                                                         <span class="text-gray-400">価格不明</span>
                                                     @else
                                                         <span class="font-medium">{{ number_format($country->pivot->price) }}</span>
-                                                        <span class="text-gray-500">{{ $country->pivot->currency_code }}</span>
+                                                        <span class="text-[#519A96]">{{ $country->pivot->currency_code }}</span>
                                                     @endif
                                                 </div>
                                             @endforeach
@@ -123,11 +130,11 @@
                                         <span class="text-gray-400 text-sm">-</span>
                                     @endif
                                 </td>
-                                <td class="px-4 py-2 text-sm font-medium">
+                                <td class="px-4 py-3 text-sm font-medium">
                                     <div class="flex flex-col space-y-2">
                                         <a href="{{ route('admin.medicines.edit', $medicine->id) }}" 
-                                           class="text-indigo-600 hover:text-indigo-900 flex items-center transition-colors duration-200">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                           class="text-[#519A96] hover:text-teal-600 flex items-center transition-colors duration-200">
+                                            <svg class="w-4 h-4 mr-1 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 0L11.828 15H9v-2.828l8.586-8.586z"></path>
                                             </svg>
                                             <span>編集</span>
@@ -136,9 +143,9 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" 
-                                                    class="text-red-600 hover:text-red-900 flex items-center transition-colors duration-200" 
+                                                    class="text-red-500 hover:text-red-600 flex items-center transition-colors duration-200 group" 
                                                     onclick="return confirm('削除してもよろしいですか？')">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-4 h-4 mr-1 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                                 </svg>
                                                 <span>削除</span>
@@ -153,12 +160,14 @@
                 </div>
 
                 @if($medicines->isEmpty())
-                <div class="text-center py-16 bg-gray-50">
-                    <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <p class="text-xl font-medium text-gray-600 mb-2">登録されている薬はありません</p>
-                    <p class="text-gray-500">「新規登録」ボタンから薬情報を追加してください</p>
+                <div class="text-center py-16 bg-[#F2F2F2]">
+                    <div class="w-16 h-16 mx-auto bg-[#519A96] rounded-full flex items-center justify-center mb-4 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-xl font-medium text-[#0B1E26] mb-2">登録されている薬はありません</p>
+                    <p class="text-[#519A96]">「新規登録」ボタンから薬情報を追加してください</p>
                 </div>
                 @endif
             </div>
@@ -166,18 +175,18 @@
     </div>
 
     <!-- 画像モーダル -->
-    <div id="imageModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-70 flex items-center justify-center p-4">
-        <div class="relative bg-white rounded-lg max-w-3xl mx-auto shadow-2xl p-6">
+    <div id="imageModal" class="fixed inset-0 z-50 hidden overflow-auto bg-[#0B1E26]/70 flex items-center justify-center p-4">
+        <div class="relative bg-white rounded-lg max-w-3xl mx-auto shadow-2xl p-6 border border-gray-100">
             <!-- 閉じるボタン -->
-            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors">
+            <button id="closeModal" class="absolute top-2 right-2 text-[#519A96] hover:text-teal-600 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
             <!-- モーダルコンテンツ -->
             <div class="text-center">
-                <h3 id="modalTitle" class="text-lg font-semibold text-gray-800 mb-4"></h3>
-                <div class="bg-gray-50 p-1 rounded-lg border border-gray-100">
+                <h3 id="modalTitle" class="text-lg font-semibold text-[#0B1E26] mb-4"></h3>
+                <div class="bg-[#F2F2F2] p-1 rounded-lg border border-[#A0D3D9]/20">
                     <img id="modalImage" src="" alt="" class="mx-auto max-h-[70vh] object-contain">
                 </div>
             </div>
