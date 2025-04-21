@@ -39,9 +39,8 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                         </svg>
                                     </div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3 sm:hidden">種類から検索</h3>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">種類から検索</h3>
                                 </div>
-                                <h3 class="hidden sm:block text-xl font-bold text-slate-800 mb-3">種類から検索</h3>
                                 <p class="text-sm sm:text-base text-slate-600 mb-4 sm:mb-5">頭痛薬、風邪薬などカテゴリで薬を探せます。症状からぴったりの薬を見つけましょう。</p>
                                 <div class="flex justify-center mb-4">
                                     <img src="/images/medicine1.jpg" alt="薬の種類から検索" class="w-36 sm:w-48 md:w-64 h-auto object-contain">
@@ -67,9 +66,8 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                         </svg>
                                     </div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3 sm:hidden">商品名で検索</h3>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">商品名で検索</h3>
                                 </div>
-                                <h3 class="hidden sm:block text-xl font-bold text-slate-800 mb-3">商品名で検索</h3>
                                 <p class="text-sm sm:text-base text-slate-600 mb-4 sm:mb-5">薬の名前がわかっている場合は、商品名で直接検索できます。正確かつ素早く薬を見つけられます。</p>
                                 <div class="flex justify-center mb-4">
                                     <img src="/images/medicine2.jpg" alt="薬の種類から検索" class="w-36 sm:w-48 md:w-64 h-auto object-contain">
@@ -98,16 +96,14 @@
                                 <!-- 左側：コンテンツ -->
                                 <div class="w-full md:w-1/2 text-slate-800 z-10">
                                     <div class="flex items-center mb-4">
-                                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-gradient-to-br from-teal-100 via-white to-emerald-100 flex items-center justify-center mb-4 sm:mb-5 overflow-hidden shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-teal-100/80">
+                                        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-gradient-to-br from-teal-100 via-white to-emerald-100 flex items-center justify-center overflow-hidden shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-teal-100/80">
                                             <svg class="h-6 sm:h-7 w-6 sm:w-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             </svg>
                                         </div>
-                                        <h2 class="text-lg sm:text-xl font-bold text-slate-800 ml-4 sm:hidden">位置情報ベースの検索</h2>
+                                        <h2 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">位置情報ベースの検索</h2>
                                     </div>
-                                    <h2 class="hidden sm:block text-xl font-bold text-slate-800 mb-4">位置情報ベースの検索</h2>
-
                                     <div class="mb-6">
                                         <div class="inline-flex items-center bg-teal-100 bg-opacity-80 rounded-full py-1.5 px-3 mb-3">
                                             <div class="h-2 w-2 bg-teal-500 rounded-full mr-2"></div>
