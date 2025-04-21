@@ -14,13 +14,14 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <div class="w-10 h-10 bg-[#A0D3D9] rounded-lg flex items-center justify-center mr-3">
-                            <svg class="h-6 w-6 text-[#0B1E26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                            </svg>
+                    <div class="shrink-0 flex items-center">
+                    <a href="{{ route('dashboard') }}" class="flex items-center group">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(14,165,233,0.12)] ring-1 ring-blue-100/80">
+                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-9 h-9 object-contain opacity-100">
                         </div>
-                        <span class="text-2xl font-bold text-[#0B1E26]">MediNavi <span class="text-[#519A6]">Asia</span></span>
-                    </div>
+                        <span class="text-xl font-bold text-[#0B1E26]">Medi<span class="text-blue-700">Navi</span> <span class="text-orange-500">Asia</span></span>
+                    </a>
+                </div>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-6">
                     <a href="#features" class="text-[#365359] hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">特徴</a>
@@ -196,14 +197,14 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="md:flex md:items-center md:justify-between">
                 <div class="mb-8 md:mb-0">
-                    <div class="flex items-center">
-                        <div class="w-8 h-8 bg-[#A0D3D9] rounded-md flex items-center justify-center mr-2">
-                            <svg class="h-5 w-5 text-[#0B1E26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                            </svg>
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ route('dashboard') }}" class="flex items-center group">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-9 h-9 object-contain opacity-100">
                         </div>
-                        <span class="text-lg font-bold text-white">MediNavi <span class="text-[#A0D3D9]">Asia</span></span>
-                    </div>
+                        <span class="text-xl font-bold text-white">Medi<span class="text-blue-700">Navi</span> <span class="text-orange-500">Asia</span></span>
+                    </a>
+                </div>
                     <p class="mt-2 text-sm text-[#A0D3D9]/80">
                         &copy; 2024 MediNavi Asia. All rights reserved.
                     </p>
