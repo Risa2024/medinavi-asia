@@ -4,14 +4,14 @@
         <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center group">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(14,165,233,0.12)] ring-1 ring-blue-100/80">
-                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-9 h-9 object-contain opacity-100">
-                        </div>
-                        <span class="text-xl font-bold text-[#0B1E26]">Medi<span class="text-blue-700">Navi</span> <span class="text-orange-500">Asia</span></span>
-                    </a>
-                </div>
+                <div class="flex-shrink-0 flex items-center">
+                        <a href="{{ route('dashboard') }}" class="flex items-center group">
+                            <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(14,165,233,0.12)] ring-1 ring-teal-100/80">
+                                <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-9 h-9 object-contain opacity-100">
+                            </div>
+                            <span class="text-xl font-bold text-slate-800">Medi<span class="text-teal-700">Navi</span> <span class="text-teal-500">Asia</span></span>
+                        </a>
+                    </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-12 sm:-my-px sm:ml-16 sm:flex items-center">
