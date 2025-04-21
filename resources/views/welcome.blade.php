@@ -41,41 +41,40 @@
             </header>
 
             <!-- ヒーローセクション -->
-            <section class="bg-teal-600 text-white">
+            <section class="bg-white">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                     <div class="md:flex md:items-center md:justify-between">
                         <div class="md:w-1/2 mb-10 md:mb-0">
-                            <span class="inline-block px-3 py-1 text-sm font-semibold bg-teal-100 text-teal-600 rounded-full mb-5">アジアの医薬品情報をもっと身近に</span>
-                            <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+                            <span class="inline-block px-3 py-1 text-sm font-semibold bg-teal-50 text-teal-600 rounded-full mb-5">アジアの医薬品情報をもっと身近に</span>
+                            <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-6 text-slate-800">
                                 MediNavi Asia
                             </h1>
-                            <p class="text-xl text-teal-100 mb-8">
+                            <p class="text-xl text-slate-600 mb-8">
                                 アジア各国で販売されている市販薬の情報を簡単に検索・比較。
                                 旅行先でも安心して市販薬を探せるプラットフォームです。
                             </p>
                             <div class="flex flex-wrap gap-4">
-                                <a href="{{ route('register') }}" class="bg-teal-100 text-teal-600 hover:bg-teal-200 hover:text-teal-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105">
+                                <a href="{{ route('register') }}" class="bg-teal-600 text-white hover:bg-teal-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105">
                                     無料で始める
                                     <svg class="ml-2 -mr-1 h-5 w-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                                     </svg>
                                 </a>
-                                <a href="#features" class="border border-teal-100 text-teal-100 px-6 py-3 rounded-lg hover:bg-teal-100 hover:text-teal-600">
+                                <a href="#features" class="border border-teal-200 text-teal-600 px-6 py-3 rounded-lg hover:bg-teal-50 transition-all">
                                     詳しく見る
                                 </a>
                             </div>
                         </div>
                         <div class="md:w-1/2">
                             <div class="relative">
-                                <div class="absolute inset-0 bg-teal-500 rounded-lg transform rotate-3 opacity-10"></div>
-                                <div class="relative bg-teal-600/10 backdrop-filter backdrop-blur-sm rounded-lg overflow-hidden shadow-xl">
+                                <div class="absolute inset-0 bg-teal-50 rounded-lg transform rotate-3"></div>
+                                <div class="relative bg-white rounded-lg overflow-hidden shadow-xl">
                                     <img class="w-full" src="/images/hero-image.jpg" alt="アプリケーションのスクリーンショット">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="h-16 bg-slate-50"></div>
             </section>
 
             <!-- 特徴セクション -->
