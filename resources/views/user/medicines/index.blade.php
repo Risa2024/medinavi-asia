@@ -168,7 +168,7 @@
                                         <div class="flex justify-end">
                                             @if(Auth::check())
                                                 @if($medicine->favorites->contains('user_id', Auth::id()))
-                                                    <form action="{{ route('favorites.destroy', $medicine) }}" method="POST">
+                                                    <form action="{{ route('user.favorites.destroy', $medicine) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="text-pink-500 hover:text-pink-600 transition-colors">
@@ -178,7 +178,7 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <form action="{{ route('favorites.store', $medicine) }}" method="POST">
+                                                    <form action="{{ route('user.favorites.store', $medicine) }}" method="POST">
                                                         @csrf
                                                         <button type="submit" class="text-blue-300 hover:text-pink-500 transition-colors">
                                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

@@ -152,7 +152,7 @@
                                     <!-- フッター部分（お気に入りボタン） -->
                                     <div class="p-3 border-t border-blue-100 bg-gradient-to-br from-blue-50/10 to-blue-50/30">
                                         <div class="flex justify-end">
-                                            <form action="{{ route('favorites.destroy', $medicine) }}" method="POST">
+                                            <form action="{{ route('user.favorites.destroy', $medicine) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-pink-500 hover:text-pink-600 transition-colors">
