@@ -23,7 +23,7 @@
                         <div class="flex items-center justify-between sm:justify-start">
                             <div class="flex-shrink-0 flex items-center">
                                 <a href="/" class="flex items-center group">
-                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(59,130,246,0.12)] ring-1 ring-blue-100/80">
+                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
                                         <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
                                     </div>
                                     <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-blue-100">Navi</span> <span class="text-sky-100">Asia</span></span>
@@ -61,7 +61,7 @@
                                 旅行先でも安心して市販薬を探せるプラットフォームです。
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                                <a href="{{ route('register') }}" class="bg-teal-600 text-white hover:bg-teal-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105 text-center">
+                              <a href="{{ route('register') }}" class="bg-teal-600 text-white hover:bg-teal-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105 text-center">
                                     無料で始める
                                     <svg class="ml-2 -mr-1 h-5 w-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -218,10 +218,10 @@
                         <div class="text-center md:text-left">
                             <div class="flex items-center justify-center md:justify-start">
                                 <a href="{{ route('dashboard') }}" class="flex items-center group">
-                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-teal-100 via-white to-emerald-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-teal-100/80">
-                                        <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
+                                <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                                    <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
                                     </div>
-                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-teal-100">Navi</span> <span class="text-emerald-100">Asia</span></span>
+                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-blue-100">Navi</span> <span class="text-sky-100">Asia</span></span>
                                 </a>
                             </div>
                             <p class="mt-2 text-sm text-white/80">

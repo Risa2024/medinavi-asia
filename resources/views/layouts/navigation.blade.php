@@ -6,9 +6,9 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center group">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(14,165,233,0.12)] ring-1 ring-blue-100/80">
-                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-9 h-9 object-contain opacity-100">
-                        </div>
+                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
+                    </div>
                         <span class="text-xl font-bold text-white">Medi<span class="text-teal-100">Navi</span> <span class="text-emerald-100">Asia</span></span>
                     </a>
                 </div>
