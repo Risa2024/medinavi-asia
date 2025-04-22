@@ -6,10 +6,15 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@eslint/css": "^0.7.0",
+        "@eslint/js": "^9.25.1",
+        "@eslint/markdown": "^6.4.0",
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.1.2",
+        "eslint": "^9.25.1",
+        "globals": "^16.0.0",
         "laravel-vite-plugin": "^0.7.5",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.1.0",
