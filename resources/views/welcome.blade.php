@@ -23,10 +23,10 @@
                         <div class="flex items-center justify-between sm:justify-start">
                             <div class="flex-shrink-0 flex items-center">
                                 <a href="/" class="flex items-center group">
-                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-teal-100 via-white to-emerald-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-teal-100/80">
+                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-blue-100 via-white to-sky-100 rounded-full flex items-center justify-center mr-3 overflow-hidden shadow-[0_4px_16px_rgba(59,130,246,0.12)] ring-1 ring-blue-100/80">
                                         <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
                                     </div>
-                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-teal-100">Navi</span> <span class="text-emerald-100">Asia</span></span>
+                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-blue-100">Navi</span> <span class="text-sky-100">Asia</span></span>
                                 </a>
                             </div>
                             <!-- モバイルメニューボタン -->
@@ -147,7 +147,7 @@
             </section>
 
             <!-- サービス概要セクション -->
-            <section id="about" class="py-12 sm:py-20 bg-white">
+            <section id='about' class="py-12 sm:py-20 bg-white">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                         <div class="w-full md:w-1/2">
