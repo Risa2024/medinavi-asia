@@ -3,7 +3,11 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "format": "prettier --write \"resources/views/**/*.blade.php\" --parser=html",
+        "format:admin": "prettier --write \"resources/views/admin/**/*.blade.php\" --parser=html",
+        "format:auth": "prettier --write \"resources/views/auth/**/*.blade.php\" --parser=html",
+        "format:components": "prettier --write \"resources/views/components/**/*.blade.php\" --parser=html"
     },
     "devDependencies": {
         "@eslint/css": "^0.7.0",
