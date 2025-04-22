@@ -3,7 +3,7 @@ import globals from "globals";
 import markdown from "@eslint/markdown";
 import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
-
+import eslintConfigPrettier from "eslint-config-prettier";
 
 export default defineConfig([
   { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
@@ -19,4 +19,6 @@ export default defineConfig([
       "no-extra-semi": "error", // 意味：余分なセミコロンを許可しない
     },
   },
+  pluginJs.configs.recommended,
+  eslintConfigPrettier,
 ]);
