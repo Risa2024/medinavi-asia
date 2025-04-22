@@ -1,9 +1,9 @@
-import js from "@eslint/js"
-import globals from "globals"
-import markdown from "@eslint/markdown"
-import css from "@eslint/css"
-import { defineConfig } from "eslint/config"
-import eslintConfigPrettier from "eslint-config-prettier"
+import js from "@eslint/js";
+import globals from "globals";
+import markdown from "@eslint/markdown";
+import css from "@eslint/css";
+import { defineConfig } from "eslint/config";
+import eslintConfigPrettier from "eslint-config-prettier";
 
 export default defineConfig([
     { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
@@ -24,5 +24,5 @@ export default defineConfig([
             noExtraSemi: "error", // 意味：余分なセミコロンを許可しない
         },
     },
-    eslintConfigPrettier,
-])
+    eslintConfigPrettier, //Prettierのフォーマットルールと競合する,ESLintのルールを無効化
+]);
