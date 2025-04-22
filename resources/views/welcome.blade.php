@@ -76,9 +76,9 @@
                             <div class="relative group">
                                 <div class="absolute inset-0 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-2xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0"></div>
                                 <div class="relative bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:shadow-3xl">
-                                    <img 
-                                        src="/images/hero-image.jpg" 
-                                        alt="アプリケーションのスクリーンショット" 
+                                    <img
+                                        src="/images/hero-image.jpg"
+                                        alt="アプリケーションのスクリーンショット"
                                         class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                                         loading="lazy"
                                     >
@@ -157,44 +157,57 @@
             </section>
 
             <!-- サービス概要セクション -->
-            <section id='about' class="py-12 sm:py-20 bg-white">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                        <div class="w-full md:w-1/2">
-                            <span class="inline-block px-3 py-1 text-sm font-semibold text-slate-800 bg-teal-100 rounded-full mb-3">サービス概要</span>
-                            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-4 sm:mb-6">安心して市販薬を<br>探せるプラットフォーム</h2>
-                            <p class="text-slate-600 mb-6 sm:mb-8">
+            <section id='about' class="bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-12">
+                        <div class="w-full md:w-1/2 text-center md:text-left">
+                            <span class="inline-block px-3 py-1.5 text-sm font-semibold bg-teal-50 text-teal-600 rounded-full mb-4 sm:mb-6">サービス概要</span>
+                            <h2 class="text-3xl sm:text-4xl font-bold leading-tight mb-4 sm:mb-6 text-slate-800">
+                                安心して市販薬を<br>探せるプラットフォーム
+                            </h2>
+                            <p class="text-lg text-slate-600 mb-6 sm:mb-8 leading-relaxed">
                                 旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
                             </p>
                             <ul class="space-y-3 sm:space-y-4">
-                                <li class="flex items-center">
-                                    <svg class="h-5 w-5 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-slate-600">アジア各国の市販薬情報を順次拡大中</span>
+                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
+                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-base text-slate-700 ml-3 font-medium">アジア各国の市販薬情報を順次拡大中</span>
                                 </li>
-                                <li class="flex items-center">
-                                    <svg class="h-5 w-5 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-slate-600">看護師監修の安心情報</span>
+                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
+                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-base text-slate-700 ml-3 font-medium">看護師監修の安心情報</span>
                                 </li>
-                                <li class="flex items-center">
-                                    <svg class="h-5 w-5 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-slate-600">24時間365日アクセス可能</span>
+                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
+                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-base text-slate-700 ml-3 font-medium">24時間365日アクセス可能</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="w-full md:w-1/2">
-                            <div class="relative">
-                                <div class="absolute inset-0 bg-teal-500 rounded-lg transform rotate-3 opacity-10"></div>
-                                <div class="relative rounded-lg overflow-hidden shadow-xl">
-                                    <img class="w-full" src="/images/welcome_medicine.jpg" alt="アプリのデモ画像">
+                            <div class="relative group">
+                                <div class="absolute inset-0 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0"></div>
+                                <div class="relative bg-white rounded-xl overflow-hidden shadow-xl transition-all duration-500 group-hover:shadow-2xl">
+                                    <img
+                                        src="/images/welcome_medicine.jpg"
+                                        alt="アプリのデモ画像"
+                                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                                        loading="lazy"
+                                    >
                                 </div>
-                                <div class="absolute -bottom-4 -right-4 bg-white rounded-full shadow-lg p-3">
-                                    <svg class="h-8 sm:h-10 w-8 sm:w-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="absolute -bottom-3 -right-3 bg-white rounded-full shadow-lg p-3 transform transition-transform duration-500 group-hover:scale-110">
+                                    <svg class="h-8 w-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                     </svg>
                                 </div>

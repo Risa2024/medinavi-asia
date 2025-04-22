@@ -117,7 +117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" 
+                                            <button type="button"
                                                     onclick="confirmDeleteCountry('{{ $country->id }}', '{{ $country->name }}')"
                                                     class="flex items-center text-red-500 hover:text-red-700 focus:outline-none px-2 py-1 border border-red-200 rounded-md hover:bg-red-50 transition-colors"
                                                     title="この国を削除">
@@ -171,7 +171,7 @@
                 reader.readAsDataURL(fileInput);
             }
         }
-        
+
         // DOMContentLoadedイベントでページが完全に読み込まれた後に実行
         document.addEventListener('DOMContentLoaded', function() {
             // モーダル関連の関数
@@ -183,7 +183,7 @@
                 document.getElementById('countryModal').classList.add('hidden');
                 document.getElementById('countryForm').reset();
             }
-            
+
             function openCategoryModal() {
                 document.getElementById('categoryModal').classList.remove('hidden');
             }
@@ -192,25 +192,25 @@
                 document.getElementById('categoryModal').classList.add('hidden');
                 document.getElementById('categoryForm').reset();
             }
-            
+
             // グローバルスコープに関数を登録
             window.openCountryModal = openCountryModal;
             window.closeCountryModal = closeCountryModal;
             window.openCategoryModal = openCategoryModal;
             window.closeCategoryModal = closeCategoryModal;
-            
+
             // 国追加ボタンのイベントリスナー
             document.querySelector('.add-country-btn').addEventListener('click', function() {
                 console.log('国追加ボタンがクリックされました');
                 openCountryModal();
             });
-            
+
             // カテゴリー追加ボタンのイベントリスナー
             document.querySelector('.add-category-btn').addEventListener('click', function() {
                 console.log('カテゴリー追加ボタンがクリックされました');
                 openCategoryModal();
             });
-            
+
             // 国の削除確認
             function confirmDeleteCountry(id, name) {
                 if (confirm(`「${name}」を削除してもよろしいですか？`)) {
@@ -253,15 +253,15 @@
                 countryForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     console.log('国追加フォームが送信されました');
-                    
+
                     const formData = new FormData(this);
                     console.log('フォームデータ:', formData);
-                    
+
                     // フォームデータの内容をログに出力
                     for (let pair of formData.entries()) {
                         console.log(pair[0] + ': ' + pair[1]);
                     }
-                    
+
                     fetch('{{ route('admin.countries.store') }}', {
                         method: 'POST',
                         body: formData,
@@ -297,9 +297,9 @@
             if (categoryForm) {
                 categoryForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
+
                     const formData = new FormData(this);
-                    
+
                     fetch('{{ route('admin.categories.store') }}', {
                         method: 'POST',
                         body: formData,
@@ -316,16 +316,16 @@
                             option.value = data.category_name;
                             option.textContent = data.category_name;
                             select.appendChild(option);
-                            
+
                             // 新しく追加したカテゴリーを選択状態にする
                             select.value = data.category_name;
-                            
+
                             // モーダルを閉じる
                             closeCategoryModal();
-                            
+
                             // フォームをリセット
                             this.reset();
-    
+
                             alert(data.message || 'カテゴリーが正常に追加されました');
                         } else {
                             alert(data.message || 'カテゴリーの追加に失敗しました');
@@ -339,7 +339,7 @@
             }
         });
     </script>
-    
+
     <!-- 新しい国を追加するモーダル -->
     <div id="countryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
