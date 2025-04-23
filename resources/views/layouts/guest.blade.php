@@ -5,36 +5,39 @@
 ・パスワードリセットページ
 ・メール確認ページ-->
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html class="h-full" lang="{{ str_replace("_", "-", app()->getLocale()) }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>{{ config("app.name", "Laravel") }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-noto-sans-jp antialiased h-full bg-[#F2F2F2]">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-            <div>
-                <a href="/" class="flex items-center group">
-                <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
-                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
-                    </div>
-                    <span class="text-xl font-bold text-slate-800">Medi<span class="text-teal-700">Navi</span> <span class="text-teal-500">Asia</span></span>
-                </a>
-            </div>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}<!--各ページの内容（ログインフォームや登録フォームなど）が入る-->
-            </div>
-        </div>
-    </body>
+  <!-- Scripts -->
+  @vite(["resources/css/app.css", "resources/js/app.js"])
+</head>
+
+<body class="font-noto-sans-jp h-full bg-[#F2F2F2] antialiased">
+  <div class="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
+    <div>
+      <a class="group flex items-center" href="/">
+        <img class="mr-2 h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9" src="{{ asset("images/logo/eath2.png") }}"
+          alt="MediNavi Asia Logo">
+        <span class="text-xl font-bold text-slate-800">Medi<span class="medinavi-blue-light">Navi</span> <span
+            class="medinavi-blue-light">Asia</span></span>
+      </a>
+    </div>
+
+    <div class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+      {{ $slot }}<!--各ページの内容（ログインフォームや登録フォームなど）が入る-->
+    </div>
+  </div>
+</body>
+
 </html>
