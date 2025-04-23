@@ -1,271 +1,304 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
 
-        <title>{{ config('app.name', 'MediNavi Asia') }}</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+  <title>{{ config("app.name", "MediNavi Asia") }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-slate-50">
-            <!-- ヘッダー -->
-            <header class="bg-gradient-to-r from-teal-600 to-emerald-500 shadow">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between h-auto sm:h-16 py-3 sm:py-0">
-                        <div class="flex items-center justify-between sm:justify-start">
-                            <div class="flex-shrink-0 flex items-center">
-                                <a href="/" class="flex items-center group">
-                                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
-                                        <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
-                                    </div>
-                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-blue-100">Navi</span> <span class="text-sky-100">Asia</span></span>
-                                </a>
-                            </div>
-                            <!-- モバイルメニューボタン -->
-                            <button class="sm:hidden text-white/90 hover:text-white" onclick="toggleMenu()">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <!-- ナビゲーションメニュー -->
-                        <div id="mobile-menu" class="hidden sm:flex sm:items-center sm:space-x-6 mt-4 sm:mt-0">
-                            <a href="#features" class="block sm:inline-block text-white/90 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">特徴</a>
-                            <a href="#about" class="block sm:inline-block text-white/90 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">サービス概要</a>
-                            <a href="{{ route('login') }}" class="block sm:inline-block text-white/90 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">ログイン</a>
-                            <a href="{{ route('register') }}" class="block sm:inline-block bg-white/20 text-white hover:bg-white/30 px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300">新規登録</a>
-                        </div>
-                    </div>
+  <!-- Fonts -->
+  <link href="https://fonts.bunny.net" rel="preconnect">
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+  <!-- Scripts -->
+  @vite(["resources/css/app.css", "resources/js/app.js"])
+</head>
+
+<body class="font-sans antialiased">
+  <div class="min-h-screen bg-slate-50">
+    <!-- ヘッダー -->
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-500 shadow">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-auto flex-col py-3 sm:h-16 sm:flex-row sm:items-center sm:justify-between sm:py-0">
+          <div class="flex items-center justify-between sm:justify-start">
+            <div class="flex flex-shrink-0 items-center">
+              <a class="group flex items-center" href="/">
+                <div
+                  class="mr-3 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white sm:h-12 sm:w-12">
+                  <img class="h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9"
+                    src="{{ asset("images/logo/logo_dark.png") }}" alt="MediNavi Asia Logo">
                 </div>
-            </header>
+                <span class="text-lg font-bold text-white sm:text-xl">Medi<span class="text-blue-100">Navi</span> <span
+                    class="text-sky-100">Asia</span></span>
+              </a>
+            </div>
+            <!-- モバイルメニューボタン -->
+            <button class="text-white/90 hover:text-white sm:hidden" onclick="toggleMenu()">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+              </svg>
+            </button>
+          </div>
+          <!-- ナビゲーションメニュー -->
+          <div class="mt-4 hidden sm:mt-0 sm:flex sm:items-center sm:space-x-6" id="mobile-menu">
+            <a class="block rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors duration-300 hover:text-white sm:inline-block"
+              href="#features">特徴</a>
+            <a class="block rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors duration-300 hover:text-white sm:inline-block"
+              href="#about">サービス概要</a>
+            <a class="block rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors duration-300 hover:text-white sm:inline-block"
+              href="{{ route("login") }}">ログイン</a>
+            <a class="block rounded-md bg-white/20 px-4 py-2 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-white/30 hover:shadow-lg sm:inline-block"
+              href="{{ route("register") }}">新規登録</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-            <!-- ヒーローセクション -->
-            <section class="bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-12 md:gap-16">
-                        <div class="w-full md:w-1/2 text-center md:text-left">
-                            <span class="inline-block px-4 py-1.5 text-sm font-semibold bg-teal-50 text-teal-600 rounded-full mb-6 sm:mb-8">アジアの市販薬情報をもっと身近に</span>
-                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 sm:mb-8 text-slate-800">
-                                MediNavi Asia
-                            </h1>
-                            <p class="text-xl text-slate-600 mb-8 sm:mb-10 leading-relaxed">
-                                アジア各国で販売されている市販薬の情報を簡単に検索・比較。
-                                旅行先でも安心して市販薬を探せるプラットフォームです。
-                            </p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                                <a href="{{ route('register') }}" class="bg-gradient-to-r from-teal-600 to-emerald-500 text-white hover:from-teal-700 hover:to-emerald-600 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-center text-lg">
-                                    無料で始める
-                                    <svg class="ml-2 -mr-1 h-5 w-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                    </svg>
-                                </a>
-                                <a href="#features" class="border-2 border-teal-200 text-teal-600 px-8 py-4 rounded-lg hover:bg-teal-50 transition-all text-center text-lg">
-                                    詳しく見る
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-1/2">
-                            <div class="relative group">
-                                <div class="absolute inset-0 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-2xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0"></div>
-                                <div class="relative bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:shadow-3xl">
-                                    <img
-                                        src="/images/hero-image.jpg"
-                                        alt="アプリケーションのスクリーンショット"
-                                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                                        loading="lazy"
-                                    >
-                                </div>
-                                <div class="absolute -bottom-4 -right-4 bg-white rounded-full shadow-lg p-4 transform transition-transform duration-500 group-hover:scale-110">
-                                    <svg class="h-10 w-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <!-- ヒーローセクション -->
+    <section class="relative bg-white">
+      <div class="relative h-[500px] overflow-hidden lg:h-[600px]">
+        <!-- グラデーションオーバーレイ -->
+        <div class="absolute inset-0 z-10 bg-gradient-to-r from-slate-900/75 via-slate-800/60 to-transparent"></div>
 
-            <!-- 特徴セクション -->
-            <section id="features" class="bg-slate-50 py-12 sm:py-20">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12 sm:mb-16">
-                        <span class="inline-block px-3 py-1 text-sm font-semibold text-slate-800 bg-teal-100 rounded-full mb-3">特徴</span>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">より安全に、より便利に</h2>
-                        <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">MediNavi Asiaが提供する主な機能をご紹介します</p>
-                    </div>
+        <!-- 画像 -->
+        <img class="absolute inset-0 h-full w-full object-cover" src="/images/hero-temple.jpg" alt="タイの伝統的な寺院"
+          width="1920" height="1080" loading="eager">
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                        <!-- 多言語対応 -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                            <div class="h-2 bg-teal-600"></div>
-                            <div class="p-4 sm:p-6">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-teal-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-200 group-hover:scale-110">
-                                        <svg class="h-6 sm:h-7 w-6 sm:w-7 text-teal-600 transition-colors duration-300 group-hover:text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">多言語対応</h3>
-                                </div>
-                                <p class="text-slate-600">各国の市販薬の情報を現地語と日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
-                            </div>
-                        </div>
+        <!-- メインコンテンツ -->
+        <div class="relative z-20 h-full">
+          <div class="mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl">
+              <span
+                class="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                アジアの市販薬情報をもっと身近に
+              </span>
+              <h1 class="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+                MediNavi Asia
+              </h1>
+              <p class="mb-8 text-xl leading-relaxed text-white/90">
+                アジア各国で販売されている市販薬の情報を簡単に検索・比較。<br class="hidden sm:block">
+                旅行先でも安心して市販薬を探せるプラットフォームです。
+              </p>
+              <div class="flex flex-col gap-4 sm:flex-row">
+                <a class="transform rounded-lg bg-white px-8 py-4 text-center text-lg font-semibold text-teal-600 shadow-lg transition-all hover:scale-105 hover:bg-white/90"
+                  href="{{ route("register") }}">
+                  無料で始める
+                  <svg class="-mr-1 ml-2 inline-block h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
+                    </path>
+                  </svg>
+                </a>
+                <a class="rounded-lg border-2 border-white/30 px-8 py-4 text-center text-lg text-white backdrop-blur-sm transition-all hover:bg-white/10"
+                  href="#features">
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                        <!-- 詳細な情報提供 -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                            <div class="h-2 bg-teal-600"></div>
-                            <div class="p-4 sm:p-6">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-teal-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-200 group-hover:scale-110">
-                                        <svg class="h-6 sm:h-7 w-6 sm:w-7 text-teal-600 transition-colors duration-300 group-hover:text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">詳細な情報提供</h3>
-                                </div>
-                                <p class="text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
-                            </div>
-                        </div>
-
-                        <!-- 位置情報活用 -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                            <div class="h-2 bg-teal-600"></div>
-                            <div class="p-4 sm:p-6">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-teal-100 flex items-center justify-center">
-                                        <svg class="h-6 sm:h-7 w-6 sm:w-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 ml-3">位置情報活用</h3>
-                                </div>
-                                <p class="text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- サービス概要セクション -->
-            <section id='about' class="bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-12">
-                        <div class="w-full md:w-1/2 text-center md:text-left">
-                            <span class="inline-block px-3 py-1.5 text-sm font-semibold bg-teal-50 text-teal-600 rounded-full mb-4 sm:mb-6">サービス概要</span>
-                            <h2 class="text-3xl sm:text-4xl font-bold leading-tight mb-4 sm:mb-6 text-slate-800">
-                                安心して市販薬を<br>探せるプラットフォーム
-                            </h2>
-                            <p class="text-lg text-slate-600 mb-6 sm:mb-8 leading-relaxed">
-                                旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
-                            </p>
-                            <ul class="space-y-3 sm:space-y-4">
-                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
-                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-base text-slate-700 ml-3 font-medium">アジア各国の市販薬情報を順次拡大中</span>
-                                </li>
-                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
-                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-base text-slate-700 ml-3 font-medium">看護師監修の安心情報</span>
-                                </li>
-                                <li class="flex items-center p-3 transform transition-all duration-300 hover:-translate-y-1">
-                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-                                        <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-base text-slate-700 ml-3 font-medium">24時間365日アクセス可能</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="w-full md:w-1/2">
-                            <div class="relative group">
-                                <div class="absolute inset-0 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0"></div>
-                                <div class="relative bg-white rounded-xl overflow-hidden shadow-xl transition-all duration-500 group-hover:shadow-2xl">
-                                    <img
-                                        src="/images/welcome_medicine.jpg"
-                                        alt="アプリのデモ画像"
-                                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                                        loading="lazy"
-                                    >
-                                </div>
-                                <div class="absolute -bottom-3 -right-3 bg-white rounded-full shadow-lg p-3 transform transition-transform duration-500 group-hover:scale-110">
-                                    <svg class="h-8 w-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTAセクション -->
-            <section class="py-12 sm:py-16 bg-gradient-to-r from-teal-600 to-emerald-500">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">
-                        <div class="w-full md:w-2/3 text-center md:text-left">
-                            <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-white">アジアでの市販薬探しを、もっと簡単に。</h2>
-                            <p class="text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
-                        </div>
-                        <div class="w-full md:w-1/3 text-center md:text-right">
-                            <a href="{{ route('register') }}" class="inline-block bg-white/20 text-white hover:bg-white/30 font-semibold px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105">
-                                無料で始める
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- フッター -->
-            <footer class="bg-gradient-to-r from-teal-600 to-emerald-500">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">
-                        <div class="text-center md:text-left">
-                            <div class="flex items-center justify-center md:justify-start">
-                                <a href="{{ route('dashboard') }}" class="flex items-center group">
-                                <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
-                                    <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
-                                    </div>
-                                    <span class="text-lg sm:text-xl font-bold text-white">Medi<span class="text-blue-100">Navi</span> <span class="text-sky-100">Asia</span></span>
-                                </a>
-                            </div>
-                            <p class="mt-2 text-sm text-white/80">
-                                &copy; 2024 MediNavi Asia. All rights reserved.
-                            </p>
-                        </div>
-                        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
-                            <a href="#" class="text-white/80 hover:text-white text-sm">プライバシーポリシー</a>
-                            <a href="#" class="text-white/80 hover:text-white text-sm">利用規約</a>
-                            <a href="#" class="text-white/80 hover:text-white text-sm">お問い合わせ</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+    <!-- 特徴セクション -->
+    <section class="bg-slate-50 py-12 sm:py-20" id="features">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center sm:mb-16">
+          <span
+            class="mb-3 inline-block rounded-full bg-teal-100 px-3 py-1 text-sm font-semibold text-slate-800">特徴</span>
+          <h2 class="mb-4 text-2xl font-bold text-slate-800 sm:text-3xl">より安全に、より便利に</h2>
+          <p class="mx-auto max-w-2xl text-lg text-slate-600 sm:text-xl">MediNavi Asiaが提供する主な機能をご紹介します</p>
         </div>
 
-        <script>
-            function toggleMenu() {
-                const menu = document.getElementById('mobile-menu');
-                menu.classList.toggle('hidden');
-            }
-        </script>
-    </body>
+        <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+          <!-- 多言語対応 -->
+          <div
+            class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="h-2 bg-blue-500"></div>
+            <div class="p-4 sm:p-6">
+              <div class="mb-4 flex items-center">
+                <div
+                  class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 transition-all duration-300 group-hover:scale-110 group-hover:bg-teal-200 sm:h-14 sm:w-14">
+                  <svg
+                    class="h-6 w-6 text-teal-600 transition-colors duration-300 group-hover:text-teal-700 sm:h-7 sm:w-7"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                    </path>
+                  </svg>
+                </div>
+                <h3 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">多言語対応</h3>
+              </div>
+              <p class="text-slate-600">各国の市販薬の情報を現地語と日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
+            </div>
+          </div>
+
+          <!-- 詳細な情報提供 -->
+          <div
+            class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="h-2 bg-blue-500"></div>
+            <div class="p-4 sm:p-6">
+              <div class="mb-4 flex items-center">
+                <div
+                  class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 transition-all duration-300 group-hover:scale-110 group-hover:bg-teal-200 sm:h-14 sm:w-14">
+                  <svg
+                    class="h-6 w-6 text-teal-600 transition-colors duration-300 group-hover:text-teal-700 sm:h-7 sm:w-7"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                    </path>
+                  </svg>
+                </div>
+                <h3 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">詳細な情報提供</h3>
+              </div>
+              <p class="text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
+            </div>
+          </div>
+
+          <!-- 位置情報活用 -->
+          <div
+            class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="h-2 bg-blue-500"></div>
+            <div class="p-4 sm:p-6">
+              <div class="mb-4 flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 sm:h-14 sm:w-14">
+                  <svg class="h-6 w-6 text-teal-600 sm:h-7 sm:w-7" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">位置情報活用</h3>
+              </div>
+              <p class="text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- サービス概要セクション -->
+    <section class="bg-white" id='about'>
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+        <div class="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
+          <div class="w-full text-center md:w-1/2 md:text-left">
+            <span
+              class="mb-4 inline-block rounded-full bg-teal-50 px-3 py-1.5 text-sm font-semibold text-teal-600 sm:mb-6">サービス概要</span>
+            <h2 class="mb-4 text-3xl font-bold leading-tight text-slate-800 sm:mb-6 sm:text-4xl">
+              安心して市販薬を<br>探せるプラットフォーム
+            </h2>
+            <p class="mb-6 text-lg leading-relaxed text-slate-600 sm:mb-8">
+              旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
+            </p>
+            <ul class="space-y-3 sm:space-y-4">
+              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-teal-100">
+                  <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="ml-3 text-base font-medium text-slate-700">アジア各国の市販薬情報を順次拡大中</span>
+              </li>
+              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-teal-100">
+                  <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="ml-3 text-base font-medium text-slate-700">看護師監修の安心情報</span>
+              </li>
+              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-teal-100">
+                  <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="ml-3 text-base font-medium text-slate-700">24時間365日アクセス可能</span>
+              </li>
+            </ul>
+          </div>
+          <div class="w-full md:w-1/2">
+            <div class="group relative">
+              <div
+                class="absolute inset-0 rotate-3 transform rounded-xl bg-gradient-to-r from-teal-100 to-emerald-100 transition-transform duration-500 group-hover:rotate-0">
+              </div>
+              <div
+                class="relative overflow-hidden rounded-xl bg-white shadow-xl transition-all duration-500 group-hover:shadow-2xl">
+                <img class="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="/images/welcome_medicine.jpg" alt="アプリのデモ画像" loading="lazy">
+              </div>
+              <div
+                class="absolute -bottom-3 -right-3 transform rounded-full bg-white p-3 shadow-lg transition-transform duration-500 group-hover:scale-110">
+                <svg class="h-8 w-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="bg-gradient-to-r from-blue-500 to-indigo-500 py-12 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-8">
+          <div class="w-full text-center md:w-2/3 md:text-left">
+            <h2 class="mb-2 text-2xl font-bold text-white sm:text-3xl">アジアでの市販薬探しを、もっと簡単に。</h2>
+            <p class="text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
+          </div>
+          <div class="w-full text-center md:w-1/3 md:text-right">
+            <a class="inline-block transform rounded-lg bg-white/20 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-white/30"
+              href="{{ route("register") }}">
+              無料で始める
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gradient-to-r from-blue-500 to-indigo-500">
+      <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-8">
+          <div class="text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start">
+              <a class="group flex items-center" href="{{ route("dashboard") }}">
+                <div
+                  class="mr-3 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white sm:h-12 sm:w-12">
+                  <img class="h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9"
+                    src="{{ asset("images/logo/logo_dark.png") }}" alt="MediNavi Asia Logo">
+                </div>
+                <span class="text-lg font-bold text-white sm:text-xl">Medi<span class="text-blue-100">Navi</span>
+                  <span class="text-sky-100">Asia</span></span>
+              </a>
+            </div>
+            <p class="mt-2 text-sm text-white/80">
+              &copy; 2024 MediNavi Asia. All rights reserved.
+            </p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end">
+            <a class="text-sm text-white/80 hover:text-white" href="#">プライバシーポリシー</a>
+            <a class="text-sm text-white/80 hover:text-white" href="#">利用規約</a>
+            <a class="text-sm text-white/80 hover:text-white" href="#">お問い合わせ</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</body>
+
 </html>
