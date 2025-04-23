@@ -14,7 +14,7 @@
           </h1>
         </div>
         <div class="flex">
-          <a class="group flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 px-5 py-2.5 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 sm:w-auto"
+          <a class="group flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-5 py-2.5 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 sm:w-auto"
             href="{{ route("admin.medicines.create") }}">
             <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
@@ -40,7 +40,7 @@
               name="search" type="text" value="{{ request("search") }}" placeholder="薬品名で検索...">
           </div>
           <button
-            class="w-full transform rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 hover:shadow-lg sm:w-auto"
+            class="w-full transform rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 hover:shadow-lg sm:w-auto"
             type="submit">
             検索
           </button>
