@@ -20,39 +20,52 @@
 <body class="bg-slate-50 font-sans text-base text-slate-800 antialiased">
   <div class="min-h-screen">
     <!-- ヘッダー -->
-    <header class="sticky top-0 z-50 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark shadow-lg">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-auto flex-col py-3 sm:h-16 sm:flex-row sm:items-center sm:justify-between sm:py-0">
-          <div class="flex items-center justify-between sm:justify-start">
-            <div class="flex flex-shrink-0 items-center">
-              <a class="group flex items-center" href="/">
-                <div
-                  class="mr-3 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-md transition-transform duration-300 hover:scale-110 sm:h-12 sm:w-12">
-                  <img class="h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9"
-                    src="{{ asset("images/logo/logo_dark.png") }}" alt="MediNavi Asia Logo">
-                </div>
-                <span class="text-xl font-bold text-white drop-shadow-md sm:text-2xl">Medi<span
-                    class="text-white">Navi</span> <span class="text-white">Asia</span></span>
-              </a>
-            </div>
-            <!-- モバイルメニューボタン -->
-            <button class="text-white/90 hover:text-white sm:hidden" onclick="toggleMenu()">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                </path>
-              </svg>
-            </button>
+    <header class="sticky top-0 z-50 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <a class="flex items-center gap-3" href="/">
+              <img class="h-6 w-6 object-contain sm:h-7 sm:w-7" src="{{ asset("images/logo/earth.png") }}"
+                alt="MediNavi Asia Logo">
+              <span class="text-lg font-bold text-white sm:text-xl">
+                MediNavi Asia
+              </span>
+            </a>
           </div>
-          <!-- ナビゲーションメニュー -->
-          <div class="mt-4 hidden sm:mt-0 sm:flex sm:items-center sm:space-x-6" id="mobile-menu">
-            <a class="block rounded-md px-3 py-2 text-base font-medium text-white/90 transition-colors duration-300 hover:bg-medinavi-blue-light/20 hover:text-white sm:inline-block"
+
+          <!-- デスクトップナビゲーション -->
+          <nav class="hidden items-center space-x-2 sm:flex">
+            <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
               href="#features">特徴</a>
-            <a class="block rounded-md px-3 py-2 text-base font-medium text-white/90 transition-colors duration-300 hover:bg-medinavi-blue-light/20 hover:text-white sm:inline-block"
+            <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
               href="#about">サービス概要</a>
-            <a class="block rounded-md px-3 py-2 text-base font-medium text-white/90 transition-colors duration-300 hover:bg-medinavi-blue-light/20 hover:text-white sm:inline-block"
+            <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
               href="{{ route("login") }}">ログイン</a>
-            <a class="block rounded-md bg-white/20 px-4 py-2 text-base font-medium text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-white/30 hover:shadow-lg sm:inline-block"
+            <a class="ml-2 rounded-md bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
               href="{{ route("register") }}">新規登録</a>
+          </nav>
+
+          <!-- モバイルメニューボタン -->
+          <button class="text-white/90 hover:text-white sm:hidden" onclick="toggleMenu()">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <!-- モバイルメニュー -->
+          <div
+            class="absolute inset-x-0 top-full hidden bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark p-4 shadow-lg sm:hidden"
+            id="mobile-menu">
+            <div class="flex flex-col space-y-2">
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
+                href="#features">特徴</a>
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
+                href="#about">サービス概要</a>
+              <a class="rounded-md px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
+                href="{{ route("login") }}">ログイン</a>
+              <a class="rounded-md bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                href="{{ route("register") }}">新規登録</a>
+            </div>
           </div>
         </div>
       </div>
@@ -90,7 +103,7 @@
                 旅行先でも安心して市販薬を探せるプラットフォームです。
               </p>
               <div class="flex flex-col gap-4 sm:flex-row">
-                <a class="rounded-lg bg-white px-8 py-4 text-center text-lg font-semibold text-medinavi-blue shadow-lg hover:bg-white/90 hover:shadow-xl"
+                <a class="rounded-lg bg-white px-8 py-4 text-center text-lg font-semibold text-medinavi-blue shadow-lg transition-all hover:bg-white/90 hover:shadow-xl"
                   href="{{ route("register") }}">
                   無料で始める
                   <svg class="-mr-1 ml-2 inline-block h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,7 +111,7 @@
                     </path>
                   </svg>
                 </a>
-                <a class="rounded-lg border-2 border-white/30 px-8 py-4 text-center text-lg text-white backdrop-blur-sm hover:bg-medinavi-blue-light/10"
+                <a class="rounded-lg border-2 border-white/30 px-8 py-4 text-center text-lg text-white backdrop-blur-sm transition-all hover:bg-white/10"
                   href="#features">
                   詳しく見る
                 </a>
@@ -110,8 +123,8 @@
     </section>
 
     <!-- 特徴セクション -->
-    <section class="bg-slate-50 py-12 sm:py-20" id="features">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section class="bg-slate-50 py-16 sm:py-24" id="features">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-12 text-center sm:mb-16">
           <span
             class="mb-3 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-base font-semibold text-medinavi-blue">特徴</span>
@@ -119,7 +132,7 @@
           <p class="mx-auto max-w-2xl text-base text-slate-600">MediNavi Asiaが提供する主な機能をご紹介します</p>
         </div>
 
-        <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
           <!-- 多言語対応 -->
           <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
             <div class="relative h-48 overflow-hidden">
@@ -203,8 +216,8 @@
     </section>
 
     <!-- サービス概要セクション -->
-    <section class="bg-white" id='about'>
-      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+    <section class="bg-white py-16 sm:py-24" id="about">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
           <div class="w-full text-center md:w-1/2 md:text-left">
             <span
@@ -262,8 +275,8 @@
     </section>
 
     <!-- CTAセクション -->
-    <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-12 sm:py-16">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-8">
           <div class="w-full text-center md:w-2/3 md:text-left">
             <h2 class="mb-2 text-2xl font-bold text-white sm:text-3xl">アジアでの市販薬探しを、もっと簡単に。</h2>
@@ -281,19 +294,17 @@
 
     <!-- フッター -->
     <footer class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark">
-      <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <!-- ロゴと説明 -->
           <div class="col-span-1 lg:col-span-2">
             <div class="flex items-center">
-              <a class="group flex items-center" href="{{ route("dashboard") }}">
-                <div
-                  class="mr-3 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-md transition-transform duration-300 hover:scale-110 sm:h-12 sm:w-12">
-                  <img class="h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9"
-                    src="{{ asset("images/logo/logo_dark.png") }}" alt="MediNavi Asia Logo">
-                </div>
-                <span class="text-xl font-bold text-white drop-shadow-md sm:text-2xl">Medi<span
-                    class="text-white">Navi</span> <span class="text-white">Asia</span></span>
+              <a class="flex items-center gap-3" href="/">
+                <img class="h-6 w-6 object-contain sm:h-7 sm:w-7" src="{{ asset("images/logo/earth.png") }}"
+                  alt="MediNavi Asia Logo">
+                <span class="text-lg font-bold text-white sm:text-xl">
+                  MediNavi Asia
+                </span>
               </a>
             </div>
             <p class="mt-4 max-w-md text-base leading-relaxed text-white/80">
