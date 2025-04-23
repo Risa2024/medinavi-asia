@@ -276,7 +276,7 @@
           <div class="w-full md:w-1/2">
             <div class="relative">
               <div class="overflow-hidden rounded-xl bg-white shadow-xl">
-                <img class="h-auto w-full object-cover" src="/images/welcome-image.jpg" alt="アプリのデモ画像"
+                <img class="h-auto w-full object-cover" src="/images/welcome_image.png" alt="アプリのデモ画像"
                   loading="lazy">
               </div>
               <div class="absolute -bottom-3 -right-3 rounded-full bg-white p-3 shadow-lg">
@@ -370,7 +370,7 @@
 
         <div class="mt-8 border-t border-white/10 pt-8">
           <p class="text-center text-base text-white/60">
-            &copy; 2024 MediNavi Asia. All rights reserved.
+            &copy; 2025 MediNavi Asia. All rights reserved.
           </p>
         </div>
       </div>
