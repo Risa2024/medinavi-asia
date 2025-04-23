@@ -9,8 +9,9 @@
   <title>{{ config("app.name", "MediNavi Asia") }}</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.bunny.net" rel="preconnect">
-  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <!-- Scripts -->
   @vite(["resources/css/app.css", "resources/js/app.js"])
