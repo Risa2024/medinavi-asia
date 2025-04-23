@@ -146,7 +146,7 @@
                 </div>
                 <p class="mb-4 text-sm text-slate-600 sm:mb-5 sm:text-base">薬品情報の追加、編集、削除を行います。</p>
                 <div
-                  class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl">
+                  class="flex w-full items-center justify-center rounded-lg bg-medinavi-blue px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-medinavi-blue-dark hover:shadow-xl">
                   管理画面へ
                   <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -174,7 +174,7 @@
                 </div>
                 <p class="mb-4 text-sm text-slate-600 sm:mb-5 sm:text-base">カテゴリの追加、編集、削除を行います。</p>
                 <div
-                  class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl">
+                  class="flex w-full items-center justify-center rounded-lg bg-medinavi-blue px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-medinavi-blue-dark hover:shadow-xl">
                   管理画面へ
                   <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -202,7 +202,7 @@
                 </div>
                 <p class="mb-4 text-sm text-slate-600 sm:mb-5 sm:text-base">国の追加、編集、削除を行います。</p>
                 <div
-                  class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl">
+                  class="flex w-full items-center justify-center rounded-lg bg-medinavi-blue px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-medinavi-blue-dark hover:shadow-xl">
                   管理画面へ
                   <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
