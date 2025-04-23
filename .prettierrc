@@ -7,6 +7,5 @@
     "trailingComma": "all",
     "bracketSpacing": true,
     "arrowParens": "avoid",
-    "endOfLine": "lf",
-    "plugins": ["prettier-plugin-tailwindcss"]
+    "endOfLine": "lf"
 }
