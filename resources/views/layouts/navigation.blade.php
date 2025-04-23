@@ -1,33 +1,39 @@
-<nav x-data="{ open: false }" class="bg-gradient-to-r from-teal-600 to-emerald-500 border-b border-teal-500/20">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center group">
-                    <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white rounded-full flex items-center justify-center mr-3 overflow-hidden">
-                            <img src="{{ asset('images/logo/logo_dark.png') }}" alt="MediNavi Asia Logo" class="w-8 sm:w-9 h-8 sm:h-9 object-contain opacity-100">
-                    </div>
-                        <span class="text-xl font-bold text-white">Medi<span class="text-teal-100">Navi</span> <span class="text-emerald-100">Asia</span></span>
-                    </a>
-                </div>
-
+<nav class="border-b border-medinavi-blue-light/20 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark"
+  x-data="{ open: false }">
+  <!-- Primary Navigation Menu -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 justify-between">
+      <div class="flex">
+        <!-- Logo -->
+        <div class="flex flex-shrink-0 items-center">
+          <a class="group flex items-center" href="{{ route("dashboard") }}">
+            <div
+              <img class="h-8 w-8 object-contain opacity-100 sm:h-9 sm:w-9"
+                src="{{ asset("images/logo/earth.png") }}" alt="MediNavi Asia Logo">
+            </div>
+            <a class="flex items-center gap-3" href="{{ route("dashboard") }}">
+                <img class="h-6 w-6 object-contain sm:h-7 sm:w-7" src="{{ asset("images/logo/earth.png") }}"
+                alt="MediNavi Asia Logo">
+                <span class="text-lg font-bold text-white sm:text-xl">
+                MediNavi Asia
+                </span>
+            </a>
+        </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-12 sm:-my-px sm:ml-16 sm:flex items-center">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" 
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                         class="text-white/90 hover:text-white transition-colors duration-300 text-base {{ request()->routeIs('dashboard') ? 'border-b-2 border-white text-white' : '' }}">
                         {{ __('ホーム') }}
                     </x-nav-link>
                     @if (Route::has('user.favorites.index'))
-                        <x-nav-link :href="route('user.favorites.index')" :active="request()->routeIs('user.favorites.index')" 
+                        <x-nav-link :href="route('user.favorites.index')" :active="request()->routeIs('user.favorites.index')"
                             class="text-white/90 hover:text-white transition-colors duration-300 text-base {{ request()->routeIs('user.favorites.index') ? 'border-b-2 border-white text-white' : '' }}">
                             {{ __('お気に入り') }}
                         </x-nav-link>
                     @endif
 
                     @if(auth()->user() && auth()->user()->is_admin)
-                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')" 
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')"
                             class="text-white/90 hover:text-white transition-colors duration-300 text-base {{ request()->routeIs('admin.*') ? 'border-b-2 border-white text-white' : '' }}">
                             {{ __('管理画面') }}
                         </x-nav-link>
@@ -85,20 +91,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" 
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                 class="text-white/90 hover:text-white hover:bg-white/10 {{ request()->routeIs('dashboard') ? 'border-l-4 border-white text-white bg-white/10' : '' }}">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
 
             @if (Route::has('user.favorites.index'))
-                <x-responsive-nav-link :href="route('user.favorites.index')" :active="request()->routeIs('user.favorites.index')" 
+                <x-responsive-nav-link :href="route('user.favorites.index')" :active="request()->routeIs('user.favorites.index')"
                     class="text-white/90 hover:text-white hover:bg-white/10 {{ request()->routeIs('user.favorites.index') ? 'border-l-4 border-white text-white bg-white/10' : '' }}">
                     {{ __('お気に入り') }}
                 </x-responsive-nav-link>
             @endif
 
             @if(auth()->user() && auth()->user()->is_admin)
-                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')" 
+                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')"
                     class="text-white/90 hover:text-white hover:bg-white/10 {{ request()->routeIs('admin.*') ? 'border-l-4 border-white text-white bg-white/10' : '' }}">
                     {{ __('管理画面') }}
                 </x-responsive-nav-link>
