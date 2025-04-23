@@ -12,9 +12,6 @@
   <link href="https://fonts.bunny.net" rel="preconnect">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <!-- Scripts -->
   @vite(["resources/css/app.css", "resources/js/app.js"])
 </head>
@@ -79,9 +76,9 @@
         <!-- メインコンテンツ -->
         <div class="relative z-20 h-full">
           <div class="mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1000">
+            <div class="max-w-2xl">
               <span
-                class="mb-6 inline-block animate-pulse rounded-full bg-white/10 px-4 py-1.5 text-base font-semibold text-white backdrop-blur-sm">
+                class="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-base font-semibold text-white backdrop-blur-sm">
                 アジアの市販薬情報をもっと身近に
               </span>
               <h1 class="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
@@ -92,7 +89,7 @@
                 旅行先でも安心して市販薬を探せるプラットフォームです。
               </p>
               <div class="flex flex-col gap-4 sm:flex-row">
-                <a class="transform rounded-lg bg-white px-8 py-4 text-center text-lg font-semibold text-medinavi-blue shadow-lg transition-all hover:scale-105 hover:bg-white/90 hover:shadow-xl"
+                <a class="rounded-lg bg-white px-8 py-4 text-center text-lg font-semibold text-medinavi-blue shadow-lg hover:bg-white/90 hover:shadow-xl"
                   href="{{ route("register") }}">
                   無料で始める
                   <svg class="-mr-1 ml-2 inline-block h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +97,7 @@
                     </path>
                   </svg>
                 </a>
-                <a class="rounded-lg border-2 border-white/30 px-8 py-4 text-center text-lg text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-medinavi-blue-light/10"
+                <a class="rounded-lg border-2 border-white/30 px-8 py-4 text-center text-lg text-white backdrop-blur-sm hover:bg-medinavi-blue-light/10"
                   href="#features">
                   詳しく見る
                 </a>
@@ -112,15 +109,9 @@
     </section>
 
     <!-- 特徴セクション -->
-    <section class="relative bg-slate-50 py-12 sm:py-20" id="features">
-      <!-- 装飾要素 -->
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <div class="absolute -right-24 top-0 h-96 w-96 rounded-full bg-medinavi-blue/5 blur-3xl"></div>
-        <div class="absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-medinavi-blue-light/5 blur-2xl"></div>
-      </div>
-
-      <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div class="mb-12 text-center sm:mb-16" data-aos="fade-up">
+    <section class="bg-slate-50 py-12 sm:py-20" id="features">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center sm:mb-16">
           <span
             class="mb-3 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-base font-semibold text-medinavi-blue">特徴</span>
           <h2 class="mb-4 text-3xl font-bold text-slate-800 sm:text-4xl">より安全に、より便利に</h2>
@@ -129,12 +120,9 @@
 
         <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
           <!-- 多言語対応 -->
-          <div
-            class="group transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            data-aos="fade-up" data-aos-delay="100">
+          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                src="/images/languages.jpg" alt="多言語対応" loading="lazy">
+              <img class="h-full w-full object-cover" src="/images/languages.jpg" alt="多言語対応" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 <h3 class="text-lg font-bold text-white sm:text-xl">多言語対応</h3>
@@ -144,10 +132,9 @@
             <div class="p-4 sm:p-6">
               <div class="mb-4 flex items-center">
                 <div
-                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-medinavi-blue/20 sm:h-14 sm:w-14">
-                  <svg
-                    class="h-6 w-6 text-medinavi-blue transition-colors duration-300 group-hover:text-medinavi-blue-dark sm:h-7 sm:w-7"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 sm:h-14 sm:w-14">
+                  <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
                     </path>
@@ -159,12 +146,9 @@
           </div>
 
           <!-- 詳細な情報提供 -->
-          <div
-            class="group transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            data-aos="fade-up" data-aos-delay="200">
+          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                src="/images/medicine-info.jpg" alt="詳細な情報提供" loading="lazy">
+              <img class="h-full w-full object-cover" src="/images/medicine-info.jpg" alt="詳細な情報提供" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 <h3 class="text-lg font-bold text-white sm:text-xl">詳細な情報提供</h3>
@@ -174,10 +158,9 @@
             <div class="p-4 sm:p-6">
               <div class="mb-4 flex items-center">
                 <div
-                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-medinavi-blue/20 sm:h-14 sm:w-14">
-                  <svg
-                    class="h-6 w-6 text-medinavi-blue transition-colors duration-300 group-hover:text-medinavi-blue-dark sm:h-7 sm:w-7"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 sm:h-14 sm:w-14">
+                  <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
                     </path>
@@ -189,12 +172,9 @@
           </div>
 
           <!-- 位置情報活用 -->
-          <div
-            class="group transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            data-aos="fade-up" data-aos-delay="300">
+          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                src="/images/pharmacy.jpg" alt="位置情報活用" loading="lazy">
+              <img class="h-full w-full object-cover" src="/images/pharmacy.jpg" alt="位置情報活用" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 <h3 class="text-lg font-bold text-white sm:text-xl">位置情報活用</h3>
@@ -222,14 +202,8 @@
     </section>
 
     <!-- サービス概要セクション -->
-    <section class="relative bg-white" id='about'>
-      <!-- 装飾要素 -->
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <div class="absolute -left-24 top-0 h-96 w-96 rounded-full bg-medinavi-blue/5 blur-3xl"></div>
-        <div class="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-medinavi-blue-light/5 blur-2xl"></div>
-      </div>
-
-      <div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+    <section class="bg-white" id='about'>
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
         <div class="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
           <div class="w-full text-center md:w-1/2 md:text-left">
             <span
@@ -241,7 +215,7 @@
               旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
             </p>
             <ul class="space-y-3 sm:space-y-4">
-              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+              <li class="flex items-center p-3">
                 <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-medinavi-blue/10">
                   <svg class="h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -249,7 +223,7 @@
                 </div>
                 <span class="ml-3 text-base font-medium text-slate-700">アジア各国の市販薬情報を順次拡大中</span>
               </li>
-              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+              <li class="flex items-center p-3">
                 <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-medinavi-blue/10">
                   <svg class="h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -257,7 +231,7 @@
                 </div>
                 <span class="ml-3 text-base font-medium text-slate-700">看護師監修の安心情報</span>
               </li>
-              <li class="flex transform items-center p-3 transition-all duration-300 hover:-translate-y-1">
+              <li class="flex items-center p-3">
                 <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-medinavi-blue/10">
                   <svg class="h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -268,17 +242,12 @@
             </ul>
           </div>
           <div class="w-full md:w-1/2">
-            <div class="group relative">
-              <div
-                class="absolute inset-0 rotate-3 transform rounded-xl bg-gradient-to-r from-medinavi-blue/10 to-medinavi-blue-light/10 transition-transform duration-500 group-hover:rotate-0">
+            <div class="relative">
+              <div class="overflow-hidden rounded-xl bg-white shadow-xl">
+                <img class="h-auto w-full object-cover" src="/images/welcome-image.jpg" alt="アプリのデモ画像"
+                  loading="lazy">
               </div>
-              <div
-                class="relative overflow-hidden rounded-xl bg-white shadow-xl transition-all duration-500 group-hover:shadow-2xl">
-                <img class="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  src="/images/welcome-image.jpg" alt="アプリのデモ画像" loading="lazy">
-              </div>
-              <div
-                class="absolute -bottom-3 -right-3 transform rounded-full bg-white p-3 shadow-lg transition-transform duration-500 group-hover:scale-110">
+              <div class="absolute -bottom-3 -right-3 rounded-full bg-white p-3 shadow-lg">
                 <svg class="h-8 w-8 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
@@ -292,21 +261,15 @@
     </section>
 
     <!-- CTAセクション -->
-    <section class="relative overflow-hidden bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-12 sm:py-16">
-      <!-- 装飾要素 -->
-      <div class="absolute inset-0 z-0">
-        <div class="absolute -right-12 top-0 h-64 w-64 rounded-full bg-white/5 blur-2xl"></div>
-        <div class="absolute -left-12 bottom-0 h-48 w-48 rounded-full bg-white/5 blur-xl"></div>
-      </div>
-
-      <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-12 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-8">
           <div class="w-full text-center md:w-2/3 md:text-left">
             <h2 class="mb-2 text-2xl font-bold text-white sm:text-3xl">アジアでの市販薬探しを、もっと簡単に。</h2>
             <p class="text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
           </div>
           <div class="w-full text-center md:w-1/3 md:text-right">
-            <a class="inline-block transform rounded-lg bg-white/20 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-white/30 hover:shadow-xl"
+            <a class="inline-block rounded-lg bg-white/20 px-6 py-3 font-semibold text-white shadow-lg hover:bg-white/30 hover:shadow-xl"
               href="{{ route("register") }}">
               無料で始める
             </a>
@@ -316,14 +279,8 @@
     </section>
 
     <!-- フッター -->
-    <footer class="relative bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark">
-      <!-- 装飾要素 -->
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <div class="absolute -right-24 top-0 h-64 w-64 rounded-full bg-white/5 blur-2xl"></div>
-        <div class="absolute -left-24 bottom-0 h-48 w-48 rounded-full bg-white/5 blur-xl"></div>
-      </div>
-
-      <div class="relative z-10 mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <footer class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark">
+      <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <!-- ロゴと説明 -->
           <div class="col-span-1 lg:col-span-2">
@@ -390,13 +347,7 @@
     </footer>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
