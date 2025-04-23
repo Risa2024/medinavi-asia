@@ -12,8 +12,10 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
 
 ### ユーザーインターフェース
 
-薬を検索するためのホーム画面です。カテゴリーから探す方法と薬の名前から探す方法を選択できます。
-![MediNavi Asia アプリケーション画面](docs/images/home.jpg)
+welcomeページと検索画面です。
+![MediNavi Asia アプリケーション画面]
+(docs/images/welcome.png)
+(docs/images/home.png)
 
 ### データベース構造図
 
