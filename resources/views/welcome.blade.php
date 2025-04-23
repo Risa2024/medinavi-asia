@@ -134,81 +134,99 @@
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
           <!-- 多言語対応 -->
-          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
+          <div
+            class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover" src="/images/languages.jpg" alt="多言語対応" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4">
+              <img class="h-full w-full scale-100 object-cover transition-transform duration-300 group-hover:scale-105"
+                src="/images/languages.jpg" alt="多言語対応" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
                 <h3 class="text-lg font-bold text-white sm:text-xl">多言語対応</h3>
               </div>
             </div>
-            <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark"></div>
-            <div class="p-4 sm:p-6">
-              <div class="mb-4 flex items-center">
-                <div
-                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 sm:h-14 sm:w-14">
-                  <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
-                    </path>
-                  </svg>
-                </div>
+            <div class="relative">
+              <div
+                class="absolute -top-1 left-0 right-0 h-1 bg-gradient-to-r from-medinavi-blue via-medinavi-blue-light to-medinavi-blue opacity-75">
               </div>
-              <p class="text-slate-600">各国の市販薬の情報を日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
+              <div class="p-6">
+                <div class="mb-4 flex items-center">
+                  <div
+                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                      </path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-base leading-relaxed text-slate-600">各国の市販薬の情報を日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
+              </div>
             </div>
           </div>
 
           <!-- 詳細な情報提供 -->
-          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
+          <div
+            class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover" src="/images/medicine-info.jpg" alt="詳細な情報提供" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4">
+              <img class="h-full w-full scale-100 object-cover transition-transform duration-300 group-hover:scale-105"
+                src="/images/medicine-info.jpg" alt="詳細な情報提供" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
                 <h3 class="text-lg font-bold text-white sm:text-xl">詳細な情報提供</h3>
               </div>
             </div>
-            <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark"></div>
-            <div class="p-4 sm:p-6">
-              <div class="mb-4 flex items-center">
-                <div
-                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 sm:h-14 sm:w-14">
-                  <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
-                    </path>
-                  </svg>
-                </div>
+            <div class="relative">
+              <div
+                class="absolute -top-1 left-0 right-0 h-1 bg-gradient-to-r from-medinavi-blue via-medinavi-blue-light to-medinavi-blue opacity-75">
               </div>
-              <p class="text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
+              <div class="p-6">
+                <div class="mb-4 flex items-center">
+                  <div
+                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                      </path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-base leading-relaxed text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
+              </div>
             </div>
           </div>
 
           <!-- 位置情報活用 -->
-          <div class="overflow-hidden rounded-lg bg-white shadow-md hover:shadow-xl">
+          <div
+            class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl">
             <div class="relative h-48 overflow-hidden">
-              <img class="h-full w-full object-cover" src="/images/pharmacy.jpg" alt="位置情報活用" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4">
+              <img class="h-full w-full scale-100 object-cover transition-transform duration-300 group-hover:scale-105"
+                src="/images/pharmacy.jpg" alt="位置情報活用" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
                 <h3 class="text-lg font-bold text-white sm:text-xl">位置情報活用</h3>
               </div>
             </div>
-            <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark"></div>
-            <div class="p-4 sm:p-6">
-              <div class="mb-4 flex items-center">
-                <div
-                  class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 sm:h-14 sm:w-14">
-                  <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                </div>
+            <div class="relative">
+              <div
+                class="absolute -top-1 left-0 right-0 h-1 bg-gradient-to-r from-medinavi-blue via-medinavi-blue-light to-medinavi-blue opacity-75">
               </div>
-              <p class="text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
+              <div class="p-6">
+                <div class="mb-4 flex items-center">
+                  <div
+                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-base leading-relaxed text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
+              </div>
             </div>
           </div>
         </div>
