@@ -15,6 +15,18 @@
 
   <!-- Scripts -->
   @vite(["resources/css/app.css", "resources/js/app.js"])
+
+  <!-- モバイルメニュー用のスクリプト -->
+  <script>
+    function toggleMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    }
+  </script>
 </head>
 
 <body class="bg-slate-50 font-sans text-base text-slate-800 antialiased">
