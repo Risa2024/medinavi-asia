@@ -187,7 +187,7 @@
                     <div class="flex justify-end">
                       @if (Auth::check())
                         @if ($medicine->favorites->contains("user_id", Auth::id()))
-                          <form action="{{ route("user.favorites.destroy", $medicine) }}" method="POST">
+                          <form action="{{ route("user.favorites.destroy", $medicine) }}" method="POST" class="favorite-form">
                             @csrf
                             @method("DELETE")
                             <button class="text-pink-500 transition-colors hover:text-pink-600" type="submit">
@@ -198,7 +198,7 @@
                             </button>
                           </form>
                         @else
-                          <form action="{{ route("user.favorites.store", $medicine) }}" method="POST">
+                          <form action="{{ route("user.favorites.store", $medicine) }}" method="POST" class="favorite-form">
                             @csrf
                             <button class="text-blue-300 transition-colors hover:text-pink-500" type="submit">
                               <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
@@ -252,3 +252,91 @@
     </div>
   </div>
 </x-app-layout>
+
+<script>
+// お気に入りフォームの非同期処理
+document.addEventListener('DOMContentLoaded', function() {
+  // すべてのお気に入りフォームを取得
+  document.querySelectorAll('.favorite-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // 通常のフォーム送信を防止
+
+      const url = this.getAttribute('action');
+      const token = this.querySelector('input[name="_token"]').value;
+      const button = this.querySelector('button');
+      const isDelete = this.innerHTML.includes('_method');
+
+      // リクエスト用オブジェクト
+      const requestObj = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+          'Accept': 'application/json'
+        }
+      };
+
+      // DELETE メソッドの場合は body に追加
+      if (isDelete) {
+        requestObj.body = JSON.stringify({ _method: 'DELETE' });
+      }
+
+      // Fetch APIを使用してAJAXリクエスト送信
+      fetch(url, requestObj)
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // ページを再読み込みせず、ボタンの見た目だけを変更
+          if (isDelete) {
+            // お気に入り削除 → 追加ボタンに変更
+            button.classList.remove('text-pink-500', 'hover:text-pink-600');
+            button.classList.add('text-blue-300', 'hover:text-pink-500');
+            button.innerHTML = `
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            `;
+
+            // フォームのアクションとメソッドを更新
+            form.setAttribute('action', url.replace('destroy', 'store'));
+            const methodInput = form.querySelector('input[name="_method"]');
+            if (methodInput) methodInput.remove();
+          } else {
+            // お気に入り追加 → 削除ボタンに変更
+            button.classList.remove('text-blue-300', 'hover:text-pink-500');
+            button.classList.add('text-pink-500', 'hover:text-pink-600');
+            button.innerHTML = `
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            `;
+
+            // フォームのアクションとメソッドを更新
+            form.setAttribute('action', url.replace('store', 'destroy'));
+
+            // DELETEメソッドの追加
+            const methodInput = document.createElement('input');
+            methodInput.type = 'hidden';
+            methodInput.name = '_method';
+            methodInput.value = 'DELETE';
+            form.appendChild(methodInput);
+          }
+
+          // ボタンに簡単なアニメーション効果を追加
+          button.animate([
+            { transform: 'scale(1.2)' },
+            { transform: 'scale(1)' }
+          ], {
+            duration: 300,
+            easing: 'ease-out'
+          });
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  });
+});
+</script>

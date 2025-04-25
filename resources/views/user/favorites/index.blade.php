@@ -172,7 +172,7 @@
                   <!-- フッター部分（お気に入りボタン） -->
                   <div class="border-t border-blue-100 bg-gradient-to-br from-blue-50/10 to-blue-50/30 p-3">
                     <div class="flex justify-end">
-                      <form action="{{ route("user.favorites.destroy", $medicine) }}" method="POST">
+                      <form action="{{ route("user.favorites.destroy", $medicine) }}" method="POST" class="favorite-form">
                         @csrf
                         @method("DELETE")
                         <button class="text-pink-500 transition-colors hover:text-pink-600" type="submit">
@@ -221,3 +221,51 @@
     </div>
   </div>
 </x-app-layout>
+
+<script>
+// お気に入りフォームの非同期処理
+document.addEventListener('DOMContentLoaded', function() {
+  // すべてのお気に入りフォームを取得
+  document.querySelectorAll('.favorite-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // 通常のフォーム送信を防止
+
+      const url = this.getAttribute('action');
+      const token = this.querySelector('input[name="_token"]').value;
+      const card = this.closest('.group'); // カード要素を取得
+
+      // Fetch APIを使用してAJAXリクエスト送信
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _method: 'DELETE' // DELETE メソッドを指定
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // 成功したら、カードをフェードアウトして削除
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          card.style.transition = 'all 0.3s ease';
+
+          setTimeout(() => {
+            card.remove();
+
+            // カードがすべて削除されたら、空の表示を出す
+            if (document.querySelectorAll('.group').length === 0) {
+              location.reload(); // 空の状態を表示するためにリロード
+            }
+          }, 300);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  });
+});
+</script>

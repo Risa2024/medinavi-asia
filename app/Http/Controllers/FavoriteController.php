@@ -39,6 +39,15 @@ class FavoriteController extends Controller
             ]);
         }
 
+        // Ajaxリクエストの場合はJSONレスポンスを返す
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'お気に入りに追加しました'
+            ]);
+        }
+
+        // 通常のリクエストの場合は元のページにリダイレクト
         return back()->with('success', 'お気に入りに追加しました');
     }
 
@@ -51,6 +60,15 @@ class FavoriteController extends Controller
               ->where('medicine_id', $medicine->id)
               ->delete();
 
+        // Ajaxリクエストの場合はJSONレスポンスを返す
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'お気に入りから削除しました'
+            ]);
+        }
+
+        // 通常のリクエストの場合は元のページにリダイレクト
         return back()->with('success', 'お気に入りから削除しました');
     }
 }
