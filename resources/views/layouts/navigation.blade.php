@@ -38,6 +38,10 @@
                             {{ __('管理画面') }}
                         </x-nav-link>
                     @endif
+
+                    <x-nav-link :href="route('welcome')" class="text-white/90 hover:text-white transition-colors duration-300 text-base">
+                        {{ __('トップページ') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -109,6 +113,11 @@
                     {{ __('管理画面') }}
                 </x-responsive-nav-link>
             @endif
+
+            <x-responsive-nav-link :href="route('welcome')"
+                class="text-white/90 hover:text-white hover:bg-white/10">
+                {{ __('トップページ') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

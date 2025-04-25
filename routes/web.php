@@ -9,7 +9,7 @@ use App\Http\Controllers\CountryController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 //dashboardにアクセスすると、dashboard.blade.phpビューを表示
 //middleware(['auth', 'verified']): 認証済み（ログイン済み）かつメール認証済みのユーザーのみアクセス可能
 //name('dashboard'): このルートに「dashboard」という名前をつけて、他の場所から参照できるようにする
@@ -57,10 +57,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {//prefix('admin
     Route::delete('/medicines/{medicine}', [AdminController::class, 'destroy'])->name('admin.medicines.destroy');
     Route::post('/countries', [AdminController::class, 'storeCountry'])->name('admin.countries.store');
     Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
-    
+
     // 国の削除のためのルート
     Route::delete('/countries/{country}', [AdminController::class, 'destroyCountry'])->name('admin.countries.destroy');
-    
+
     // カテゴリーの削除のためのルート
     Route::delete('/categories', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
 });
