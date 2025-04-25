@@ -61,6 +61,28 @@
         </div>
       @endif
 
+      <!-- 免責事項 -->
+      <div class="mb-6 rounded-xl border border-medinavi-blue/20 bg-medinavi-blue/5 p-4 shadow-sm sm:p-5">
+        <div class="flex items-start space-x-3">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="mb-1 text-sm font-medium text-medinavi-blue sm:text-base">管理者向け免責事項</h3>
+            <div class="space-y-2 text-xs leading-relaxed text-gray-600 sm:text-sm">
+              <p>1. 管理者は、本システムに登録する医薬品情報の正確性、各国の法規制との整合性について責任を負うものとします。</p>
+              <p>2. 登録情報は、各国の薬事法規制に準拠していることを確認した上で入力してください。規制違反となる表現や効能効果の記載には十分注意してください。</p>
+              <p>3. 価格情報や販売国情報は、最新の状況を反映するよう定期的な更新が必要です。</p>
+              <p>4. 本システムに入力された情報は、利用者の健康や医療判断に影響を与える可能性があることを認識し、慎重に管理してください。</p>
+              <p class="font-medium text-amber-600">※このサービスはポートフォリオ展示目的で作成されたもので、実際のサービスではありません。登録されている医薬品情報は参考情報であり、医療目的での判断には使用しないでください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 登録薬のリスト -->
       <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg">
         <!-- モバイル表示用のカードビュー -->
