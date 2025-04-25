@@ -104,13 +104,13 @@
           <div class="mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
               <span
-                class="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-base font-semibold text-white backdrop-blur-sm">
+                class="mb-3 sm:mb-6 inline-block rounded-full bg-white/10 px-3 py-1.5 text-sm sm:text-base font-semibold text-white backdrop-blur-sm">
                 アジアの市販薬情報をもっと身近に
               </span>
-              <h1 class="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+              <h1 class="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
                 MediNavi Asia
               </h1>
-              <p class="mb-8 text-xl leading-relaxed text-white/90">
+              <p class="mb-6 sm:mb-8 text-base sm:text-lg md:text-xl leading-relaxed text-white/90">
                 アジア各国で販売されている市販薬の情報を簡単に検索・比較。<br class="hidden sm:block">
                 旅行先でも安心して市販薬を探せるプラットフォームです。
               </p>
@@ -135,13 +135,13 @@
     </section>
 
     <!-- 特徴セクション -->
-    <section class="bg-slate-50 py-8 sm:py-24" id="features">
+    <section class="bg-slate-50 py-12 sm:py-16 md:py-24" id="features">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mb-12 text-center sm:mb-16">
+        <div class="mb-8 text-center sm:mb-12 md:mb-16">
           <span
-            class="mb-3 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-base font-semibold text-medinavi-blue">特徴</span>
-          <h2 class="mb-4 text-3xl font-bold text-slate-800 sm:text-4xl">より安全に、より便利に</h2>
-          <p class="mx-auto max-w-2xl text-base text-slate-600">MediNavi Asiaが提供する主な機能をご紹介します</p>
+            class="mb-2 sm:mb-3 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-sm sm:text-base font-semibold text-medinavi-blue">特徴</span>
+          <h2 class="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800">より安全に、より便利に</h2>
+          <p class="mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed">MediNavi Asiaが提供する主な機能をご紹介します</p>
         </div>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -153,7 +153,7 @@
                 src="/images/languages.jpg" alt="多言語対応" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6">
-                <h3 class="text-lg font-bold text-white sm:text-xl">多言語対応</h3>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white">多言語対応</h3>
               </div>
             </div>
             <div class="relative">
@@ -163,7 +163,7 @@
               <div class="p-6">
                 <div class="mb-4 flex items-center">
                   <div
-                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    class="hidden sm:flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
                     <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -172,7 +172,7 @@
                     </svg>
                   </div>
                 </div>
-                <p class="text-base leading-relaxed text-slate-600">各国の市販薬の情報を日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
+                <p class="text-sm sm:text-base leading-relaxed text-slate-600">各国の市販薬の情報を日本語で提供。言語の壁を超えて必要な情報にアクセスできます。</p>
               </div>
             </div>
           </div>
@@ -185,7 +185,7 @@
                 src="/images/medicine-info.jpg" alt="詳細な情報提供" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6">
-                <h3 class="text-lg font-bold text-white sm:text-xl">詳細な情報提供</h3>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white">詳細な情報提供</h3>
               </div>
             </div>
             <div class="relative">
@@ -195,7 +195,7 @@
               <div class="p-6">
                 <div class="mb-4 flex items-center">
                   <div
-                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    class="hidden sm:flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
                     <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -204,7 +204,7 @@
                     </svg>
                   </div>
                 </div>
-                <p class="text-base leading-relaxed text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
+                <p class="text-sm sm:text-base leading-relaxed text-slate-600">成分、用法、注意事項など、市販薬に関する詳細な情報を分かりやすく提供します。</p>
               </div>
             </div>
           </div>
@@ -217,7 +217,7 @@
                 src="/images/pharmacy.jpg" alt="位置情報活用" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6">
-                <h3 class="text-lg font-bold text-white sm:text-xl">位置情報活用</h3>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-white">位置情報活用</h3>
               </div>
             </div>
             <div class="relative">
@@ -227,7 +227,7 @@
               <div class="p-6">
                 <div class="mb-4 flex items-center">
                   <div
-                    class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
+                    class="hidden sm:flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-medinavi-blue/10 to-medinavi-blue-light/10 p-3 shadow-inner">
                     <svg class="h-7 w-7 text-medinavi-blue" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -237,7 +237,7 @@
                     </svg>
                   </div>
                 </div>
-                <p class="text-base leading-relaxed text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
+                <p class="text-sm sm:text-base leading-relaxed text-slate-600">現在地に基づいて、近くの薬局やその国で購入可能な市販薬を表示します。</p>
               </div>
             </div>
           </div>
@@ -246,16 +246,16 @@
     </section>
 
     <!-- サービス概要セクション -->
-    <section class="bg-white py-16 sm:py-24" id="about">
+    <section class="bg-white py-12 sm:py-16 md:py-24" id="about">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
+        <div class="flex flex-col items-center gap-6 sm:gap-8 md:flex-row md:justify-between md:gap-12">
           <div class="w-full text-center md:w-1/2 md:text-left">
             <span
-              class="mb-4 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1.5 text-base font-semibold text-medinavi-blue sm:mb-6">サービス概要</span>
-            <h2 class="mb-4 text-3xl font-bold leading-tight text-slate-800 sm:mb-6 sm:text-4xl">
+              class="mb-3 sm:mb-4 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-sm sm:text-base font-semibold text-medinavi-blue">サービス概要</span>
+            <h2 class="mb-3 sm:mb-4 md:mb-6 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-slate-800">
               安心して市販薬を<br>探せるプラットフォーム
             </h2>
-            <p class="mb-6 text-base leading-relaxed text-slate-600 sm:mb-8">
+            <p class="mb-5 sm:mb-6 md:mb-8 text-sm sm:text-base leading-relaxed text-slate-600">
               旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
             </p>
             <ul class="space-y-3 sm:space-y-4">
@@ -305,11 +305,11 @@
     </section>
 
     <!-- 免責事項セクション -->
-    <section class="bg-slate-50 py-12">
+    <section class="bg-slate-50 py-8 sm:py-12">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div class="rounded-xl bg-white p-6 shadow-lg sm:p-8">
-          <h3 class="mb-4 text-xl font-bold text-slate-800">免責事項</h3>
-          <div class="space-y-4 text-sm text-slate-600">
+        <div class="rounded-xl bg-white p-4 shadow-lg sm:p-6 md:p-8">
+          <h3 class="mb-3 sm:mb-4 text-lg sm:text-xl font-bold text-slate-800">免責事項</h3>
+          <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm text-slate-600">
             <p>
               1. 利用者は、本サービスは情報提供サービスであり、医療に関する診断、診断の補助、診療又は治療行為のいずれにも相当しないことを十分認識するものとします。
             </p>
@@ -335,12 +335,12 @@
     </section>
 
     <!-- CTAセクション -->
-    <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-16 sm:py-20">
+    <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-12 sm:py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-8">
+        <div class="flex flex-col items-center gap-4 sm:gap-6 md:flex-row md:justify-between md:gap-8">
           <div class="w-full text-center md:w-2/3 md:text-left">
-            <h2 class="mb-2 text-2xl font-bold text-white sm:text-3xl">アジアでの市販薬探しを、もっと簡単に。</h2>
-            <p class="text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
+            <h2 class="mb-2 text-xl sm:text-2xl md:text-3xl font-bold text-white">アジアでの市販薬探しを、もっと簡単に。</h2>
+            <p class="text-sm sm:text-base text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
           </div>
           <div class="w-full text-center md:w-1/3 md:text-right">
             <a class="inline-block rounded-lg bg-white/20 px-6 py-3 font-semibold text-white shadow-lg hover:bg-white/30 hover:shadow-xl"
@@ -408,4 +408,14 @@
                 <a class="text-base text-white/80 transition-colors hover:text-white" href="#">利用規約</a>
               </li>
               <li>
-                <a class="text-base text-white/80 transition-colors hover:text
+                <a class="text-base text-white/80 transition-colors hover:text-white" href="#">利用規約</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
