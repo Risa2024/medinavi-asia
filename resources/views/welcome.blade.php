@@ -407,9 +407,6 @@
               <li>
                 <a class="text-base text-white/80 transition-colors hover:text-white" href="#">利用規約</a>
               </li>
-              <li>
-                <a class="text-base text-white/80 transition-colors hover:text-white" href="#">利用規約</a>
-              </li>
             </ul>
           </div>
         </div>
