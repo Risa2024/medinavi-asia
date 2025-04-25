@@ -292,6 +292,36 @@
       </div>
     </section>
 
+    <!-- 免責事項セクション -->
+    <section class="bg-slate-50 py-12">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-xl bg-white p-6 shadow-lg sm:p-8">
+          <h3 class="mb-4 text-xl font-bold text-slate-800">免責事項</h3>
+          <div class="space-y-4 text-sm text-slate-600">
+            <p>
+              1. 利用者は、本サービスは情報提供サービスであり、医療に関する診断、診断の補助、診療又は治療行為のいずれにも相当しないことを十分認識するものとします。
+            </p>
+            <p>
+              2. 利用者は、以下事項を十分認識した上で、自己の判断及び責任において本サービスを利用するものとします。
+            </p>
+            <ul class="ml-6 list-disc space-y-2">
+              <li>自身の症状等について、本サービスで提供される情報に依拠して判断又は対処するのではなく、医師等の専門家に相談の上、専門的な診察等を受けるようにしてください。</li>
+              <li>薬局、ドラッグストア等でOTC医薬品・健康食品・サプリメント等を購入する場合には、本サービスにおいて提供される情報に依拠して判断、対処するのではなく、薬剤師等の専門スタッフに相談の上、購入するようにしてください。</li>
+            </ul>
+            <p>
+              3. 当社は、本サービスで提供する情報について、その正確性、真実性、有効性、有用性、最新性、合法性等を確保すべく細心の注意を払っておりますが、これらを保証するものではありません。
+            </p>
+            <p>
+              4. 当社は、本サービスの提供の中断、停止、利用不能または変更、本サービスの利用によるデータの消失、機器の故障・損傷、その他本サービスに関連して利用者が被った損害につき、一切責任を負わないものとします。
+            </p>
+            <p class="font-medium text-amber-600">
+              ※このサービスはポートフォリオ展示目的で作成されたもので、実際のサービスではありません。掲載されている医薬品情報は参考情報であり、医療目的での使用は想定されておりません。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTAセクション -->
     <section class="bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark py-16 sm:py-20">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -328,6 +358,10 @@
             <p class="mt-4 max-w-md text-base leading-relaxed text-white/80">
               アジア各国の市販薬情報を一元化し、誰もが安心して医療にアクセスできる環境を提供します。言語の壁を超えて、必要な医療情報をお届けします。
             </p>
+            <p class="mt-2 text-sm text-white/70">
+              ※このアプリはポートフォリオ展示目的で、実際のサービスではありません。<br>
+              ※掲載されている医薬品情報は参考情報です。実際の服用については専門家に相談してください。
+            </p>
           </div>
 
           <!-- リンク -->
@@ -362,27 +396,4 @@
                 <a class="text-base text-white/80 transition-colors hover:text-white" href="#">利用規約</a>
               </li>
               <li>
-                <a class="text-base text-white/80 transition-colors hover:text-white" href="#">お問い合わせ</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mt-8 border-t border-white/10 pt-8">
-          <p class="text-center text-base text-white/60">
-            &copy; 2025 MediNavi Asia. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    }
-  </script>
-</body>
-
-</html>
+                <a class="text-base text-white/80 transition-colors hover:text
