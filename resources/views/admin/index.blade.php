@@ -14,7 +14,7 @@
           </h1>
         </div>
         <div class="flex">
-          <a class="group flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-5 py-2.5 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 sm:w-auto"
+          <a class="group flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-5 py-2.5 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-medinavi-blue-dark hover:to-medinavi-blue sm:w-auto"
             href="{{ route("admin.medicines.create") }}">
             <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
@@ -30,7 +30,7 @@
         <form class="flex flex-col gap-4 sm:flex-row" action="{{ route("admin.index") }}" method="GET">
           <div class="relative flex-grow">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg class="h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
@@ -40,7 +40,7 @@
               name="search" type="text" value="{{ request("search") }}" placeholder="薬品名で検索...">
           </div>
           <button
-            class="w-full transform rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-teal-700 hover:to-emerald-600 hover:shadow-lg sm:w-auto"
+            class="w-full transform rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-dark px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-lg sm:w-auto"
             type="submit">
             検索
           </button>
@@ -51,12 +51,12 @@
       @if (request("search"))
         <div class="mb-6 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-[#0B1E26] sm:px-6">
           <div class="flex items-center">
-            <svg class="mr-2 h-5 w-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="mr-2 h-5 w-5 text-medinavi-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>「<span class="font-medium text-teal-600">{{ request("search") }}</span>」の検索結果: <span
-                class="font-medium text-teal-600">{{ $medicines->count() }}</span>件</span>
+            <span>「<span class="font-medium text-medinavi-blue">{{ request("search") }}</span>」の検索結果: <span
+                class="font-medium text-medinavi-blue">{{ $medicines->count() }}</span>件</span>
           </div>
         </div>
       @endif
@@ -108,7 +108,7 @@
                     @endif
                   </div>
                   <div class="flex gap-3">
-                    <a class="flex items-center text-teal-600 transition-colors duration-200 hover:text-emerald-500"
+                    <a class="flex items-center text-medinavi-blue transition-colors duration-200 hover:text-medinavi-blue-dark"
                       href="{{ route("admin.medicines.edit", $medicine->id) }}">
                       <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -209,7 +209,7 @@
                               <span class="text-gray-400">価格不明</span>
                             @else
                               <span class="font-medium">{{ number_format($country->pivot->price) }}</span>
-                              <span class="text-teal-600">{{ $country->pivot->currency_code }}</span>
+                              <span class="text-gray-400">{{ $country->pivot->currency_code }}</span>
                             @endif
                           </div>
                         @endforeach
@@ -220,7 +220,7 @@
                   </td>
                   <td class="px-4 py-3 text-sm font-medium">
                     <div class="flex flex-col space-y-2">
-                      <a class="flex items-center text-teal-600 transition-colors duration-200 hover:text-emerald-500"
+                      <a class="flex items-center text-medinavi-blue transition-colors duration-200 hover:text-medinavi-blue-dark"
                         href="{{ route("admin.medicines.edit", $medicine->id) }}">
                         <svg class="mr-1 h-4 w-4 transform transition-transform duration-300 group-hover:rotate-12"
                           fill="none" stroke="currentColor" viewBox="0 0 24 24">
