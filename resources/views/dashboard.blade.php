@@ -4,8 +4,8 @@
       <div class="flex items-center">
         <div class="flex flex-shrink-0 items-center">
           <div
-            class="mr-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80">
-            <img class="h-9 w-9 object-contain opacity-100" src="{{ asset("images/logo/logo_dark.png") }}"
+            class="mr-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white border border-slate-200">
+            <img class="h-9 w-9 object-contain" src="{{ asset("images/logo/logo_dark.png") }}"
               alt="MediNavi Asia Logo">
           </div>
           <span class="text-xl font-bold text-slate-800">Medi<span class="text-medinavi-blue">Navi</span> <span
@@ -46,7 +46,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -78,7 +78,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -118,7 +118,7 @@
                 <div class="z-10 w-full text-slate-800 md:w-1/2">
                   <div class="mb-4 flex items-center">
                     <div
-                      class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                      class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                       <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -155,8 +155,7 @@
                     <div class="relative rounded-xl bg-medinavi-blue/10 p-4 sm:p-6">
                       <div class="mb-4 flex justify-center">
                         <div class="relative">
-                          <div class="absolute -inset-3 rounded-full bg-medinavi-blue/20 blur-sm"></div>
-                          <div class="relative rounded-full bg-white p-3 shadow-md">
+                          <div class="rounded-full bg-white p-3 border border-slate-200">
                             <svg class="h-6 w-6 text-medinavi-blue sm:h-8 sm:w-8" fill="none"
                               stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

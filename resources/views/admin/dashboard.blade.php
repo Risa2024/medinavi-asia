@@ -4,8 +4,8 @@
       <div class="flex items-center">
         <div class="flex flex-shrink-0 items-center">
           <div
-            class="mr-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80">
-            <img class="h-9 w-9 object-contain opacity-100" src="{{ asset("images/logo/logo_dark.png") }}"
+            class="mr-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white border border-slate-200">
+            <img class="h-9 w-9 object-contain" src="{{ asset("images/logo/logo_dark.png") }}"
               alt="MediNavi Asia Logo">
           </div>
           <span class="text-xl font-bold text-slate-800">Medi<span class="text-medinavi-blue">Navi</span> <span
@@ -38,7 +38,7 @@
               <div class="p-4 sm:p-6">
                 <div class="flex items-center">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,7 +60,7 @@
               <div class="p-4 sm:p-6">
                 <div class="flex items-center">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -82,7 +82,7 @@
               <div class="p-4 sm:p-6">
                 <div class="flex items-center">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -104,7 +104,7 @@
               <div class="p-4 sm:p-6">
                 <div class="flex items-center">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,15 +126,21 @@
       <!-- 管理メニューセクション -->
       <section class="mb-12">
         <div class="mx-auto max-w-6xl">
-          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- 薬品管理 -->
+          <div class="mb-8 text-center">
+            <span
+              class="mb-3 inline-block rounded-full bg-medinavi-blue/10 px-3 py-1 text-sm font-semibold text-slate-800">管理メニュー</span>
+            <h2 class="mb-4 text-2xl font-bold text-slate-800 sm:text-3xl">管理機能</h2>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+            <!-- 薬管理 -->
             <a class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               href="{{ route("admin.medicines.index") }}">
               <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -142,9 +148,9 @@
                       </path>
                     </svg>
                   </div>
-                  <h3 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">薬品管理</h3>
+                  <h3 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">薬管理</h3>
                 </div>
-                <p class="mb-4 text-sm text-slate-600 sm:mb-5 sm:text-base">薬品情報の追加、編集、削除を行います。</p>
+                <p class="mb-4 text-sm text-slate-600 sm:mb-5 sm:text-base">薬の追加、編集、削除を行います。</p>
                 <div
                   class="flex w-full items-center justify-center rounded-lg bg-medinavi-blue px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:bg-medinavi-blue-dark hover:shadow-xl">
                   管理画面へ
@@ -162,7 +168,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -190,7 +196,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-medinavi-blue/10 via-white to-medinavi-blue-light/10 shadow-[0_4px_16px_rgba(20,184,166,0.12)] ring-1 ring-medinavi-blue/80 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
