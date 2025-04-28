@@ -16,6 +16,7 @@ MediNavi Asia は、東南アジア地域で販売されている薬の情報を
 welcomeページと検索画面です。
 ![MediNavi Asia アプリケーション画面](docs/images/welcome.png)
 ![MediNavi Asia アプリケーション画面](docs/images/home.png)
+レスポンシブデザインの画面です。
 ![MediNavi Asia アプリケーション画面](docs/images/respo.png)
 ### データベース構造図
 
