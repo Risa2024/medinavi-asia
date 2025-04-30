@@ -53,50 +53,41 @@ PC画面の市販薬検索ページです。
 ### インストール手順
 
 ```bash
-# リポジトリのクローンと移動
+# 1. プロジェクトの準備
 git clone https://github.com/yourusername/medinavi-asia.git
 cd medinavi-asia
-
-# 環境設定
 cp .env.example .env
 
-# Dockerコンテナの起動
+# 2. Dockerの起動とセットアップ
 ./vendor/bin/sail up -d
-
-# 依存パッケージのインストール
 ./vendor/bin/sail composer install
+./vendor/bin/sail npm install
 
-# アプリケーション初期化
+# 3. アプリケーションの初期化
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
 ./vendor/bin/sail artisan storage:link
-
-# フロントエンドのセットアップ
-./vendor/bin/sail npm install
 ```
 
-シードデータには以下が含まれています：
-
-- 管理者アカウント
-- テストユーザー
-- サンプル薬データ（各カテゴリー複数種類）
-- 国情報（インドネシア、マレーシア、タイ、ベトナム）
-
-> 注意: 画像が表示されない場合は、シンボリックリンクが正しく生成されていない可能性があります。その場合は`./vendor/bin/sail artisan storage:link`コマンドを再度実行してください。また、アップロードされた画像のパーミッションも確認してください。
+### 初期データについて
+```artisan migrate --seed```を実行すると自動的に以下のデータが追加されます：
+- 管理者: admin@example.com / password
+- テストユーザー: user@example.com / password
+- サンプル薬データ（約40種類）
+- 4カ国の価格情報（タイ、インドネシア、マレーシア、ベトナム）
 
 ### 開発サーバーの起動
-
-アプリケーションを開発モードで実行するには、以下のコマンドを実行してください：
-
 ```bash
-# Dockerコンテナの起動（すでに起動している場合は不要）
-./vendor/bin/sail up -d
-
 # フロントエンド開発サーバーの起動
 ./vendor/bin/sail npm run dev
 ```
 
-ブラウザで http://localhost にアクセスすると、アプリケーションが表示されます。
+アプリケーションへのアクセス：http://localhost
+
+> 💡 **Tip:** 画像が表示されない場合は、以下のコマンドを試してください：
+> ```bash
+> ./vendor/bin/sail artisan storage:link
+> ```
 
 ## 主な機能
 
