@@ -6,103 +6,81 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-// 位置情報の取得と国情報の特定を行うクラス
-class LocationManager {
-    // コンストラクタ：初期化処理。必要な要素や状態を取得し、初期化メソッドを呼び出す
+// ===== 位置情報管理クラス =====
+// このクラスは以下の機能を提供します：
+// 1. 現在地から国情報を自動取得
+// 2. 手動で国を選択
+// 3. 選択した国情報の保存と表示
+// 4. エラー処理とユーザーへの通知
+class LocationManager {//位置情報（Location）を管理（Manage）
+    // ===== コンストラクタ：初期化処理。必要な要素や状態を取得し、初期化メソッドを呼び出す =====
     constructor() {
-        // 画面上に現在の国名や位置情報の状態を表示するための要素を取得
-        this.currentLocationElement = document.getElementById('current-location');
-        // 「自動取得中」「手動選択中」など、今どの方法で国が決まっているかを表示するバッジ用の要素を取得
-        this.locationStatusElement = document.getElementById('location-status');
-        // 「国を手動で選択」ボタンの要素を取得し、クリック時に国選択モーダルを出すために使う
-        this.changeCountryBtn = document.getElementById('change-country-btn');
-        // 「現在地から国を自動取得」ボタンの要素を取得し、クリック時に位置情報APIを呼び出すために使う
-        this.enableLocationBtn = document.getElementById('enable-location-btn');
-        // エラーメッセージをユーザーに見せるための表示エリア（div）を取得
-        this.errorContainer = document.getElementById('location-error-container');
-        // 以前に選択・取得した国情報があればlocalStorageから取得し、ページ再読み込み後も前回の国を表示できるようにする
-        this.savedCountry = localStorage.getItem('selectedCountry');
-        // 位置情報の取得方法（自動 or 手動）をlocalStorageから取得。前回どちらで国を決めたかを覚えておき、UIの状態を再現するため
-        this.locationType = localStorage.getItem('locationType') || 'manual'; // 'auto' or 'manual'
-        // 位置情報が現在有効かどうかを管理するフラグ。ボタンの有効/無効や状態表示の切り替えに使う
-        this.isLocationEnabled = false;
+        // ===== 画面要素の取得 =====
+        // これらの要素はHTMLに存在する必要があります
+        this.currentLocationElement = document.getElementById('current-location');  // 現在の国名表示用
+        this.locationStatusElement = document.getElementById('location-status');   // 自動/手動の状態表示用
+        this.changeCountryBtn = document.getElementById('change-country-btn');     // 手動選択ボタン
+        this.enableLocationBtn = document.getElementById('enable-location-btn');   // 自動取得ボタン
+        this.errorContainer = document.getElementById('location-error-container'); // エラー表示用
 
-        // 上記で取得した要素や値を使って、初期表示やイベント登録などの初期化処理を行う
+        // ===== 状態管理 =====
+        // localStorageを使って、ページをリロードしても状態を保持
+        this.savedCountry = localStorage.getItem('selectedCountry');              // 保存された国情報
+        this.locationType = localStorage.getItem('locationType') || 'manual';     // 取得方法（自動/手動）
+        this.isLocationEnabled = false;                                          // 位置情報の有効状態
+
+        // 初期化処理を実行
         this.init();
     }
 
-    // 初期化処理：画面表示やイベントリスナーの登録を行う
+    // ===== 初期化処理：画面表示やイベントリスナーの登録を行う =====
     init() {
-        // 保存された国情報があれば表示、なければ「位置情報が無効です」と表示
+        // 保存された国情報があれば表示
         if (this.savedCountry) {
             this.updateLocationDisplay(this.savedCountry);
         } else {
             this.updateLocationDisplay('位置情報が無効です');
         }
 
-        // 位置情報の取得方法（自動/手動）バッジの表示を更新
+        // 状態バッジの表示を更新
         this.updateLocationStatus();
 
-        // 「国を手動で選択」ボタンのクリックイベント登録
+        // ===== イベントリスナーの設定 =====
+        // 手動選択ボタンのクリック処理
         this.changeCountryBtn.addEventListener('click', () => {
-            this.locationType = 'manual'; // 手動選択モードに切り替え
+            this.locationType = 'manual';
             localStorage.setItem('locationType', 'manual');
             this.updateLocationStatus();
-            this.showCountrySelector(); // 国選択モーダルを表示
+            this.showCountrySelector();
         });
 
-        // 「現在地から国を自動取得」ボタンのクリックイベント登録
+        // 自動取得ボタンのクリック処理
         if (this.enableLocationBtn) {
             this.enableLocationBtn.addEventListener('click', () => {
-                this.locationType = 'auto'; // 自動取得モードに切り替え
+                this.locationType = 'auto';
                 localStorage.setItem('locationType', 'auto');
                 this.updateLocationStatus();
-                this.enableLocation(); // 位置情報の取得処理を実行
+                this.enableLocation();
             });
         }
     }
 
-    // 位置情報の取得方法（自動/手動）バッジの表示を更新する
-    updateLocationStatus() {
-        if (this.locationStatusElement) {
-            const statusText = this.locationType === 'auto' ? '自動取得中' : '手動選択中';
-            const statusColor = this.locationType === 'auto' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600';
-
-            this.locationStatusElement.textContent = statusText;
-            this.locationStatusElement.className = `inline-flex items-center rounded-full ${statusColor} px-2.5 py-0.5 text-xs font-medium`;
-        }
-    }
-
-    // トースト通知を画面右下に表示する（成功・エラーのフィードバック用）
-    showToast(message, type = 'success') {
-        const toast = document.createElement('div');
-        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
-        toast.className = `fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in-up`;
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.add('animate-fade-out-down');
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
-    }
-
-    // 位置情報APIを使って現在地を取得し、国情報を取得・表示する
+    // ===== 位置情報の取得処理 =====
     async enableLocation() {
+        // ブラウザが位置情報APIに対応しているか確認
         if (!navigator.geolocation) {
-            // ブラウザが位置情報API非対応の場合のエラー表示
             this.showError('お使いのブラウザでは位置情報が利用できません');
             this.updateLocationDisplay('位置情報が無効です');
             return;
         }
 
         try {
-            // ボタンを無効化し、二重押し防止
+            // ボタンを一時的に無効化（二重押し防止）
             this.isLocationEnabled = true;
             this.enableLocationBtn.disabled = true;
             this.enableLocationBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // 位置情報の取得（非同期）
+            // 位置情報の取得（非同期処理）
             const position = await new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject, {
                     enableHighAccuracy: true,
@@ -111,51 +89,56 @@ class LocationManager {
                 });
             });
 
-            // 緯度・経度から国情報を取得
+            // 取得した緯度・経度から国情報を取得
             const { latitude, longitude } = position.coords;
             await this.getCountryFromCoordinates(latitude, longitude);
 
-            // 成功時はトースト通知を表示し、ボタンを再度有効化
+            // 成功時の処理
             this.showToast('現在地から国情報を取得しました', 'success');
             this.enableLocationBtn.disabled = false;
             this.enableLocationBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         } catch (error) {
-            // 失敗時はエラーメッセージを表示し、ボタンを再度有効化
-            this.isLocationEnabled = false;
-            this.enableLocationBtn.disabled = false;
-            this.enableLocationBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-
-            // エラー内容に応じてメッセージを切り替え
-            let errorMessage = '位置情報の取得に失敗しました';
-            if (error.code === 1) {
-                errorMessage = '位置情報の利用が許可されていません。ブラウザの設定から許可してください。';
-            } else if (error.code === 2) {
-                errorMessage = '位置情報を取得できませんでした。インターネット接続を確認してください。';
-            } else if (error.code === 3) {
-                errorMessage = '位置情報の取得がタイムアウトしました。再度お試しください。';
-            }
-
-            this.showError(errorMessage);
-            this.updateLocationDisplay('位置情報が無効です');
-
-            // 自動取得に失敗したら手動モードに切り替え、バッジも更新
-            this.locationType = 'manual';
-            localStorage.setItem('locationType', 'manual');
-            this.updateLocationStatus();
+            // エラー時の処理
+            this.handleLocationError(error);
         }
     }
 
-    // 緯度・経度からNominatim APIを使って国情報を取得し、画面に表示・保存する
+    // ===== エラー処理 =====
+    handleLocationError(error) {
+        // ボタンの状態を元に戻す
+        this.isLocationEnabled = false;
+        this.enableLocationBtn.disabled = false;
+        this.enableLocationBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+        // エラーの種類に応じてメッセージを設定
+        let errorMessage = '位置情報の取得に失敗しました';
+        if (error.code === 1) {
+            errorMessage = '位置情報の利用が許可されていません。ブラウザの設定から許可してください。';
+        } else if (error.code === 2) {
+            errorMessage = '位置情報を取得できませんでした。インターネット接続を確認してください。';
+        } else if (error.code === 3) {
+            errorMessage = '位置情報の取得がタイムアウトしました。再度お試しください。';
+        }
+
+        // エラー表示と状態の更新
+        this.showError(errorMessage);
+        this.updateLocationDisplay('位置情報が無効です');
+        this.locationType = 'manual';
+        localStorage.setItem('locationType', 'manual');
+        this.updateLocationStatus();
+    }
+
+    // ===== 国情報の取得と表示 =====
     async getCountryFromCoordinates(latitude, longitude) {
         try {
-            // Nominatim APIにリクエストを送り、逆ジオコーディングで国名・都市名を取得
+            // Nominatim APIを使用して逆ジオコーディング
             const response = await fetch(
                 `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`
             );
             const data = await response.json();
 
             if (data.address && data.address.country) {
-                // 取得できたら「国名（都市名）」の形で表示・保存
+                // 国名と都市名を取得して表示
                 const country = data.address.country;
                 const city = data.address.city || data.address.town || data.address.village || '';
                 const location = city ? `${country}（${city}）` : country;
@@ -163,16 +146,70 @@ class LocationManager {
                 localStorage.setItem('selectedCountry', location);
             }
         } catch (error) {
-            // APIエラー時の処理
             this.showError('国情報の取得に失敗しました');
             console.error('国情報の取得に失敗しました:', error);
         }
     }
 
-    // 画面上の国名表示を更新する
+    // ===== UI更新メソッド =====
+    // 国名表示の更新
     updateLocationDisplay(location) {
         if (this.currentLocationElement) {
             this.currentLocationElement.textContent = location;
+        }
+    }
+
+    // 状態バッジの更新
+    updateLocationStatus() {
+        if (this.locationStatusElement) {
+            const statusText = this.locationType === 'auto' ? '自動取得中' : '手動選択中';
+            const statusColor = this.locationType === 'auto' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600';
+            this.locationStatusElement.textContent = statusText;
+            this.locationStatusElement.className = `inline-flex items-center rounded-full ${statusColor} px-2.5 py-0.5 text-xs font-medium`;
+        }
+    }
+
+    // ===== 通知メソッド =====
+    // トースト通知の表示
+    showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+        toast.className = `fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in-up`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // 3秒後に自動的に消える
+        setTimeout(() => {
+            toast.classList.add('animate-fade-out-down');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // エラーメッセージの表示
+    showError(message) {
+        if (this.errorContainer) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'bg-red-50 border-l-4 border-red-400 p-4';
+            errorDiv.innerHTML = `
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-700">${message}</p>
+                    </div>
+                </div>
+            `;
+
+            this.errorContainer.innerHTML = '';
+            this.errorContainer.appendChild(errorDiv);
+
+            // 5秒後に自動的に消える
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
         }
     }
 
@@ -244,40 +281,10 @@ class LocationManager {
             }
         });
     }
-
-    // エラーメッセージを画面に表示する
-    showError(message) {
-        if (this.errorContainer) {
-            // エラー用のdivを作成し、デザインを整えて表示
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'bg-red-50 border-l-4 border-red-400 p-4';
-            errorDiv.innerHTML = `
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm text-red-700">${message}</p>
-                    </div>
-                </div>
-            `;
-
-            this.errorContainer.innerHTML = '';
-            this.errorContainer.appendChild(errorDiv);
-
-            setTimeout(() => {
-                errorDiv.remove();
-            }, 5000);
-        }
-    }
 }
 
-// ページの読み込みが完了したらLocationManagerを初期化
-// なぜ？ → DOM要素が揃ってからでないとgetElementByIdで取得できないため
-// これにより、画面の各要素とJSの処理が正しく連携する
-
+// ===== 初期化 =====
+// ページ読み込み完了時にLocationManagerを初期化
 document.addEventListener('DOMContentLoaded', () => {
     new LocationManager();
 });
