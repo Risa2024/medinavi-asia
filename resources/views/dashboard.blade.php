@@ -130,28 +130,54 @@
                     <h2 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">位置情報ベースの検索</h2>
                   </div>
                   <div class="mb-6">
-                    <div class="mb-3 inline-flex items-center rounded-full bg-medinavi-blue/10 px-3 py-1.5">
-                      <div class="mr-2 h-2 w-2 rounded-full bg-medinavi-blue"></div>
-                      <p class="text-sm font-medium text-slate-800 sm:text-base" id="current-location">タイ, バンコク</p>
+                    <!-- 位置情報の状態表示 -->
+                    <div class="mb-4">
+                      <div class="flex items-center gap-2">
+                        <div class="inline-flex items-center rounded-full bg-medinavi-blue/10 px-3 py-1.5">
+                          <div class="mr-2 h-2 w-2 rounded-full bg-medinavi-blue"></div>
+                          <p class="text-sm font-medium text-slate-800 sm:text-base" id="current-location">位置情報が無効です</p>
+                        </div>
+                        <span id="location-status" class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+                          手動選択中
+                        </span>
+                      </div>
                     </div>
-                    <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
-                      位置情報を有効にすると、現在いる国で販売されている薬だけを検索できます。旅行先でも地域に合った薬情報にアクセスできます。</p>
-                    <div class="flex gap-2 my-4">
+
+                    <p class="text-sm leading-relaxed text-slate-600 sm:text-base mb-4">
+                      現在地から自動で国を特定するか、手動で国を選択できます。旅行先でも地域に合った薬情報にアクセスできます。
+                    </p>
+
+                    <!-- ボタングループ -->
+                    <div class="flex flex-wrap gap-3">
                       <button
-                        class="flex items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl sm:w-auto">
+                        id="enable-location-btn"
+                        class="flex items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl">
                         <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                           stroke-width="1.5" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round"
                             d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
                         </svg>
-                        位置情報を有効にする
+                        現在地から国を自動取得
                       </button>
-                      <button id="change-country-btn" type="button" class="flex items-center rounded-md bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50">
-                        <svg class="text-blue-600 mr-1.5" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20"/>
+
+                      <button
+                        id="change-country-btn"
+                        type="button"
+                        class="flex items-center rounded-lg bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50 transition-all duration-300">
+                        <svg class="text-medinavi-blue mr-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
                         </svg>
-                        国を変更
+                        国を手動で選択
                       </button>
+                    </div>
+
+                    <!-- エラーメッセージ表示エリア -->
+                    <div id="location-error-container" class="mt-3"></div>
+
+                    <!-- 位置情報の説明文 -->
+                    <div class="mt-4 text-xs text-slate-500">
+                      <p>※ 位置情報の利用を許可すると、現在地から最適な国情報を自動で設定します</p>
+                      <p>※ 位置情報の利用を拒否した場合は、手動で国を選択してください</p>
                     </div>
                   </div>
                 </div>
