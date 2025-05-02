@@ -136,17 +136,24 @@
                     </div>
                     <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
                       位置情報を有効にすると、現在いる国で販売されている薬だけを検索できます。旅行先でも地域に合った薬情報にアクセスできます。</p>
+                    <div class="flex gap-2 my-4">
+                      <button
+                        class="flex items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl sm:w-auto">
+                        <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
+                        </svg>
+                        位置情報を有効にする
+                      </button>
+                      <button id="change-country-btn" type="button" class="flex items-center rounded-md bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50">
+                        <svg class="text-blue-600 mr-1.5" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20"/>
+                        </svg>
+                        国を変更
+                      </button>
+                    </div>
                   </div>
-
-                  <button
-                    class="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-medinavi-blue-dark hover:to-medinavi-blue hover:shadow-xl sm:w-auto">
-                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                      stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
-                    </svg>
-                    位置情報を有効にする
-                  </button>
                 </div>
 
                 <!-- 右側：イラスト -->
