@@ -6,25 +6,24 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-// ===== 位置情報管理クラス =====
-// このクラスは以下の機能を提供します：
+// 位置情報管理クラス
+// できること
 // 1. 現在地から国情報を自動取得
 // 2. 手動で国を選択
 // 3. 選択した国情報の保存と表示
 // 4. エラー処理とユーザーへの通知
 class LocationManager {//位置情報（Location）を管理（Manage）
-    // ===== コンストラクタ：初期化処理。必要な要素や状態を取得し、初期化メソッドを呼び出す =====
+    // コンストラクタ：初期化処理。必要な要素や状態を取得し、初期化メソッドを呼び出す
     constructor() {
-        // ===== 画面要素の取得 =====
-        // これらの要素はHTMLに存在する必要があります
+        // 画面要素の取得
         this.currentLocationElement = document.getElementById('current-location');  // 現在の国名表示用
         this.locationStatusElement = document.getElementById('location-status');   // 自動/手動の状態表示用
         this.changeCountryBtn = document.getElementById('change-country-btn');     // 手動選択ボタン
         this.enableLocationBtn = document.getElementById('enable-location-btn');   // 自動取得ボタン
         this.errorContainer = document.getElementById('location-error-container'); // エラー表示用
 
-        // ===== 状態管理 =====
-        // localStorageを使って、ページをリロードしても状態を保持
+        // 状態管理
+        // localStorageを使って、ページをリロードしても状態を保持する
         this.savedCountry = localStorage.getItem('selectedCountry');              // 保存された国情報
         this.locationType = localStorage.getItem('locationType') || 'manual';     // 取得方法（自動/手動）
         this.isLocationEnabled = false;                                          // 位置情報の有効状態
@@ -33,7 +32,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         this.init();
     }
 
-    // ===== 初期化処理：画面表示やイベントリスナーの登録を行う =====
+    // 初期化処理：画面表示やイベントリスナーの登録を行う
     init() {
         // 保存された国情報があれば表示
         if (this.savedCountry) {
@@ -45,7 +44,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         // 状態バッジの表示を更新
         this.updateLocationStatus();
 
-        // ===== イベントリスナーの設定 =====
+        // イベントリスナーの設定
         // 手動選択ボタンのクリック処理
         this.changeCountryBtn.addEventListener('click', () => {
             this.locationType = 'manual';
@@ -65,7 +64,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         }
     }
 
-    // ===== 位置情報の取得処理 =====
+    // 位置情報の取得処理
     async enableLocation() {
         // ブラウザが位置情報APIに対応しているか確認
         if (!navigator.geolocation) {
@@ -103,7 +102,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         }
     }
 
-    // ===== エラー処理 =====
+    // エラー処理
     handleLocationError(error) {
         // ボタンの状態を元に戻す
         this.isLocationEnabled = false;
@@ -128,7 +127,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         this.updateLocationStatus();
     }
 
-    // ===== 国情報の取得と表示 =====
+    // 国情報の取得と表示
     async getCountryFromCoordinates(latitude, longitude) {
         try {
             // Nominatim APIを使用して逆ジオコーディング
@@ -151,7 +150,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         }
     }
 
-    // ===== UI更新メソッド =====
+    // UI更新メソッド
     // 国名表示の更新
     updateLocationDisplay(location) {
         if (this.currentLocationElement) {
@@ -169,7 +168,7 @@ class LocationManager {//位置情報（Location）を管理（Manage）
         }
     }
 
-    // ===== 通知メソッド =====
+    // 通知メソッド
     // トースト通知の表示
     showToast(message, type = 'success') {
         const toast = document.createElement('div');
