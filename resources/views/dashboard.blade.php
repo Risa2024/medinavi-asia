@@ -37,6 +37,49 @@
           <p class="mx-auto max-w-2xl text-lg text-slate-600 sm:text-xl">検索方法を選んでください</p>
         </div>
 
+        <!-- ★ここに国選択UIを追加★ -->
+        <div class="flex justify-center mb-6">
+          <div class="bg-white rounded-lg shadow-sm p-3 w-full max-w-2xl">
+            <h3 class="text-center text-sm font-semibold mb-2">国を選択してください</h3>
+            <div class="flex mb-2">
+              <button id="auto-tab" class="flex-1 py-1 rounded-l-lg border border-medinavi-blue text-medinavi-blue font-bold bg-blue-50 text-sm" onclick="switchMode('auto')">
+                自動取得
+              </button>
+              <button id="manual-tab" class="flex-1 py-1 rounded-r-lg border border-medinavi-blue text-medinavi-blue font-bold bg-white text-sm" onclick="switchMode('manual')">
+                手動選択
+              </button>
+            </div>
+            <div id="auto-content">
+              <div class="mb-1 text-center">
+                <span class="font-bold text-sm">現在の国：</span>
+                <span id="auto-country" class="text-medinavi-blue font-bold text-sm">（自動取得中...）</span>
+              </div>
+              <p class="text-xs text-slate-500 text-center">位置情報で国を自動判別します。</p>
+            </div>
+            <div id="manual-content" class="hidden">
+              <div class="flex gap-2 justify-center mb-2 flex-wrap md:flex-nowrap overflow-x-auto">
+                @foreach ($countries as $country)
+                  <button
+                    type="button"
+                    class="px-3 py-1 rounded border text-sm font-medium
+                      @if(old('country') == $country->name) bg-medinavi-blue text-white @else bg-white text-medinavi-blue border-medinavi-blue @endif
+                      hover:bg-medinavi-blue hover:text-white transition"
+                    onclick="selectCountry('{{ $country->name }}')"
+                    id="country-btn-{{ $country->id }}"
+                  >
+                    {{ $country->emoji ?? '' }}{{ $country->name }}
+                  </button>
+                @endforeach
+              </div>
+              <div class="text-center text-sm">
+                選択中の国：<span id="manual-country" class="font-bold text-medinavi-blue">未選択</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ★ここまで★ -->
+
+        <!-- 既存の検索カード（カテゴリ・商品名） -->
         <div class="mx-auto max-w-6xl">
           <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
             <!-- 種類から検索 -->
@@ -106,71 +149,35 @@
           </div>
         </div>
       </section>
-
-      <!-- 現在地・位置情報セクション -->
-      <section class="mb-12">
-        <div class="mx-auto max-w-6xl">
-          <div class="overflow-hidden rounded-lg bg-white shadow-md">
-            <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
-            <div class="p-4 sm:p-8">
-              <div class="flex flex-col items-center gap-6 md:flex-row md:gap-8">
-                <!-- 左側：コンテンツ -->
-                <div class="z-10 w-full text-slate-800 md:w-1/2">
-                  <div class="mb-4 flex items-center">
-                    <div
-                      class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
-                      <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                      </svg>
-                    </div>
-                    <h2 class="ml-3 text-lg font-bold text-slate-800 sm:text-xl">位置情報ベースの検索</h2>
-                  </div>
-                  <div class="mb-6">
-                    <!-- 位置情報の状態表示 -->
-                    <div class="mb-4">
-                      <div class="flex items-center gap-2">
-                        <div class="inline-flex items-center rounded-full bg-medinavi-blue/10 px-3 py-1.5">
-                          <div class="mr-2 h-2 w-2 rounded-full bg-medinavi-blue"></div>
-                          <p class="text-sm font-medium text-slate-800 sm:text-base" id="current-location">位置情報が無効です</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p class="text-sm leading-relaxed text-slate-600 sm:text-base mb-4">
-                        位置情報を使って、今いる国を自動で調べます。旅行中でも、その場所で手に入る市販薬の情報を簡単に探せます。
-                    </p>
-
-                    <!-- ボタングループ -->
-                    <div class="flex flex-wrap gap-3">
-                      <!-- スイッチ風トグル -->
-                      <div class="flex items-center gap-2">
-                        <input type="checkbox" id="location-toggle">
-                        位置情報 <span id="location-status-label" class="text-red-500">OFF</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 右側：国名選択 -->
-                <div class="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-lg p-6">
-                  <h3 class="font-semibold mb-2">国名から探す</h3>
-                  <!-- セレクトボックス例（Comboboxに置き換え可） -->
-                  <select id="country-combobox" class="border rounded px-3 py-2 w-full max-w-xs mb-2">
-                    @foreach ($countries as $country)
-                      <option value="{{ $country->id }}">{{ $country->name }}</option>
-                    @endforeach
-                  </select>
-                  <p class="text-xs text-slate-500 mt-1">国を選択すると、その国の薬情報が表示されます。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   </div>
+  <script>
+    function switchMode(mode) {
+      if (mode === 'auto') {
+        document.getElementById('auto-content').classList.remove('hidden');
+        document.getElementById('manual-content').classList.add('hidden');
+        document.getElementById('auto-tab').classList.add('bg-blue-50');
+        document.getElementById('manual-tab').classList.remove('bg-blue-50');
+      } else {
+        document.getElementById('auto-content').classList.add('hidden');
+        document.getElementById('manual-content').classList.remove('hidden');
+        document.getElementById('manual-tab').classList.add('bg-blue-50');
+        document.getElementById('auto-tab').classList.remove('bg-blue-50');
+      }
+    }
+    function selectCountry(name) {
+      document.getElementById('manual-country').textContent = name;
+      // すべてのボタンの色をリセット
+      document.querySelectorAll('[id^=country-btn-]').forEach(btn => {
+        btn.classList.remove('bg-medinavi-blue', 'text-white');
+        btn.classList.add('bg-white', 'text-medinavi-blue');
+      });
+      // 選択したボタンだけ色を変える
+      const selectedBtn = Array.from(document.querySelectorAll('[id^=country-btn-]')).find(btn => btn.textContent.trim() === name);
+      if (selectedBtn) {
+        selectedBtn.classList.add('bg-medinavi-blue', 'text-white');
+        selectedBtn.classList.remove('bg-white', 'text-medinavi-blue');
+      }
+    }
+  </script>
 </x-app-layout>
