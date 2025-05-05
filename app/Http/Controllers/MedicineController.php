@@ -82,7 +82,7 @@ class MedicineController extends Controller
                 return $categories->contains($category);
             })
             ->merge($categories->diff($categoryOrder));
-        
+
         return view('user.medicines.category', compact('sortedCategories'));
     }
 
@@ -92,11 +92,17 @@ class MedicineController extends Controller
     public function categoryShow(Request $request, $category)
     {
         $medicines = Medicine::where('category', $category)->with('countries')->get();
-        
+
         // 国と通貨情報の取得
         $countries = Country::all()->keyBy('code');
         $exchanges = Exchange::all()->keyBy('currency_code');
-        
+
         return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges'));
+    }
+
+    public function dashboard()
+    {
+        $countries = Country::all();
+        return view('dashboard', compact('countries'));
     }
 }

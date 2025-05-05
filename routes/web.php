@@ -10,23 +10,18 @@ use App\Http\Controllers\CountryController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-//dashboardにアクセスすると、dashboard.blade.phpビューを表示
+///dashboard にアクセスしたとき、MedicineController の dashboard メソッドを呼び出すように統一
 //middleware(['auth', 'verified']): 認証済み（ログイン済み）かつメール認証済みのユーザーのみアクセス可能
 //name('dashboard'): このルートに「dashboard」という名前をつけて、他の場所から参照できるようにする
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [MedicineController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //認証済みユーザーのみアクセス可能なグループ
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
     // 薬の検索関連ルート
-    Route::get('/medicines/search', [App\Http\Controllers\MedicineController::class, 'search'])->name('medicines.search');
-    Route::get('/medicines/category', [App\Http\Controllers\MedicineController::class, 'category'])->name('medicines.category');
-    Route::get('/medicines', [App\Http\Controllers\MedicineController::class, 'index'])->name('medicines.index');
+    Route::get('/medicines/search', [MedicineController::class, 'search'])->name('medicines.search');
+    Route::get('/medicines/category', [MedicineController::class, 'category'])->name('medicines.category');
+    Route::get('/medicines/{medicine}', [MedicineController::class, 'show'])->name('medicines.show');
+    Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index');
 
     // categoryShowはmedicines.index用に更新
     //カテゴリー別表示のリダイレクト設定

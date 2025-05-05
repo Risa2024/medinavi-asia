@@ -155,9 +155,16 @@
                   </div>
                 </div>
 
-                <!-- 右側：イラスト -->
-                <div class="flex w-full items-center justify-center md:w-1/2">
-                  <img class="h-auto w-full max-w-xs object-contain" src="/images/tourist.jpg" alt="旅行先">
+                <!-- 右側：国名選択 -->
+                <div class="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-lg p-6">
+                  <h3 class="font-semibold mb-2">国名から探す</h3>
+                  <!-- セレクトボックス例（Comboboxに置き換え可） -->
+                  <select id="country-combobox" class="border rounded px-3 py-2 w-full max-w-xs mb-2">
+                    @foreach ($countries as $country)
+                      <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endforeach
+                  </select>
+                  <p class="text-xs text-slate-500 mt-1">国を選択すると、その国の薬情報が表示されます。</p>
                 </div>
               </div>
             </div>
