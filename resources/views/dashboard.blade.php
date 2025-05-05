@@ -141,45 +141,23 @@
                     </div>
 
                     <p class="text-sm leading-relaxed text-slate-600 sm:text-base mb-4">
-                      現在地から自動で国を特定し、旅行先でも地域に合った市販薬情報にアクセスできます。
+                        位置情報を使って、今いる国を自動で調べます。旅行中でも、その場所で手に入る市販薬の情報を簡単に探せます。
                     </p>
 
                     <!-- ボタングループ -->
                     <div class="flex flex-wrap gap-3">
                       <!-- スイッチ風トグル -->
-                      <label>
+                      <div class="flex items-center gap-2">
                         <input type="checkbox" id="location-toggle">
-                        位置情報 <span id="location-status-label">OFF</span>
-                      </label>
+                        位置情報 <span id="location-status-label" class="text-red-500">OFF</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <!-- 右側：イラスト -->
                 <div class="flex w-full items-center justify-center md:w-1/2">
-                  <div class="relative w-full max-w-xs">
-                    <div class="relative rounded-xl bg-medinavi-blue/10 p-4 sm:p-6">
-                      <div class="mb-4 flex justify-center">
-                        <div class="relative">
-                          <div class="rounded-full bg-white p-3 border border-slate-200">
-                            <svg class="h-6 w-6 text-medinavi-blue sm:h-8 sm:w-8" fill="none"
-                              stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                              </path>
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="space-y-2 sm:space-y-3">
-                        <div class="mx-auto h-1.5 w-3/4 rounded-full bg-medinavi-blue/30"></div>
-                        <div class="mx-auto h-1.5 w-2/3 rounded-full bg-medinavi-blue/30"></div>
-                        <div class="mx-auto h-1.5 w-1/2 rounded-full bg-medinavi-blue/30"></div>
-                      </div>
-                    </div>
-                  </div>
+                  <img class="h-auto w-full max-w-xs object-contain" src="/images/tourist.jpg" alt="旅行先">
                 </div>
               </div>
             </div>
