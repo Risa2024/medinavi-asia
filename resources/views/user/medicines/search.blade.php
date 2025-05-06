@@ -11,6 +11,9 @@
       <div class="rounded-xl border border-[#E2E8F0] bg-white p-6 shadow-lg">
         <!-- 検索フォーム -->
         <form class="mx-auto max-w-2xl" action="{{ route("medicines.index") }}" method="GET">
+          @if(isset($countryCode))
+            <input type="hidden" name="country_code" value="{{ $countryCode }}">
+          @endif
           <div class="flex items-center">
             <div class="relative flex-grow">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -33,7 +36,7 @@
 
         <div class="mt-12 flex justify-center space-x-4">
           <a class="flex items-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-5 py-2.5 text-[#1E293B] transition-all duration-200 hover:bg-white hover:shadow-md"
-            href="{{ route("medicines.category") }}">
+            href="{{ route("medicines.category") }}{{ isset($countryCode) ? '?country_code='.$countryCode : '' }}">
             <svg class="mr-2 h-5 w-5 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>

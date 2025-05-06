@@ -18,6 +18,7 @@ class MedicineController extends Controller
     {
         $query = $request->input('query');
         $category = $request->input('category');
+        $countryCode = $request->input('country_code');
 
         $medicines = Medicine::query();
 
@@ -35,30 +36,44 @@ class MedicineController extends Controller
         if (!$query && !$category) {
             $medicines = collect([]);
         } else {
-            $medicines = $medicines->with('countries')->get();
+            // 選択された国でフィルタリング
+            if ($countryCode) {
+                // 選択された国の薬だけを取得（クエリレベルでフィルタリング）
+                $medicineIds = \DB::table('medicines_country')
+                    ->where('currency_code', $countryCode)
+                    ->pluck('medicine_id');
+
+                $medicines = $medicines->whereIn('id', $medicineIds)->with('countries')->get();
+            } else {
+                // 国選択なしの場合は全ての薬を表示
+                $medicines = $medicines->with('countries')->get();
+            }
         }
 
         // 国と通貨情報の取得
         $countries = Country::all()->keyBy('code');
         $exchanges = Exchange::all()->keyBy('currency_code');
 
-        return view('user.medicines.index', compact('medicines', 'query', 'countries', 'exchanges'));
+        return view('user.medicines.index', compact('medicines', 'query', 'countries', 'exchanges', 'countryCode'));
     }
 
     /**
      * 商品名で薬を検索するページを表示
      * 検索フォームだけを表示し、検索結果はindexページに表示する
      */
-    public function search()
+    public function search(Request $request)
     {
-        return view('user.medicines.search');
+        $countryCode = $request->input('country_code');
+        return view('user.medicines.search', compact('countryCode'));
     }
 
     /**
      * 種類から薬を検索するページを表示
      */
-    public function category()
+    public function category(Request $request)
     {
+        $countryCode = $request->input('country_code');
+
         // カテゴリーの表示順序を指定
         $categoryOrder = [
             '解熱鎮痛薬',
@@ -83,7 +98,7 @@ class MedicineController extends Controller
             })
             ->merge($categories->diff($categoryOrder));
 
-        return view('user.medicines.category', compact('sortedCategories'));
+        return view('user.medicines.category', compact('sortedCategories', 'countryCode'));
     }
 
     /**
@@ -91,18 +106,35 @@ class MedicineController extends Controller
      */
     public function categoryShow(Request $request, $category)
     {
-        $medicines = Medicine::where('category', $category)->with('countries')->get();
+        $countryCode = $request->input('country_code');
+        $medicines = Medicine::where('category', $category);
+
+        // 選択された国でフィルタリング
+        if ($countryCode) {
+            // 選択された国の薬だけを取得（クエリレベルでフィルタリング）
+            $medicineIds = \DB::table('medicines_country')
+                ->where('currency_code', $countryCode)
+                ->pluck('medicine_id');
+
+            $medicines = $medicines->whereIn('id', $medicineIds)->with('countries')->get();
+        } else {
+            // 国選択なしの場合は全ての薬を表示
+            $medicines = $medicines->with('countries')->get();
+        }
 
         // 国と通貨情報の取得
         $countries = Country::all()->keyBy('code');
         $exchanges = Exchange::all()->keyBy('currency_code');
 
-        return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges'));
+        return view('user.medicines.index', compact('medicines', 'category', 'countries', 'exchanges', 'countryCode'));
     }
 
     public function dashboard()
     {
+        // 国一覧を取得
         $countries = Country::all();
+
+        // デフォルト国は設定せず、未選択時は全データを表示
         return view('dashboard', compact('countries'));
     }
 }

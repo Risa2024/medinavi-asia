@@ -11,7 +11,7 @@
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           @foreach ($sortedCategories as $category)
             <a class="flex items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-[#1E293B] transition-all duration-200 hover:bg-white hover:shadow-md"
-              href="{{ route("medicines.index", ["category" => $category]) }}">
+              href="{{ route("medicines.index", ["category" => $category]) }}{{ isset($countryCode) ? '&country_code='.$countryCode : '' }}">
               <span class="font-medium">{{ $category }}</span>
               <svg class="h-5 w-5 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -22,7 +22,7 @@
 
         <div class="mt-8 flex justify-center space-x-4">
           <a class="flex items-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-5 py-2.5 text-[#1E293B] transition-all duration-200 hover:bg-white hover:shadow-md"
-            href="{{ route("medicines.search") }}">
+            href="{{ route("medicines.search") }}{{ isset($countryCode) ? '?country_code='.$countryCode : '' }}">
             <svg class="mr-2 h-5 w-5 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
