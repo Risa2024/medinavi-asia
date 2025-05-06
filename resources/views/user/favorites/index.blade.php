@@ -53,21 +53,26 @@
                         <h2 class="line-clamp-1 text-base font-bold text-blue-950">💊 {{ $medicine->name }}</h2>
 
                         <!-- 販売国フラグ -->
-                        @if ($medicine->countries->count() > 0)
-                          <div class="mt-2 h-14 overflow-y-auto">
-                            <div class="space-y-1">
-                              <!-- 国を表示 -->
-                              <div class="flex flex-wrap gap-1.5">
+                        <div class="mt-2 min-h-14 md:h-14 overflow-y-auto">
+                          <div class="space-y-1">
+                            <!-- 国を表示 -->
+                            <div class="flex flex-wrap gap-1.5">
+                              @if ($medicine->countries->count() > 0)
                                 @foreach ($medicine->countries as $country)
                                   <span
                                     class="inline-flex shrink-0 items-center rounded-lg border border-blue-100 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 shadow-sm">
                                     {{ $country->emoji }} {{ $country->name }}
                                   </span>
                                 @endforeach
-                              </div>
+                              @else
+                                <span
+                                  class="inline-flex shrink-0 items-center rounded-lg border border-red-100 bg-red-50 px-2 py-0.5 text-xs font-medium text-red-700 shadow-sm">
+                                  販売国なし
+                                </span>
+                              @endif
                             </div>
                           </div>
-                        @endif
+                        </div>
                       </div>
                       <span
                         class="shrink-0 rounded-lg bg-gradient-to-r from-blue-500 to-emerald-500 px-2 py-0.5 text-xs font-medium text-white shadow-sm">
@@ -118,31 +123,31 @@
                     @endif
 
                     <!-- 価格情報 -->
-                    @if ($medicine->countries->count() > 0)
-                      <div class="space-y-2" x-data="{ open: false }">
-                        <button
-                          class="group flex w-full items-center justify-between rounded-xl border border-blue-100/50 bg-gradient-to-br from-white to-blue-50/30 p-2.5 shadow-sm transition-colors hover:bg-blue-50/50"
-                          @click="open = !open">
-                          <span class="flex items-center text-xs font-medium text-blue-900">
-                            <svg class="mr-1.5 h-3.5 w-3.5 text-blue-400" fill="none" stroke="currentColor"
-                              viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                    <div class="space-y-2" x-data="{ open: false }">
+                      <button
+                        class="group flex w-full items-center justify-between rounded-xl border border-blue-100/50 bg-gradient-to-br from-white to-blue-50/30 p-2.5 shadow-sm transition-colors hover:bg-blue-50/50"
+                        @click="open = !open">
+                        <span class="flex items-center text-xs font-medium text-blue-900">
+                          <svg class="mr-1.5 h-3.5 w-3.5 text-blue-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                               </path>
-                            </svg>
-                            価格情報を確認
-                          </span>
-                          <svg
-                            class="h-4 w-4 transform text-blue-400 transition-transform duration-200 group-hover:text-blue-500"
-                            :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
                           </svg>
-                        </button>
+                          価格情報を確認
+                        </span>
+                        <svg
+                          class="h-4 w-4 transform text-blue-400 transition-transform duration-200 group-hover:text-blue-500"
+                          :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                          </path>
+                        </svg>
+                      </button>
 
-                        <div class="space-y-1.5" x-show="open" x-transition:enter="transition ease-out duration-200"
-                          x-transition:enter-start="opacity-0 transform -translate-y-2"
-                          x-transition:enter-end="opacity-100 transform translate-y-0">
+                      <div class="space-y-1.5" x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform -translate-y-2"
+                        x-transition:enter-end="opacity-100 transform translate-y-0">
+                        @if ($medicine->countries->count() > 0)
                           @foreach ($medicine->countries as $country)
                             <div
                               class="flex items-center justify-between rounded-xl border border-blue-100/50 bg-gradient-to-br from-white to-blue-50/30 p-2 shadow-sm transition-colors hover:bg-blue-50/50">
@@ -164,9 +169,13 @@
                               </span>
                             </div>
                           @endforeach
-                        </div>
+                        @else
+                          <div class="flex items-center justify-center rounded-xl border border-red-100/50 bg-gradient-to-br from-white to-red-50/30 p-3 shadow-sm">
+                            <span class="text-xs text-red-500">販売国が設定されていないため、価格情報はありません</span>
+                          </div>
+                        @endif
                       </div>
-                    @endif
+                    </div>
                   </div>
 
                   <!-- フッター部分（お気に入りボタン） -->

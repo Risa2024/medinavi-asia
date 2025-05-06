@@ -42,11 +42,11 @@
                         <h2 class="line-clamp-1 text-base font-bold text-blue-950">{{ $medicine->name }}</h2>
 
                         <!-- 販売国フラグ -->
-                        @if ($medicine->countries->count() > 0)
-                          <div class="mt-2 h-14 overflow-y-auto">
-                            <div class="space-y-1">
-                              <!-- 全ての国を表示 -->
-                              <div class="flex flex-wrap gap-1.5">
+                        <div class="mt-2 min-h-14 md:h-14 overflow-y-auto">
+                          <div class="space-y-1">
+                            <!-- 全ての国を表示 -->
+                            <div class="flex flex-wrap gap-1.5">
+                              @if ($medicine->countries->count() > 0)
                                 @foreach ($medicine->countries as $country)
                                   <span
                                     class="inline-flex shrink-0 items-center rounded-lg border border-blue-100 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 shadow-sm">
@@ -58,10 +58,6 @@
                           </div>
                         @endif
                       </div>
-                      <span
-                        class="shrink-0 rounded-lg bg-gradient-to-r from-blue-500 to-emerald-500 px-2 py-0.5 text-xs font-medium text-white shadow-sm">
-                        {{ $medicine->category }}
-                      </span>
                     </div>
                   </div>
 
