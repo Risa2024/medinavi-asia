@@ -44,40 +44,16 @@
                         <!-- 販売国フラグ -->
                         @if ($medicine->countries->count() > 0)
                           <div class="mt-2 h-14 overflow-y-auto">
-                            <div class="space-y-1" x-data="{ showAll: false }">
-                              <!-- 最初の2カ国を表示 -->
+                            <div class="space-y-1">
+                              <!-- 全ての国を表示 -->
                               <div class="flex flex-wrap gap-1.5">
-                                @foreach ($medicine->countries->take(2) as $country)
+                                @foreach ($medicine->countries as $country)
                                   <span
                                     class="inline-flex shrink-0 items-center rounded-lg border border-blue-100 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 shadow-sm">
                                     {{ $country->emoji }} {{ $country->name }}
                                   </span>
                                 @endforeach
                               </div>
-
-                              <!-- 残りの国を表示（トグル） -->
-                              @if ($medicine->countries->count() > 2)
-                                <div class="flex flex-wrap gap-1.5 pt-1" x-show="showAll"
-                                  x-transition:enter="transition ease-out duration-200"
-                                  x-transition:enter-start="opacity-0 transform -translate-y-1"
-                                  x-transition:enter-end="opacity-100 transform translate-y-0">
-                                  @foreach ($medicine->countries->skip(2) as $country)
-                                    <span
-                                      class="inline-flex shrink-0 items-center rounded-lg border border-blue-100 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 shadow-sm">
-                                      {{ $country->emoji }} {{ $country->name }}
-                                    </span>
-                                  @endforeach
-                                </div>
-
-                                <!-- 表示切り替えボタン -->
-                                <div class="mt-1.5">
-                                  <button
-                                    class="inline-flex items-center whitespace-nowrap rounded-lg border border-blue-100 bg-white/80 px-2.5 py-1 text-xs font-medium text-blue-600 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-700"
-                                    @click="showAll = true" x-show="!showAll">
-                                    <span>+{{ $medicine->countries->count() - 2 }}ヶ国を表示</span>
-                                  </button>
-                                </div>
-                              @endif
                             </div>
                           </div>
                         @endif
