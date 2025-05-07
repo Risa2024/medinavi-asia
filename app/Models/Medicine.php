@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class Medicine extends Model
 {
@@ -37,5 +38,18 @@ class Medicine extends Model
     public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * 特定の通貨コードの国でのみ販売されている薬をフィルタリングするスコープ
+     */
+    public function scopeInCountry($query, $countryCode)
+    {
+        if ($countryCode) {
+            return $query->whereHas('countries', function($q) use ($countryCode) {
+                $q->where('countries.currency_code', $countryCode);
+            });
+        }
+        return $query;
     }
 }

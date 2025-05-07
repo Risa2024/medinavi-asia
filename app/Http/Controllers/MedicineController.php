@@ -40,16 +40,7 @@ class MedicineController extends Controller
 
             // 選択された国のフィルタリング
             if ($countryCode) {
-                // まずは薬のIDのみを取得するサブクエリを作成
-                $medicineIds = DB::table('medicines_country')
-                    ->join('countries', 'medicines_country.country_id', '=', 'countries.id')
-                    ->where('countries.currency_code', '=', $countryCode)
-                    ->select('medicines_country.medicine_id')
-                    ->pluck('medicine_id')
-                    ->toArray();
-
-                // 取得したIDでメインクエリをフィルタリング
-                $baseQuery->whereIn('id', $medicineIds);
+                $baseQuery->inCountry($countryCode);
             }
 
             // 最終的な結果を取得
@@ -114,33 +105,16 @@ class MedicineController extends Controller
     {
         $countryCode = $request->input('country_code');
 
-        // 最もシンプルな実装 - まず全ての薬を取得
-        $allMedicines = Medicine::where('category', $category)->with('countries')->get();
+        // クエリビルダーを作成
+        $query = Medicine::where('category', $category);
 
-        // 国が選択されている場合、手動でフィルタリング
+        // 国が選択されている場合、スコープを使用してフィルタリング
         if ($countryCode) {
-            $medicines = collect();
-
-            foreach ($allMedicines as $medicine) {
-                $hasCountry = false;
-
-                // 販売国をチェック
-                foreach ($medicine->countries as $country) {
-                    if ($country->currency_code === $countryCode) {
-                        $hasCountry = true;
-                        break;
-                    }
-                }
-
-                // 選択された国で販売されている場合のみ追加
-                if ($hasCountry) {
-                    $medicines->push($medicine);
-                }
-            }
-        } else {
-            // 国が選択されていない場合は全ての薬
-            $medicines = $allMedicines;
+            $query->inCountry($countryCode);
         }
+
+        // 結果を取得
+        $medicines = $query->with('countries')->get();
 
         // 国と通貨情報の取得
         $countries = Country::all()->keyBy('code');
