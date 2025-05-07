@@ -64,7 +64,7 @@
                     class="px-3 py-1 rounded border text-sm font-medium
                       @if(old('country') == $country->name) bg-medinavi-blue text-white @else bg-white text-medinavi-blue border-medinavi-blue @endif
                       hover:bg-medinavi-blue hover:text-white transition"
-                    onclick="selectCountry('{{ $country->name }}'); window.location.href='{{ route('medicines.category') }}?country_code={{ $country->currency_code }}';"
+                    onclick="selectCountry('{{ $country->name }}', '{{ $country->currency_code }}')"
                     id="country-btn-{{ $country->id }}"
                   >
                     {{ $country->emoji ?? '' }}{{ $country->name }}
@@ -84,7 +84,7 @@
           <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
             <!-- 種類から検索 -->
             <a class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              href="{{ route('medicines.category') }}">
+              href="{{ route('medicines.category', ['country_code' => request('country_code')]) }}">
               <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
@@ -116,7 +116,7 @@
 
             <!-- 商品名で検索 -->
             <a class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              href="{{ route('medicines.search') }}">
+              href="{{ route('medicines.search', ['country_code' => request('country_code')]) }}">
               <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
@@ -165,7 +165,7 @@
         document.getElementById('auto-tab').classList.remove('bg-blue-50');
       }
     }
-    function selectCountry(name) {
+    function selectCountry(name, currencyCode) {
       document.getElementById('manual-country').textContent = name;
       // すべてのボタンの色をリセット
       document.querySelectorAll('[id^=country-btn-]').forEach(btn => {
@@ -178,6 +178,10 @@
         selectedBtn.classList.add('bg-medinavi-blue', 'text-white');
         selectedBtn.classList.remove('bg-white', 'text-medinavi-blue');
       }
+      // URLに国コードを追加
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('country_code', currencyCode);
+      window.history.pushState({}, '', currentUrl);
     }
   </script>
 </x-app-layout>
