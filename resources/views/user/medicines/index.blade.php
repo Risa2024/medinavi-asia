@@ -33,6 +33,28 @@
           @else
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               @foreach ($medicines as $medicine)
+                <!-- 国のフィルタリング（より厳密なバージョン） -->
+                @php
+                  $shouldShow = true;
+
+                  if ($countryCode) {
+                    // より厳密なチェック：国のcurrency_codeを直接確認
+                    $hasMatchingCountry = false;
+
+                    // 各薬の販売国をループ
+                    foreach ($medicine->countries as $country) {
+                      // 選択されたcountryCodeと一致する国があるかチェック
+                      if ($country->currency_code === $countryCode) {
+                        $hasMatchingCountry = true;
+                        break;
+                      }
+                    }
+
+                    $shouldShow = $hasMatchingCountry;
+                  }
+                @endphp
+
+                @if ($shouldShow)
                 <div
                   class="group flex h-full flex-col overflow-hidden rounded-2xl border border-blue-100 bg-blue-50/10 shadow-sm transition-all duration-300 hover:bg-blue-50/20 hover:shadow-lg">
                   <!-- ヘッダー部分（薬名とカテゴリ） -->
@@ -185,6 +207,7 @@
                     </div>
                   </div>
                 </div>
+                @endif
               @endforeach
             </div>
           @endif

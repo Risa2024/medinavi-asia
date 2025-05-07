@@ -5,6 +5,7 @@ use App\Models\Medicine;
 use App\Models\Country;
 use App\Models\Exchange;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 //薬の検索・カテゴリ別表示・検索フォームの画面を管理してるコントローラー
 //検索ページの動きを全部仕切ってる責任者みたいなページ
 
@@ -20,34 +21,39 @@ class MedicineController extends Controller
         $category = $request->input('category');
         $countryCode = $request->input('country_code');
 
-        $medicines = Medicine::query();
-
-        // 商品名検索
-        if ($query) {
-            $medicines->where('name', 'like', "%{$query}%");
-        }
-
-        // カテゴリ検索
-        if ($category) {
-            $medicines->where('category', $category);
-        }
-
         // 検索条件がない場合は、空のコレクションを返す
         if (!$query && !$category) {
             $medicines = collect([]);
         } else {
-            // 選択された国でフィルタリング
-            if ($countryCode) {
-                // 選択された国の薬だけを取得（クエリレベルでフィルタリング）
-                $medicineIds = \DB::table('medicines_country')
-                    ->where('currency_code', $countryCode)
-                    ->pluck('medicine_id');
+            // 基本的なクエリビルダー
+            $baseQuery = Medicine::query();
 
-                $medicines = $medicines->whereIn('id', $medicineIds)->with('countries')->get();
-            } else {
-                // 国選択なしの場合は全ての薬を表示
-                $medicines = $medicines->with('countries')->get();
+            // 商品名検索
+            if ($query) {
+                $baseQuery->where('name', 'like', "%{$query}%");
             }
+
+            // カテゴリ検索
+            if ($category) {
+                $baseQuery->where('category', $category);
+            }
+
+            // 選択された国のフィルタリング
+            if ($countryCode) {
+                // まずは薬のIDのみを取得するサブクエリを作成
+                $medicineIds = DB::table('medicines_country')
+                    ->join('countries', 'medicines_country.country_id', '=', 'countries.id')
+                    ->where('countries.currency_code', '=', $countryCode)
+                    ->select('medicines_country.medicine_id')
+                    ->pluck('medicine_id')
+                    ->toArray();
+
+                // 取得したIDでメインクエリをフィルタリング
+                $baseQuery->whereIn('id', $medicineIds);
+            }
+
+            // 最終的な結果を取得
+            $medicines = $baseQuery->with('countries')->get();
         }
 
         // 国と通貨情報の取得
@@ -107,19 +113,33 @@ class MedicineController extends Controller
     public function categoryShow(Request $request, $category)
     {
         $countryCode = $request->input('country_code');
-        $medicines = Medicine::where('category', $category);
 
-        // 選択された国でフィルタリング
+        // 最もシンプルな実装 - まず全ての薬を取得
+        $allMedicines = Medicine::where('category', $category)->with('countries')->get();
+
+        // 国が選択されている場合、手動でフィルタリング
         if ($countryCode) {
-            // 選択された国の薬だけを取得（クエリレベルでフィルタリング）
-            $medicineIds = \DB::table('medicines_country')
-                ->where('currency_code', $countryCode)
-                ->pluck('medicine_id');
+            $medicines = collect();
 
-            $medicines = $medicines->whereIn('id', $medicineIds)->with('countries')->get();
+            foreach ($allMedicines as $medicine) {
+                $hasCountry = false;
+
+                // 販売国をチェック
+                foreach ($medicine->countries as $country) {
+                    if ($country->currency_code === $countryCode) {
+                        $hasCountry = true;
+                        break;
+                    }
+                }
+
+                // 選択された国で販売されている場合のみ追加
+                if ($hasCountry) {
+                    $medicines->push($medicine);
+                }
+            }
         } else {
-            // 国選択なしの場合は全ての薬を表示
-            $medicines = $medicines->with('countries')->get();
+            // 国が選択されていない場合は全ての薬
+            $medicines = $allMedicines;
         }
 
         // 国と通貨情報の取得
