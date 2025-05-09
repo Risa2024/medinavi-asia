@@ -42,6 +42,7 @@ class Medicine extends Model
 
     /**
      * 特定の国でのみ販売されている薬をフィルタリングするスコープ
+     * scopeInCountryは特殊な名前で、Medicine::inCountry('JP')のように使える
      */
     public function scopeInCountry($query, $countryCode)
     {
@@ -54,11 +55,15 @@ class Medicine extends Model
                 'condition' => "countries.id = {$countryCode} AND medicines_country.price > 0"
             ]);
 
-            return $query->whereHas('countries', function($q) use ($countryCode) {
-                $q->where('countries.id', $countryCode)
-                  ->where('medicines_country.price', '>', 0);
+            return $query->whereHas('countries', function($q) use ($countryCode) {//whereHas('countries')は「国テーブルと関連づけられているか」をチェック
+                $q->where('countries.id', $countryCode)//where('countries.id', $countryCode)は「指定された国コードと一致するか」をチェック
+                  ->where('medicines_country.price', '>', 0);//where('medicines_country.price', '>', 0)は「その国での価格が0より大きいか」（実際に販売されているか）をチェック
             });
         }
         return $query;
     }
 }
+//MedicineControllerで次のように使ってる
+//if ($countryId) {
+//    $baseQuery->inCountry($countryId);
+//}
