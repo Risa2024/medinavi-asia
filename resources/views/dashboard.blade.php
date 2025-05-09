@@ -28,6 +28,13 @@
 
   <div class="min-h-screen bg-slate-50">
     <main class="px-4 py-8 sm:px-6 lg:px-8">
+      <!-- エラーメッセージ表示 -->
+      @if(session('error_message'))
+      <div class="mb-6 rounded-lg bg-red-50 p-4 text-center text-red-700">
+        {{ session('error_message') }}
+      </div>
+      @endif
+
       <!-- 検索セクション -->
       <section class="mb-12">
         <div class="mb-8 text-center">
@@ -64,7 +71,7 @@
                     class="px-3 py-1 rounded border text-sm font-medium
                       @if(old('country') == $country->name) bg-medinavi-blue text-white @else bg-white text-medinavi-blue border-medinavi-blue @endif
                       hover:bg-medinavi-blue hover:text-white transition"
-                    onclick="selectCountry('{{ $country->name }}', '{{ $country->currency_code }}')"
+                    onclick="selectCountry('{{ $country->name }}', '{{ $country->id }}')"
                     id="country-btn-{{ $country->id }}"
                   >
                     {{ $country->emoji ?? '' }}{{ $country->name }}
@@ -84,7 +91,7 @@
           <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
             <!-- 種類から検索 -->
             <a class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              href="{{ route('medicines.category', ['country_code' => request('country_code')]) }}">
+              href="#" id="category-link"><!--国が選択されているか確認してから遷移する。document.getElementById('category-link')でこの要素を取得して処理を行う-->
               <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
@@ -116,7 +123,7 @@
 
             <!-- 商品名で検索 -->
             <a class="transform overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              href="{{ route('medicines.search', ['country_code' => request('country_code')]) }}">
+              href="#" id="search-link">
               <div class="h-2 bg-gradient-to-r from-medinavi-blue to-medinavi-blue-light"></div>
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
@@ -165,7 +172,7 @@
         document.getElementById('auto-tab').classList.remove('bg-blue-50');
       }
     }
-    function selectCountry(name, currencyCode) {
+    function selectCountry(name, countryId) {
       document.getElementById('manual-country').textContent = name;
       // すべてのボタンの色をリセット
       document.querySelectorAll('[id^=country-btn-]').forEach(btn => {
@@ -178,10 +185,125 @@
         selectedBtn.classList.add('bg-medinavi-blue', 'text-white');
         selectedBtn.classList.remove('bg-white', 'text-medinavi-blue');
       }
-      // URLに国コードを追加
+      // URLに国IDを追加
       const currentUrl = new URL(window.location.href);
-      currentUrl.searchParams.set('country_code', currencyCode);
+      currentUrl.searchParams.set('country_code', countryId);
       window.history.pushState({}, '', currentUrl);
+
+      // リンク先URLも更新
+      updateSearchLinks(countryId);
+
+      // 選択された国を保存
+      localStorage.setItem('selected_country_id', countryId);
+      localStorage.setItem('selected_country_name', name);
     }
+
+    function updateSearchLinks(countryId) {
+      // カテゴリ検索リンクを更新
+      const categoryLink = document.querySelector('a[href*="medicines.category"]');
+      if (categoryLink) {
+        const categoryUrl = new URL(categoryLink.href);
+        categoryUrl.searchParams.set('country_code', countryId);
+        categoryLink.href = categoryUrl.toString();
+      }
+
+      // 商品名検索リンクを更新
+      const searchLink = document.querySelector('a[href*="medicines.search"]');
+      if (searchLink) {
+        const searchUrl = new URL(searchLink.href);
+        searchUrl.searchParams.set('country_code', countryId);
+        searchLink.href = searchUrl.toString();
+      }
+    }
+
+    // ページ読み込み時の処理
+    document.addEventListener('DOMContentLoaded', function() {
+      // URLパラメータから国IDを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      let countryId = urlParams.get('country_code');
+
+      // URLパラメータになければLocalStorageから取得
+      if (!countryId) {
+        countryId = localStorage.getItem('selected_country_id');
+      }
+
+      // 国IDがある場合は選択状態を復元
+      if (countryId) {
+        const countryBtn = document.getElementById('country-btn-' + countryId);
+        if (countryBtn) {
+          const countryName = countryBtn.textContent.trim();
+          selectCountry(countryName, countryId);
+          // 手動選択タブを表示
+          switchMode('manual');
+        }
+      }
+
+      // 検索リンクの更新
+      updateSearchLinks(countryId);
+
+      // カテゴリ検索リンクのクリックイベント
+      document.getElementById('category-link').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // 国が選択されているか確認
+        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code');
+
+        if (!selectedCountryId) {
+          alert('国を選択してから検索してください');
+          // スクロールして国選択部分を表示
+          document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        // 選択された国コードを含めてリダイレクト
+        window.location.href = "{{ route('medicines.category') }}?country_code=" + selectedCountryId;
+      });
+
+      // 商品名検索リンクのクリックイベント
+      document.getElementById('search-link').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // 国が選択されているか確認
+        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code');
+
+        if (!selectedCountryId) {
+          alert('国を選択してから検索してください');
+          // スクロールして国選択部分を表示
+          document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        // 選択された国コードを含めてリダイレクト
+        window.location.href = "{{ route('medicines.search') }}?country_code=" + selectedCountryId;
+      });
+
+      // 検索カードのクリックイベントを追加（国が選択されていなければ警告表示）
+      const searchCards = document.querySelectorAll('a[href*="medicines"]');
+      searchCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          const urlParams = new URLSearchParams(window.location.search);
+          const countryId = urlParams.get('country_code');
+
+          if (!countryId) {
+            e.preventDefault();
+            alert('国を選択してから検索してください');
+            // スクロールして国選択部分を表示
+            document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    });
   </script>
 </x-app-layout>
+<!--試行錯誤したこと
+    データ連携&引き継ぎ
+    ・ダッシュボードで選択した国のIDをURLパラメータとlocalStorageの両方に保存
+    ・薬の検索・表示時にcountry_codeパラメータを使用
+    バックエンドでフィルタリング
+    ・MedicineControllerのinCountryメソッドで、選択された国で販売されている薬だけを抽出
+    フロントエンドでの国選択の検証
+    ・国が選択されていない場合は検索を実行せず、警告を表示
+    複数の場所での条件チェック
+    ・フロントエンド（JavaScript）とバックエンド（PHP）の両方で国選択の有無を確認
+    ・localStorageとURLパラメータの両方から国情報を取得する二重の仕組み
+-->
