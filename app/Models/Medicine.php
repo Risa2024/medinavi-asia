@@ -41,13 +41,22 @@ class Medicine extends Model
     }
 
     /**
-     * 特定の通貨コードの国でのみ販売されている薬をフィルタリングするスコープ
+     * 特定の国でのみ販売されている薬をフィルタリングするスコープ
      */
     public function scopeInCountry($query, $countryCode)
     {
+        \Log::info('scopeInCountry呼び出し', [
+            'country_id' => $countryCode
+        ]);
+
         if ($countryCode) {
+            \Log::info('国別フィルタリング条件', [
+                'condition' => "countries.id = {$countryCode} AND medicines_country.price > 0"
+            ]);
+
             return $query->whereHas('countries', function($q) use ($countryCode) {
-                $q->where('countries.currency_code', $countryCode);
+                $q->where('countries.id', $countryCode)
+                  ->where('medicines_country.price', '>', 0);
             });
         }
         return $query;
