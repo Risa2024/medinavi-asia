@@ -17,17 +17,14 @@ Route::get('/dashboard', [MedicineController::class, 'dashboard'])->middleware([
 
 //認証済みユーザーのみアクセス可能なグループ
 Route::middleware('auth')->group(function () {
+    // カテゴリー別表示のルート - 先に定義して他のルートに干渉されないようにした
+    Route::get('/medicines/category/{category}', [MedicineController::class, 'categoryShow'])->name('medicines.category.show');
+
     // 薬の検索関連ルート
     Route::get('/medicines/search', [MedicineController::class, 'search'])->name('medicines.search');
     Route::get('/medicines/category', [MedicineController::class, 'category'])->name('medicines.category');
     Route::get('/medicines/{medicine}', [MedicineController::class, 'show'])->name('medicines.show');
     Route::get('/medicines', [MedicineController::class, 'index'])->name('medicines.index');
-
-    // categoryShowはmedicines.index用に更新
-    //カテゴリー別表示のリダイレクト設定
-    Route::get('/medicines/category/{category}', function ($category) {
-        return redirect()->route('medicines.index', ['category' => $category]);
-    })->name('medicines.category.show');
 
     // お気に入り機能のルート
     Route::prefix('user')->name('user.')->group(function () {
