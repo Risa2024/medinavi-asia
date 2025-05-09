@@ -1,3 +1,20 @@
+<!--
+# 薬のカテゴリ一覧ページ (category.blade.php)
+
+## 主な機能
+- 薬のカテゴリ一覧を表示
+- 各カテゴリへのリンクに国コードを付与
+- カテゴリをクリックすると、そのカテゴリの薬一覧ページへ遷移
+- URLパラメータとlocalStorageの両方から国コードを取得する二重保険
+- カテゴリURLのデバッグログ出力
+
+## 関連ファイル
+- MedicineController@category: カテゴリ一覧表示
+- MedicineController@categoryShow: カテゴリ別薬一覧表示
+- index.blade.php: 薬の検索結果表示
+- dashboard.blade.php: 国選択UI
+-->
+
 <x-app-layout>
   <div class="min-h-screen bg-[#F8FAFC] py-6">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8 lg:px-12">
