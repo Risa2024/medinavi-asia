@@ -47,6 +47,31 @@ class GeoController extends Controller
                 ]);
             }
         }
-        return response()->json(['country' => null, 'country_id' => null]);
+        // 対応国以外の場合は逆ジオコーディングAPIで国名を取得
+        $url = "https://nominatim.openstreetmap.org/reverse?format=json&lat={$lat}&lon={$lng}&zoom=5&addressdetails=1";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'medinavi-asia/1.0 (your-email@example.com)');
+        $json = curl_exec($ch);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+        \Log::info('Nominatim API URL', ['url' => $url]);
+        \Log::info('Nominatim API Response', ['json' => $json]);
+        \Log::info('Nominatim cURL Error', ['error' => $curlError]);
+        $countryName = null;
+        if ($json) {
+            $data = json_decode($json, true);
+            \Log::info('Nominatim API Parsed', ['data' => $data]);
+            if (isset($data['address']['country'])) {
+                $countryName = $data['address']['country'];
+            }
+        }
+        if (!$countryName) {
+            $countryName = '国情報が取得できませんでした';
+        }
+        return response()->json(['country' => $countryName, 'country_id' => null]);
     }
 }

@@ -238,6 +238,13 @@
 
     // ページ読み込み時の処理
     document.addEventListener('DOMContentLoaded', function() {
+      // localStorageから国名を復元し、なければ自動取得中と表示
+      const savedCountryName = localStorage.getItem('selected_country_name');
+      if (savedCountryName) {
+        document.getElementById('auto-country').textContent = savedCountryName;
+      } else {
+        document.getElementById('auto-country').textContent = '（自動取得中...）';
+      }
       // 位置情報取得ボタンのイベントリスナー
       document.getElementById('get-location').addEventListener('click', function() {
         if (navigator.geolocation) {
@@ -249,28 +256,31 @@
               const longitude = position.coords.longitude;
 
               // 位置情報から国を判定するAPIを呼び出す
-              fetch(`/api/get-country?lat=${latitude}&lng=${longitude}`)
+              fetch(`http://localhost:8000/api/get-country?lat=${latitude}&lng=${longitude}`)
                 .then(response => response.json())
                 .then(data => {
                   if (data.country) {
                     document.getElementById('auto-country').textContent = data.country;
-                    // 国IDを設定
-                    const countryId = data.country_id;
-                    if (countryId) {
-                      localStorage.setItem('selected_country_id', countryId);
-                      localStorage.setItem('selected_country_name', data.country);
-                      updateSearchLinks(countryId);
+                    localStorage.setItem('selected_country_name', data.country); // 必ず保存
+                    if (data.country_id) {
+                      // 対応国ならその国IDで
+                      localStorage.setItem('selected_country_id', data.country_id);
+                      updateSearchLinks(data.country_id);
+                    } else {
+                      // 対応国以外ならALLで検索、国名は表示
+                      localStorage.setItem('selected_country_id', 'all');
+                      updateSearchLinks('all');
                     }
                   } else {
-                    document.getElementById('auto-country').textContent = '位置情報から国を特定できませんでした';
-                    // 国が特定できない場合はALLモードに設定
-                    selectCountry('ALL', 'all');
+                    document.getElementById('auto-country').textContent = '国情報が取得できませんでした';
+                    localStorage.setItem('selected_country_id', 'all');
+                    localStorage.setItem('selected_country_name', '国情報が取得できませんでした');
+                    updateSearchLinks('all');
                   }
                 })
                 .catch(error => {
                   console.error('Error:', error);
                   document.getElementById('auto-country').textContent = '位置情報の取得に失敗しました';
-                  // エラー時もALLモードに設定
                   selectCountry('ALL', 'all');
                 });
             },
@@ -329,16 +339,18 @@
   </script>
 </x-app-layout>
 <!--試行錯誤したこと
-    データ連携&引き継ぎ
-    ・ダッシュボードで選択した国のIDをURLパラメータとlocalStorageの両方に保存
+    位置情報・国名取得
+    ・ダッシュボードで選択した国のIDと国名をlocalStorageとURLパラメータの両方に保存
     ・薬の検索・表示時にcountry_codeパラメータを使用
+    ・逆ジオコーディングAPI（Nominatim）で現在地の国名を取得し、対応国以外でも国名を表示
+    ・APIレスポンスやcURLエラー、パース結果をLaravelログに出力してデバッグ
     バックエンドでフィルタリング
     ・MedicineControllerのinCountryメソッドで、選択された国で販売されている薬だけを抽出
+    ・country_code=allまたは空の場合は全ての国の薬を表示
     フロントエンドでの国選択の検証
     ・国が選択されていない場合は検索を実行せず、警告を表示
-    複数の場所での条件チェック
-    ・フロントエンド（JavaScript）とバックエンド（PHP）の両方で国選択の有無を確認
     ・localStorageとURLパラメータの両方から国情報を取得する二重の仕組み
+    ・対応国以外の国名も「現在の国」欄に必ず表示されるように修正
 -->
 <!--ダッシュボード改善
 - 国選択UIを改善し、選択状態を視覚的に表示
@@ -346,4 +358,7 @@
 - 検索リンクに国コードを自動追加する機能を実装
 - 国未選択時の警告表示と誘導を追加
 - 選択された国の薬のみを表示するフィルタリングを強化
+- 位置情報自動取得時に対応国以外でも国名を表示し、検索はALLで行うように修正
+- Nominatim API利用時はUser-Agentを必ず設定し、APIブロック対策
+- APIレスポンスやエラーをLaravelログに出力し、デバッグ性を向上
 -->

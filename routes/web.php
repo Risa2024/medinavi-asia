@@ -57,4 +57,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {//prefix('admin
     Route::delete('/categories', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
 });
 
+// どのURLからでもアクセスできるようにグローバルに追加
+Route::get('/api/get-country', [\App\Http\Controllers\GeoController::class, 'getCountry']);
+
 require __DIR__.'/auth.php';
