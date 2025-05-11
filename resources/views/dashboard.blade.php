@@ -301,8 +301,8 @@
         countryId = localStorage.getItem('selected_country_id') || 'all';
       }
 
-      // 国IDがある場合は選択状態を復元
-      if (countryId) {
+      // 国IDが'all'や未設定の場合は自動選択しない
+      if (countryId && countryId !== 'all') {
         const countryBtn = document.getElementById('country-btn-' + countryId);
         if (countryBtn) {
           const countryName = countryBtn.textContent.trim();
