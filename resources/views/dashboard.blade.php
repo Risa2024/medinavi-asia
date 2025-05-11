@@ -85,7 +85,10 @@
                 <span id="auto-country" class="text-medinavi-blue font-bold text-sm">（自動取得中...）</span>
               </div>
               <p class="text-xs text-slate-500 text-center">現在地が対応国（インドネシア・タイ・マレーシア・ベトナム）以外の場合、全ての国の薬が表示されます</p>
-              <button id="get-location" class="mt-2 w-full py-1 rounded-lg border border-medinavi-blue text-medinavi-blue font-bold bg-white text-sm hover:bg-blue-50">
+              <button id="get-location" class="mt-2 w-full py-2 rounded-lg border border-medinavi-blue bg-white text-medinavi-blue font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-50 transition">
+                <svg class="h-4 w-4 text-medinavi-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.53 16.11a6 6 0 016.94 0M5.07 12.53a11 11 0 0113.86 0M1.5 9a16.5 16.5 0 0121 0M12 20h.01" />
+                </svg>
                 位置情報を取得
               </button>
             </div>
