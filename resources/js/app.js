@@ -27,16 +27,27 @@ class LocationManager {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
             });
             const { latitude, longitude } = position.coords;
-            const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`
-            );
-            const data = await response.json();
-            if (data.address && data.address.country) {
-                const country = data.address.country;
-                this.updateLocationDisplay(country);
-            } else {
-                this.updateLocationDisplay('国情報が取得できませんでした');
-            }
+            fetch(`/api/get-country?lat=${latitude}&lng=${longitude}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.country && data.country_id) {
+                        const country = data.country;
+                        this.updateLocationDisplay(country);
+                        // 国IDを設定
+                        const countryId = data.country_id;
+                        localStorage.setItem('selected_country_id', countryId);
+                        localStorage.setItem('selected_country_name', country);
+                        updateSearchLinks(countryId);
+                    } else {
+                        // 対応外の国の場合はALLモード
+                        this.updateLocationDisplay('全ての国');
+                        selectCountry('ALL', 'all');
+                    }
+                })
+                .catch(error => {
+                    this.updateLocationDisplay('位置情報の取得に失敗しました');
+                    selectCountry('ALL', 'all');
+                });
         } catch (e) {
             this.updateLocationDisplay('取得できませんでした');
         }

@@ -129,11 +129,9 @@ class MedicineController extends Controller
             })
             ->merge($categories->diff($categoryOrder));
 
-        // countryIdが存在するかどうかを確認
-        if (!$countryId) {
-            // フラッシュメッセージを追加
-            return redirect()->route('dashboard')
-                ->with('error_message', 'カテゴリ表示には国選択が必要です。ダッシュボードで国を選択してください。');
+        // countryIdが'all'または空の場合は全ての国を対象にする
+        if (!$countryId || $countryId === 'all') {
+            $countryId = null;
         }
 
         return view('user.medicines.category', compact('sortedCategories', 'countryId'));
@@ -159,13 +157,9 @@ class MedicineController extends Controller
             'route_params' => $request->route()->parameters()
         ]);
 
-        // country_codeパラメータが存在しない場合はダッシュボードにリダイレクト
-        if (!$countryId && $request->query('no_redirect') !== 'true') {
-            \Log::info('国コードがないため、ダッシュボードにリダイレクト', [
-                'category' => $category
-            ]);
-            // フラッシュメッセージを追加
-            return redirect()->route('dashboard')->with('error_message', 'カテゴリ表示には国選択が必要です');
+        // country_codeが'all'または空の場合は国フィルタをかけない
+        if (!$countryId || $countryId === 'all') {
+            $countryId = null;
         }
 
         // クエリビルダーを作成

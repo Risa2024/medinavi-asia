@@ -62,9 +62,20 @@
                 <span id="auto-country" class="text-medinavi-blue font-bold text-sm">（自動取得中...）</span>
               </div>
               <p class="text-xs text-slate-500 text-center">現在地が対応国（インドネシア・タイ・マレーシア・ベトナム）以外の場合、全ての国の薬が表示されます</p>
+              <button id="get-location" class="mt-2 w-full py-1 rounded-lg border border-medinavi-blue text-medinavi-blue font-bold bg-white text-sm hover:bg-blue-50">
+                位置情報を取得
+              </button>
             </div>
             <div id="manual-content" class="hidden">
               <div class="flex gap-2 justify-center mb-2 flex-wrap md:flex-nowrap overflow-x-auto">
+                <button
+                  type="button"
+                  class="px-3 py-1 rounded border text-sm font-medium bg-white text-medinavi-blue border-medinavi-blue hover:bg-medinavi-blue hover:text-white transition"
+                  onclick="selectCountry('ALL', 'all')"
+                  id="country-btn-all"
+                >
+                  🌏 全ての国
+                </button>
                 @foreach ($countries as $country)
                   <button
                     type="button"
@@ -180,14 +191,19 @@
         btn.classList.add('bg-white', 'text-medinavi-blue');
       });
       // 選択したボタンだけ色を変える
-      const selectedBtn = Array.from(document.querySelectorAll('[id^=country-btn-]')).find(btn => btn.textContent.trim() === name);
+      const selectedBtn = document.getElementById('country-btn-' + countryId);
       if (selectedBtn) {
         selectedBtn.classList.add('bg-medinavi-blue', 'text-white');
         selectedBtn.classList.remove('bg-white', 'text-medinavi-blue');
       }
+
       // URLに国IDを追加
       const currentUrl = new URL(window.location.href);
-      currentUrl.searchParams.set('country_code', countryId);
+      if (countryId === 'all') {
+        currentUrl.searchParams.delete('country_code');
+      } else {
+        currentUrl.searchParams.set('country_code', countryId);
+      }
       window.history.pushState({}, '', currentUrl);
 
       // リンク先URLも更新
@@ -200,31 +216,86 @@
 
     function updateSearchLinks(countryId) {
       // カテゴリ検索リンクを更新
-      const categoryLink = document.querySelector('a[href*="medicines.category"]');
+      const categoryLink = document.getElementById('category-link');
       if (categoryLink) {
-        const categoryUrl = new URL(categoryLink.href);
-        categoryUrl.searchParams.set('country_code', countryId);
-        categoryLink.href = categoryUrl.toString();
+        if (countryId === 'all') {
+          categoryLink.href = "{{ route('medicines.category') }}";
+        } else {
+          categoryLink.href = "{{ route('medicines.category') }}?country_code=" + countryId;
+        }
       }
 
       // 商品名検索リンクを更新
-      const searchLink = document.querySelector('a[href*="medicines.search"]');
+      const searchLink = document.getElementById('search-link');
       if (searchLink) {
-        const searchUrl = new URL(searchLink.href);
-        searchUrl.searchParams.set('country_code', countryId);
-        searchLink.href = searchUrl.toString();
+        if (countryId === 'all') {
+          searchLink.href = "{{ route('medicines.search') }}";
+        } else {
+          searchLink.href = "{{ route('medicines.search') }}?country_code=" + countryId;
+        }
       }
     }
 
     // ページ読み込み時の処理
     document.addEventListener('DOMContentLoaded', function() {
+      // 位置情報取得ボタンのイベントリスナー
+      document.getElementById('get-location').addEventListener('click', function() {
+        if (navigator.geolocation) {
+          document.getElementById('auto-country').textContent = '位置情報を取得中...';
+          navigator.geolocation.getCurrentPosition(
+            function(position) {
+              // 位置情報取得成功時の処理
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+
+              // 位置情報から国を判定するAPIを呼び出す
+              fetch(`/api/get-country?lat=${latitude}&lng=${longitude}`)
+                .then(response => response.json())
+                .then(data => {
+                  if (data.country) {
+                    document.getElementById('auto-country').textContent = data.country;
+                    // 国IDを設定
+                    const countryId = data.country_id;
+                    if (countryId) {
+                      localStorage.setItem('selected_country_id', countryId);
+                      localStorage.setItem('selected_country_name', data.country);
+                      updateSearchLinks(countryId);
+                    }
+                  } else {
+                    document.getElementById('auto-country').textContent = '位置情報から国を特定できませんでした';
+                    // 国が特定できない場合はALLモードに設定
+                    selectCountry('ALL', 'all');
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  document.getElementById('auto-country').textContent = '位置情報の取得に失敗しました';
+                  // エラー時もALLモードに設定
+                  selectCountry('ALL', 'all');
+                });
+            },
+            function(error) {
+              // 位置情報取得失敗時の処理
+              console.error('Error:', error);
+              document.getElementById('auto-country').textContent = '位置情報の取得に失敗しました';
+              // エラー時もALLモードに設定
+              selectCountry('ALL', 'all');
+            }
+          );
+        } else {
+          document.getElementById('auto-country').textContent = 'お使いのブラウザは位置情報をサポートしていません';
+          // 位置情報非対応時もALLモードに設定
+          selectCountry('ALL', 'all');
+        }
+      });
+
       // URLパラメータから国IDを取得
       const urlParams = new URLSearchParams(window.location.search);
       let countryId = urlParams.get('country_code');
 
       // URLパラメータになければLocalStorageから取得
       if (!countryId) {
-        countryId = localStorage.getItem('selected_country_id');
+        countryId = localStorage.getItem('selected_country_id') || 'all';
       }
 
       // 国IDがある場合は選択状態を復元
@@ -244,53 +315,15 @@
       // カテゴリ検索リンクのクリックイベント
       document.getElementById('category-link').addEventListener('click', function(e) {
         e.preventDefault();
-
-        // 国が選択されているか確認
-        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code');
-
-        if (!selectedCountryId) {
-          alert('国を選択してから検索してください');
-          // スクロールして国選択部分を表示
-          document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
-          return;
-        }
-
-        // 選択された国コードを含めてリダイレクト
-        window.location.href = "{{ route('medicines.category') }}?country_code=" + selectedCountryId;
+        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code') || 'all';
+        window.location.href = "{{ route('medicines.category') }}" + (selectedCountryId !== 'all' ? "?country_code=" + selectedCountryId : "");
       });
 
       // 商品名検索リンクのクリックイベント
       document.getElementById('search-link').addEventListener('click', function(e) {
         e.preventDefault();
-
-        // 国が選択されているか確認
-        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code');
-
-        if (!selectedCountryId) {
-          alert('国を選択してから検索してください');
-          // スクロールして国選択部分を表示
-          document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
-          return;
-        }
-
-        // 選択された国コードを含めてリダイレクト
-        window.location.href = "{{ route('medicines.search') }}?country_code=" + selectedCountryId;
-      });
-
-      // 検索カードのクリックイベントを追加（国が選択されていなければ警告表示）
-      const searchCards = document.querySelectorAll('a[href*="medicines"]');
-      searchCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-          const urlParams = new URLSearchParams(window.location.search);
-          const countryId = urlParams.get('country_code');
-
-          if (!countryId) {
-            e.preventDefault();
-            alert('国を選択してから検索してください');
-            // スクロールして国選択部分を表示
-            document.querySelector('.flex.justify-center.mb-6').scrollIntoView({ behavior: 'smooth' });
-          }
-        });
+        const selectedCountryId = localStorage.getItem('selected_country_id') || urlParams.get('country_code') || 'all';
+        window.location.href = "{{ route('medicines.search') }}" + (selectedCountryId !== 'all' ? "?country_code=" + selectedCountryId : "");
       });
     });
   </script>
