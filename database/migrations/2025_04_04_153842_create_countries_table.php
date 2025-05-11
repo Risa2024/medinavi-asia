@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('emoji')->nullable();
+            $table->string('code', 2)->nullable();
             $table->string('currency_code');
             $table->timestamps();
         });

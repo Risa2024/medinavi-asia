@@ -259,24 +259,17 @@
               fetch(`http://localhost:8000/api/get-country?lat=${latitude}&lng=${longitude}`)
                 .then(response => response.json())
                 .then(data => {
-                  if (data.country) {
-                    document.getElementById('auto-country').textContent = data.country;
-                    localStorage.setItem('selected_country_name', data.country); // 必ず保存
-                    if (data.country_id) {
-                      // 対応国ならその国IDで
-                      localStorage.setItem('selected_country_id', data.country_id);
-                      updateSearchLinks(data.country_id);
-                    } else {
-                      // 対応国以外ならALLで検索、国名は表示
-                      localStorage.setItem('selected_country_id', 'all');
-                      updateSearchLinks('all');
-                    }
+                  // 必ずlocalStorageを上書き
+                  localStorage.setItem('selected_country_name', data.country || '国情報が取得できませんでした');
+                  if (data.country_id) {
+                    localStorage.setItem('selected_country_id', data.country_id);
+                    updateSearchLinks(data.country_id);
                   } else {
-                    document.getElementById('auto-country').textContent = '国情報が取得できませんでした';
                     localStorage.setItem('selected_country_id', 'all');
-                    localStorage.setItem('selected_country_name', '国情報が取得できませんでした');
                     updateSearchLinks('all');
                   }
+                  // UIにも反映
+                  document.getElementById('auto-country').textContent = data.country || '国情報が取得できませんでした';
                 })
                 .catch(error => {
                   console.error('Error:', error);

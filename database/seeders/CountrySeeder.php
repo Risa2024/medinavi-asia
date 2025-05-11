@@ -17,21 +17,25 @@ class CountrySeeder extends Seeder
             [
                 'name' => 'インドネシア',
                 'emoji' => '🇮🇩',
+                'code' => 'ID',
                 'currency_code' => 'IDR'
             ],
             [
                 'name' => 'タイ',
                 'emoji' => '🇹🇭',
+                'code' => 'TH',
                 'currency_code' => 'THB'
             ],
             [
                 'name' => 'マレーシア',
                 'emoji' => '🇲🇾',
+                'code' => 'MY',
                 'currency_code' => 'MYR'
             ],
             [
                 'name' => 'ベトナム',
                 'emoji' => '🇻🇳',
+                'code' => 'VN',
                 'currency_code' => 'VND'
             ]
         ];
