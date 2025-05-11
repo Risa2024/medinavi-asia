@@ -7,6 +7,24 @@ use App\Models\Favorite;
 use App\Models\Exchange;
 use Illuminate\Http\Request;
 
+/*
+# お気に入り管理コントローラー (FavoriteController.php)
+
+## 主な機能
+- 薬のお気に入り登録・解除
+- ユーザーごとのお気に入り一覧取得
+- Ajax対応のレスポンス返却
+
+## 関連ファイル
+- resources/views/user/medicines/index.blade.php: お気に入りボタン
+- Medicine, Favorite, Userモデル
+
+## 実装メモ
+- 認証（Auth）機能と連携
+- Ajaxリクエストに対応したレスポンス返却
+- 外部APIは利用していない（全て自サービス内処理）
+*/
+
 class FavoriteController extends Controller
 {
     /**

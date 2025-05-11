@@ -12,6 +12,11 @@
 - index.blade.php: 検索結果表示
 - category.blade.php: カテゴリからの検索
 - dashboard.blade.php: 国選択とトップページ
+
+## 実装メモ
+- 国選択状態はlocalStorage・URLパラメータで管理
+- 検索フォーム送信時に国コードをhiddenで付与
+- 検索条件の復元・UI反映あり
 -->
 
 <x-app-layout>

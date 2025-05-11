@@ -5,6 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 
+/*
+# 位置情報・国判定コントローラー (GeoController.php)
+
+## 主な機能
+- 緯度・経度から国名・国IDを判定し返却
+- Nominatim API＋DB照合で日本語国名を返す
+- 主要4カ国は範囲判定で保険
+- API失敗時のエラーハンドリング
+
+## 関連ファイル
+- resources/views/dashboard.blade.php: 国自動取得UI
+- Countryモデル・テーブル
+- CountrySeeder.php: 国情報の初期データ
+
+## 実装メモ
+- Nominatim（OpenStreetMap）APIを利用し逆ジオコーディング
+- country_code優先でDBから日本語名取得
+- 4カ国以外はAPI結果をそのまま返す
+- API・cURLエラーはLaravelログに出力
+*/
+
 class GeoController extends Controller
 {
     public function getCountry(Request $request)

@@ -6,13 +6,18 @@
 - 各カテゴリへのリンクに国コードを付与
 - カテゴリをクリックすると、そのカテゴリの薬一覧ページへ遷移
 - URLパラメータとlocalStorageの両方から国コードを取得する二重保険
-- カテゴリURLのデバッグログ出力
 
 ## 関連ファイル
 - MedicineController@category: カテゴリ一覧表示
 - MedicineController@categoryShow: カテゴリ別薬一覧表示
 - index.blade.php: 薬の検索結果表示
 - dashboard.blade.php: 国選択UI
+- search.blade.php: 商品名検索ページ
+
+## 実装メモ
+- 国コードはlocalStorage・URLパラメータで管理
+- 国コードが未設定の場合は警告表示＆ダッシュボード誘導
+- カテゴリリンク・検索リンクに国コードを自動付与
 -->
 
 <x-app-layout>

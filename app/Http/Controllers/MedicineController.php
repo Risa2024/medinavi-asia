@@ -6,6 +6,27 @@ use App\Models\Country;
 use App\Models\Exchange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+/*
+# 薬情報コントローラー (MedicineController.php)
+
+## 主な機能
+- 薬の検索・一覧・詳細・カテゴリ別表示
+- 国・カテゴリ・キーワードによる多段フィルタ
+- お気に入り機能の連携
+- 検索条件の復元・UI反映
+
+## 関連ファイル
+- resources/views/user/medicines/index.blade.php: 検索結果表示
+- resources/views/user/medicines/category.blade.php: カテゴリ検索
+- resources/views/user/medicines/search.blade.php: 商品名検索
+- dashboard.blade.php: 国選択・検索UI
+- Country, Medicine, Favoriteモデル
+
+## 実装メモ
+- 検索条件はリクエスト・localStorage・URLパラメータから取得
+- 国・カテゴリ・キーワードでの多段フィルタに対応
+- お気に入りはAjaxで即時反映
+*/
 //薬の検索・カテゴリ別表示・検索フォームの画面を管理してるコントローラー
 //検索ページの動きを全部仕切ってる責任者みたいなページ
 

@@ -1,3 +1,26 @@
+<!--
+# ホーム (dashboard.blade.php)
+
+## 主な機能
+- 国選択UI（自動取得・手動選択）の表示と制御
+- 位置情報から国名・国IDを取得し、localStorageとURLパラメータに保存
+- 選択中の国に応じて薬の検索・表示を切り替え
+- カテゴリ検索・商品名検索へのリンク自動生成
+- UX向上のための警告・ガイド表示
+
+## 関連ファイル
+- GeoController.php: 位置情報から国名・国IDを返すAPI
+- CountrySeeder.php: 国情報の初期データ投入
+- user/medicines/category.blade.php: カテゴリ検索ページ
+- user/medicines/search.blade.php: 商品名検索ページ
+- MedicineController.php: 検索・フィルタ処理
+- app.js: 位置情報取得やlocalStorage操作の一部
+
+## 実装メモ
+- 位置情報取得時はNominatim API＋DB照合で日本語国名を表示
+- localStorageとURLパラメータの両方で国情報を管理
+- 初回表示時の国選択状態復元ロジックあり
+-->
 <x-app-layout>
   <x-slot name="header">
     <div class="flex flex-col gap-4 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
@@ -331,27 +354,3 @@
     });
   </script>
 </x-app-layout>
-<!--試行錯誤したこと
-    位置情報・国名取得
-    ・ダッシュボードで選択した国のIDと国名をlocalStorageとURLパラメータの両方に保存
-    ・薬の検索・表示時にcountry_codeパラメータを使用
-    ・逆ジオコーディングAPI（Nominatim）で現在地の国名を取得し、対応国以外でも国名を表示
-    ・APIレスポンスやcURLエラー、パース結果をLaravelログに出力してデバッグ
-    バックエンドでフィルタリング
-    ・MedicineControllerのinCountryメソッドで、選択された国で販売されている薬だけを抽出
-    ・country_code=allまたは空の場合は全ての国の薬を表示
-    フロントエンドでの国選択の検証
-    ・国が選択されていない場合は検索を実行せず、警告を表示
-    ・localStorageとURLパラメータの両方から国情報を取得する二重の仕組み
-    ・対応国以外の国名も「現在の国」欄に必ず表示されるように修正
--->
-<!--ダッシュボード改善
-- 国選択UIを改善し、選択状態を視覚的に表示
-- 国情報をlocalStorageとURLパラメータで保持
-- 検索リンクに国コードを自動追加する機能を実装
-- 国未選択時の警告表示と誘導を追加
-- 選択された国の薬のみを表示するフィルタリングを強化
-- 位置情報自動取得時に対応国以外でも国名を表示し、検索はALLで行うように修正
-- Nominatim API利用時はUser-Agentを必ず設定し、APIブロック対策
-- APIレスポンスやエラーをLaravelログに出力し、デバッグ性を向上
--->

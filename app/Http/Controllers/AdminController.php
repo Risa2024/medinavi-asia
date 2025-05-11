@@ -7,6 +7,27 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+/*
+# 管理者用コントローラー (AdminController.php)
+
+## 主な機能
+- 薬・国・カテゴリのCRUD（作成・編集・削除）
+- 管理画面の表示・操作
+- 国・カテゴリのバリデーション・重複チェック
+- 国削除時の依存チェック
+
+## 関連ファイル
+- resources/views/admin/medicines/create.blade.php: 薬新規作成
+- resources/views/admin/medicines/edit.blade.php: 薬編集
+- Country, Medicineモデル
+- CountrySeeder.php: 国情報の初期データ
+
+## 実装メモ
+- 国・カテゴリの追加・削除はバリデーション付き
+- 国削除時は薬との関連をチェック
+- 管理画面は認証済みユーザーのみアクセス可
+*/
+
 /**
  * 管理者用コントローラー
  *
@@ -229,7 +250,7 @@ class AdminController extends Controller
 
         // 既存のカテゴリーを取得
         $existingCategories = Medicine::select('category')->distinct()->pluck('category')->toArray();
-        
+
         // 新しいカテゴリーが既に存在しないことを確認
         if (!in_array($validated['category_name'], $existingCategories)) {
             return response()->json([
@@ -252,7 +273,7 @@ class AdminController extends Controller
     {
         // この国を使用している薬があるか確認
         $medicinesWithCountry = $country->medicines()->exists();
-        
+
         if ($medicinesWithCountry) {
             return response()->json([
                 'success' => false,
@@ -262,7 +283,7 @@ class AdminController extends Controller
 
         // 国を削除
         $country->delete();
-        
+
         return response()->json([
             'success' => true,
             'message' => '国が削除されました。'

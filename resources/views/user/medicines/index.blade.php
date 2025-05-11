@@ -1,18 +1,22 @@
 <!--
-# 薬検索結果表示ページ (index.blade.php)
+# 薬の検索結果ページ (index.blade.php)
 
 ## 主な機能
-- 検索キーワードやカテゴリに一致する薬の一覧表示
-- 選択された国で販売されている薬のみをフィルタリング表示
-- 国ごとの価格情報表示（円換算機能付き）
-- お気に入り登録・解除の非同期処理
-- バックエンドとフロントエンドの両方でのフィルタリング処理
+- 検索条件に応じた薬一覧の表示
+- 選択中の国・カテゴリ・キーワードでのフィルタリング
+- お気に入り登録・解除機能
+- 検索条件の復元・UI反映
 
 ## 関連ファイル
-- MedicineController.php: 検索・フィルタリングのバックエンド処理
-- Medicine.php: 国別フィルタリングのscopeInCountryメソッド
-- dashboard.blade.php: 国選択UI
-- category.blade.php: カテゴリ一覧表示
+- MedicineController@index: 検索・一覧表示処理
+- dashboard.blade.php: 国選択・検索UI
+- category.blade.php: カテゴリ検索ページ
+- search.blade.php: 商品名検索ページ
+
+## 実装メモ
+- 検索条件はURLパラメータ・localStorageから取得
+- 国・カテゴリ・キーワードでの多段フィルタに対応
+- お気に入りはAjaxで即時反映
 -->
 
 <x-app-layout>
