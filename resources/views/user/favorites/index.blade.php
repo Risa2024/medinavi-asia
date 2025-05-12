@@ -32,8 +32,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <p class="text-lg text-gray-500">お気に入りに追加された薬はありません。</p>
-              <p class="mt-2 text-gray-400">薬を検索して、お気に入りに追加してみましょう。</p>
+              <p class="text-base text-gray-500">お気に入りに追加された薬はありません。</p>
+              <p class="mt-2 text-sm text-gray-400">薬を検索して、お気に入りに追加してみましょう。</p>
               <div class="mt-6">
                 <a class="inline-block rounded-lg bg-indigo-500 px-6 py-2 font-medium text-white hover:bg-indigo-600"
                   href="{{ route("medicines.search") }}">
