@@ -133,7 +133,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 border sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -165,7 +165,7 @@
               <div class="p-4 sm:p-6">
                 <div class="mb-4 flex items-center sm:mb-5">
                   <div
-                    class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200 sm:h-14 sm:w-14">
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-medinavi-blue/10 border sm:h-14 sm:w-14">
                     <svg class="h-6 w-6 text-medinavi-blue sm:h-7 sm:w-7" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
