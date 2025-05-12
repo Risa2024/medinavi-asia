@@ -147,5 +147,3 @@ cp .env.example .env
 - **テストユーザー**：user@example.com / password
 
 ※ これらのアカウントは開発・テスト環境用です。本番環境では必ず変更してください。
-
----
