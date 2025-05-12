@@ -95,6 +95,11 @@ class GeoController extends Controller
                 'id' => Country::where('name', 'ベトナム')->value('id'),
                 'lat_min' => 8, 'lat_max' => 24, 'lng_min' => 102, 'lng_max' => 110
             ],
+            [
+                'name' => '日本',
+                'id' => Country::where('name', '日本')->value('id'),
+                'lat_min' => 24, 'lat_max' => 46, 'lng_min' => 123, 'lng_max' => 146
+            ],
         ];
         foreach ($countries as $country) {
             if ($lat >= $country['lat_min'] && $lat <= $country['lat_max'] && $lng >= $country['lng_min'] && $lng <= $country['lng_max']) {
