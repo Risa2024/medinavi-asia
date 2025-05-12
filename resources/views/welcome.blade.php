@@ -332,8 +332,8 @@
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center gap-4 sm:gap-6 md:flex-row md:justify-between md:gap-8">
           <div class="w-full text-center md:w-2/3 md:text-left">
-            <h2 class="mb-2 text-xl sm:text-2xl md:text-3xl font-bold text-white">アジアでの市販薬探しを、もっと簡単に。</h2>
-            <p class="text-sm sm:text-base text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
+            <h2 class="mb-2 text-lg sm:text-2xl md:text-3xl font-bold text-white">アジアでの市販薬探しを、もっと簡単に。</h2>
+            <p class="text-xs sm:text-base text-white/90">今すぐ無料で始めましょう。登録は60秒で完了します。</p>
           </div>
           <div class="w-full text-center md:w-1/3 md:text-right">
             <a class="inline-block rounded-lg bg-white/20 px-6 py-3 font-semibold text-white shadow-lg hover:bg-white/30 hover:shadow-xl"
