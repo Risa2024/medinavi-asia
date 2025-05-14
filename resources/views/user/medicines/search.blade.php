@@ -38,7 +38,7 @@
             <div class="relative rounded-md shadow-sm">
               <input type="text" name="query" id="query"
                 class="focus:border-[#3B82F6] focus:ring-[#3B82F6] block w-full rounded-md border-[#E2E8F0] p-3 pl-10 pr-12"
-                placeholder="例：パラセタモール、ビオフェルミン 等">
+                placeholder="例：パナドール、ディアペット 等">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <svg class="h-5 w-5 text-[#94A3B8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
