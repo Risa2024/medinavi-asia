@@ -33,7 +33,6 @@ Route::get('/medicines/search', [MedicineController::class, 'search'])->name('me
 // 検索処理は直接indexを表示する新しいルートを使用
 Route::post('/medicines/results', [MedicineController::class, 'showResults'])->name('medicines.results');
 
-Route::post('/medicines/process-search', [MedicineController::class, 'processSearch'])->name('medicines.process-search');
 Route::get('/medicines/category', [MedicineController::class, 'category'])->name('medicines.category');
 Route::get('/medicines/category/{category}', [MedicineController::class, 'categoryShow'])->name('medicines.category.show')->where('category', '.*');
 Route::get('/medicines/{medicine}', [MedicineController::class, 'show'])->name('medicines.show');
