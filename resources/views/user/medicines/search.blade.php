@@ -4,11 +4,11 @@
 ## 主な機能
 - 薬の名前（商品名）での検索フォーム提供
 - 選択された国のコードを保持し検索結果に引き継ぎ
-- 検索クエリを medicines.index ルートに送信
+- 検索クエリを medicines.results ルートに送信
 
 ## 関連ファイル
 - MedicineController@search: 検索フォーム表示
-- MedicineController@index: 検索結果処理
+- MedicineController@showResults: 検索結果表示処理
 - index.blade.php: 検索結果表示
 - category.blade.php: カテゴリからの検索
 - dashboard.blade.php: 国選択とトップページ
@@ -29,7 +29,9 @@
       </div>
 
       <div class="rounded-xl border border-[#E2E8F0] bg-white p-6 shadow-lg">
-        <form action="{{ route('medicines.index') }}" method="GET" class="max-w-lg mx-auto">
+        <!-- 必ずPOSTメソッドを使用し、適切なエンコーディングを保証 -->
+        <form method="POST" action="{{ route('medicines.results') }}" class="max-w-lg mx-auto" accept-charset="UTF-8" id="searchForm">
+          @csrf
           @if(isset($countryId))
           <input type="hidden" name="country_code" value="{{ $countryId }}">
           @endif
@@ -73,4 +75,11 @@
       </div>
     </div>
   </div>
+
+  <!-- JavaScriptの処理は最小限に -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Search form initialized');
+    });
+  </script>
 </x-app-layout>
