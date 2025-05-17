@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GeoController;
+use App\Http\Controllers\MedicineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::middleware([
 });
 
 Route::get('/get-country', [\App\Http\Controllers\GeoController::class, 'getCountry']);
+
+// 薬の検索JSONエンドポイント - 認証不要
+Route::get('/medicines/search', [MedicineController::class, 'apiSearch']);
