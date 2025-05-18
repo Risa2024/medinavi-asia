@@ -43,13 +43,14 @@ class GeoController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'medinavi-asia/1.0 (your-email@example.com)');
+        // Nominatim APIガイドラインに準拠したUser-Agent
+        curl_setopt($ch, CURLOPT_USERAGENT, 'MediNavi-Asia/1.0 (https://medinavi-asia.example.com)');
+        // タイムアウト設定を追加
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         $json = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curlError = curl_error($ch);
         curl_close($ch);
-        \Log::info('Nominatim API URL', ['url' => $url]);
-        \Log::info('Nominatim API Response', ['json' => $json]);
-        \Log::info('Nominatim cURL Error', ['error' => $curlError]);
         $countryName = null;
         $countryCode = null;
         if ($json) {

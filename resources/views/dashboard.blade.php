@@ -282,7 +282,7 @@
               const longitude = position.coords.longitude;
 
               // 位置情報から国を判定するAPIを呼び出す
-              fetch(`http://localhost/api/get-country?lat=${latitude}&lng=${longitude}`)
+              fetch(`/api/get-country?lat=${latitude}&lng=${longitude}`)
                 .then(response => response.json())
                 .then(data => {
                   // 必ずlocalStorageを上書き
