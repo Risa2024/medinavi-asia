@@ -34,7 +34,8 @@
             <div class="mt-1 flex items-center">
               <div class="mr-4 h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 bg-gray-100">
                 <img class="h-full w-full object-contain" id="current-image"
-                  src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}">
+                  src="{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}"
+                  alt="{{ $medicine->name }}">
                 <img class="hidden h-full w-full object-contain" id="image-preview" src="#" alt="プレビュー">
               </div>
               <div class="flex-1">

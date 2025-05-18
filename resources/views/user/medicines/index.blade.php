@@ -117,7 +117,8 @@
                         class="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-blue-100/50 bg-white p-2 shadow-sm transition-colors group-hover:border-blue-200">
                         <img
                           class="h-full w-full transform object-contain transition-transform duration-300 group-hover:scale-105"
-                          src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}" />
+                          src="{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}"
+                          alt="{{ $medicine->name }}" />
                       </div>
                     </div>
 

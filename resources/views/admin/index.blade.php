@@ -94,8 +94,9 @@
                   class="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
                   <img
                     class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:opacity-80"
-                    src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
-                    onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
+                    src="{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}"
+                    alt="{{ $medicine->name }}"
+                    onclick="openImageModal('{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}', '{{ $medicine->name }}')" />
                 </div>
                 <div class="flex-grow">
                   <h3 class="mb-2 text-lg font-medium text-[#0B1E26]">{{ $medicine->name }}</h3>
@@ -182,8 +183,9 @@
                       class="flex h-16 w-16 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
                       <img
                         class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:scale-105 hover:opacity-80"
-                        src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
-                        onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
+                        src="{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}"
+                        alt="{{ $medicine->name }}"
+                        onclick="openImageModal('{{ asset('storage/' . ($medicine->image_path && file_exists(public_path('storage/' . $medicine->image_path)) ? $medicine->image_path : 'medicines/noimage.jpg')) }}', '{{ $medicine->name }}')" />
                     </div>
                   </td>
                   <td class="px-4 py-3">
