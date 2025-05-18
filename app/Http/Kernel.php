@@ -1,11 +1,28 @@
-//日本語クエリパラメータ処理用ミドルウェアの登録
-
 <?php
 
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * HTTPカーネルクラス
+ * HTTPリクエストが最初に到達する「交通整理係」であり、リクエストがアプリケーション内を
+ * どのように流れるかを決定する重要な役割を担っている。
+ *
+ * このクラスの目的：
+ * 1. アプリケーション全体のHTTPリクエスト処理パイプラインを定義
+ * 2. ミドルウェアの登録と管理
+ * 3. リクエスト処理のフロー制御
+ *
+ * 主な構成要素：
+ * - $middleware: すべてのリクエストに適用されるグローバルミドルウェア
+ * - $middlewareGroups: 'web'や'api'などの特定グループ向けミドルウェア
+ * - $middlewareAliases: ルート定義で使用するミドルウェアのショートカット名
+ *
+ * 重要な追加：
+ * - JapaneseQueryParameterMiddleware: 'web'グループに追加し、
+ *   日本語URLパラメータを正しく処理するためのカスタムミドルウェア
+ */
 class Kernel extends HttpKernel
 {
     /**
