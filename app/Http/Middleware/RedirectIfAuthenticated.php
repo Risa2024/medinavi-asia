@@ -6,6 +6,17 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * 認証済みユーザーリダイレクトミドルウェア
+ *
+ * このミドルウェアの目的：
+ * 1. すでに認証済みのユーザーが認証ページ（ログイン・登録画面など）にアクセスした場合の処理
+ * 2. 認証済みユーザーをダッシュボードなど適切なページへリダイレクト
+ *
+ * 使用方法：
+ * guest ミドルウェアとしてルートに適用
+ * Route::get('/login', [LoginController::class, 'showLoginForm'])->middleware('guest');
+ */
 class RedirectIfAuthenticated
 {
     /**
