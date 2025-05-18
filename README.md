@@ -18,8 +18,6 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 5. [位置情報・国自動判定の仕組み](#位置情報・国自動判定の仕組み)
 6. [API利用制限・注意事項](#api利用制限・注意事項)
 7. [管理者アカウント](#管理者アカウント)
-8. [ライセンス](#ライセンス)
-
 ---
 
 ## デモ・スクリーンショット
@@ -27,8 +25,11 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 ### トップページ
 ![トップページ](docs/images/welcome.png)
 
-### 市販薬検索ページ
+### 市販薬検索
 ![検索ページ](docs/images/home.png)
+
+### 検索結果
+![検索ページ](docs/images/search.png)
 
 ### 管理画面
 ![管理画面](docs/images/management.png)
@@ -105,7 +106,9 @@ cp .env.example .env
 ./vendor/bin/sail npm run dev
 ```
 
-- アクセス先：[http://localhost](http://localhost)
+- アプリケーションのアクセス先：[http://localhost:8000]
+
+※ Viteの開発サーバーが自動的に起動し、フロントエンドの変更は自動的に反映されます
 
 ※ 画像が表示されない場合は、以下のコマンドを再実行してください：
 ```bash
