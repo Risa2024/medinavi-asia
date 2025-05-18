@@ -90,20 +90,13 @@
           @foreach ($medicines as $medicine)
             <div class="border-b border-gray-100 p-4">
               <div class="flex items-start gap-4">
-                @if ($medicine->image_path)
-                  <div
-                    class="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
-                    <img
-                      class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:opacity-80"
-                      src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
-                      onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
-                  </div>
-                @else
-                  <div
-                    class="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
-                    <span class="text-xs text-gray-400">画像なし</span>
-                  </div>
-                @endif
+                <div
+                  class="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
+                  <img
+                    class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:opacity-80"
+                    src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
+                    onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
+                </div>
                 <div class="flex-grow">
                   <h3 class="mb-2 text-lg font-medium text-[#0B1E26]">{{ $medicine->name }}</h3>
                   <div class="mb-2">
@@ -185,20 +178,13 @@
                     <div class="max-w-[180px] truncate text-sm font-medium text-[#0B1E26]">{{ $medicine->name }}</div>
                   </td>
                   <td class="px-4 py-3">
-                    @if ($medicine->image_path)
-                      <div
-                        class="flex h-16 w-16 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
-                        <img
-                          class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:scale-105 hover:opacity-80"
-                          src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
-                          onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
-                      </div>
-                    @else
-                      <div
-                        class="flex h-16 w-16 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
-                        <span class="text-xs text-gray-400">画像なし</span>
-                      </div>
-                    @endif
+                    <div
+                      class="flex h-16 w-16 items-center justify-center rounded-lg border border-gray-100 bg-[#F2F2F2] p-1 shadow-sm">
+                      <img
+                        class="h-full w-full cursor-pointer object-contain transition-all duration-300 hover:scale-105 hover:opacity-80"
+                        src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}"
+                        onclick="openImageModal('{{ asset("storage/" . $medicine->image_path) }}', '{{ $medicine->name }}')" />
+                    </div>
                   </td>
                   <td class="px-4 py-3">
                     <div class="w-[130px]">

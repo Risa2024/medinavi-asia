@@ -113,19 +113,12 @@
 
                     <!-- 画像セクション -->
                     <div class="bg-gradient-to-b from-blue-50/20 p-3">
-                      @if ($medicine->image_path)
-                        <div
-                          class="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-blue-100/50 bg-white p-2 shadow-sm transition-colors group-hover:border-blue-200">
-                          <img
-                            class="h-full w-full transform object-contain transition-transform duration-300 group-hover:scale-105"
-                            src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}" />
-                        </div>
-                      @else
-                        <div
-                          class="flex aspect-[16/9] items-center justify-center rounded-xl border border-blue-100/50 bg-blue-50/50 transition-colors group-hover:border-blue-200">
-                          <span class="text-blue-300">画像なし</span>
-                        </div>
-                      @endif
+                      <div
+                        class="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-blue-100/50 bg-white p-2 shadow-sm transition-colors group-hover:border-blue-200">
+                        <img
+                          class="h-full w-full transform object-contain transition-transform duration-300 group-hover:scale-105"
+                          src="{{ asset("storage/" . $medicine->image_path) }}" alt="{{ $medicine->name }}" />
+                      </div>
                     </div>
 
                     <!-- 情報セクション -->
