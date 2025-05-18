@@ -60,6 +60,23 @@ class LocationManager {
     }
 }
 
+// 国を選択する関数
+function selectCountry(countryId, countryName) {
+    localStorage.setItem('selected_country_id', countryId);
+    localStorage.setItem('selected_country_name', countryName);
+    updateSearchLinks(countryId);
+}
+
+// 検索リンクを更新する関数
+function updateSearchLinks(countryId) {
+    const searchLinks = document.querySelectorAll('.search-link');
+    searchLinks.forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('country_id', countryId);
+        link.href = url.toString();
+    });
+}
+
 // ===== 初期化 =====
 document.addEventListener('DOMContentLoaded', () => {
     new LocationManager();
