@@ -256,7 +256,7 @@
               安心して市販薬を<br>探せるプラットフォーム
             </h2>
             <p class="mb-5 sm:mb-6 md:mb-8 text-sm sm:text-base leading-relaxed text-slate-600">
-              旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。MediNavi Asiaは、アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
+              旅行先で体調を崩したとき、言葉の壁に阻まれることなく適切な市販薬を見つけることができます。アジア各国の医薬品情報を一元化し誰もが安心して医療にアクセスできる環境を提供します。
             </p>
             <ul class="space-y-3 sm:space-y-4">
               <li class="flex items-center p-3">
@@ -265,7 +265,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <span class="ml-3 text-base font-medium text-slate-700">アジア各国の市販薬情報を順次拡大中</span>
+                <span class="ml-3 text-base font-medium text-slate-700">アジア各国の市販薬情報を順次拡大</span>
               </li>
               <li class="flex items-center p-3">
                 <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-medinavi-blue/10">
