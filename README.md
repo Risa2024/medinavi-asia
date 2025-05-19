@@ -107,7 +107,7 @@ cp .env.example .env
 ./vendor/bin/sail npm run dev
 ```
 
-- アプリケーションのアクセス先：[http://localhost:8000]
+- アプリケーションのアクセス先：http://localhost:8000
 
 ※ Viteの開発サーバーが自動的に起動し、フロントエンドの変更は自動的に反映されます
 
