@@ -54,24 +54,24 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 
 ## 使用技術
 
-- **バックエンド**
+**バックエンド**
   - PHP
   - Laravel 12
   - Composer
-- **フロントエンド**
+**フロントエンド**
   - HTML5/CSS3
   - Tailwind CSS
   - JavaScript（ES6+）
   - Vite
   - Node.js/npm
-- **データベース**
+**データベース**
   - PostgreSQL
-- **開発環境**
+**開発環境**
   - Docker
   - Git/GitHub
-- **デプロイ**
+**デプロイ**
   - Laravel Cloud
-- **その他**
+**その他**
   - Nominatim API（位置情報サービス）
   - OpenStreetMap（地図データ）
 ---
