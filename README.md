@@ -44,7 +44,7 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 ---
 
 ## URL
- coming soon
+  https://medinavi-asia.fly.dev
 
 ## 使用技術
 
