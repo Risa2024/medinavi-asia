@@ -71,8 +71,7 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 - Laravel Cloud
 
 ### その他
-- Nominatim API（位置情報サービス）
-- OpenStreetMap（地図データ）
+- Nominatim API（位置情報から国を判定するサービス）
 
 ---
 
