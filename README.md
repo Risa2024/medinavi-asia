@@ -75,7 +75,7 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 
 ---
 
-## データベース
+## ER図
 ![データベースER図](docs/images/database_schema.png)
 
 - **Users**: ユーザー情報を管理（管理者権限含む）
