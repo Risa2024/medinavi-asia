@@ -51,14 +51,14 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 ### バックエンド
 - PHP
 - Laravel 12
-- Composer（パッケージ管理）
+- Composer
 
 ### フロントエンド
 - HTML5/CSS3
 - Tailwind CSS
 - JavaScript（ES6+）
-- Vite（ビルドツール）
-- Node.js/npm（パッケージ管理）
+- Vite
+- Node.js/npm
 
 ### データベース
 - PostgreSQL
@@ -77,11 +77,3 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 
 ## ER図
 ![データベースER図](docs/images/database_schema.png)
-
-- **Users**: ユーザー情報を管理（管理者権限含む）
-- **Medicines**: 薬の基本情報を管理（名前、説明、カテゴリ、画像パス）
-- **Countries**: 国情報と通貨コードを管理
-- **Medicines_Country**: 薬と国の中間テーブル（各国での価格情報を含む）
-- **Favorites**: ユーザーのお気に入り薬情報
-- **Reviews**: レビュー情報（将来の機能拡張用）
-- **Exchanges**: 通貨の為替レート情報
