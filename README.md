@@ -41,7 +41,7 @@ MediNavi Asia は、東南アジア地域の市販薬情報を検索・比較で
 ### ④　お気に入り登録機能
 ### ⑤　管理者アカウントでログインすれば薬情報管理（登録・編集・削除）が可能です
 ![管理アカウント](docs/images/admin.png)
-```管理者```：admin@example.com / password
+```管理者アカウント```：admin@example.com / password
 
 ---
 
